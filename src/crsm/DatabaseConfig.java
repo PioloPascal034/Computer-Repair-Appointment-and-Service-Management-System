@@ -9,11 +9,11 @@ public final class DatabaseConfig {
     private DatabaseConfig() {}
 
     public static Connection openConnection() throws SQLException {
-        String url = System.getenv("SUPABASE_JDBC_URL");
-        String user = System.getenv("SUPABASE_DB_USER");
-        String password = System.getenv("SUPABASE_DB_PASSWORD");
+        String url = AppConfig.get("SUPABASE_JDBC_URL");
+        String user = AppConfig.get("SUPABASE_DB_USER");
+        String password = AppConfig.get("SUPABASE_DB_PASSWORD");
         if (blank(url) || blank(user) || blank(password)) {
-            throw new SQLException("Set SUPABASE_JDBC_URL, SUPABASE_DB_USER, and SUPABASE_DB_PASSWORD to connect.");
+            throw new SQLException("Set SUPABASE_JDBC_URL, SUPABASE_DB_USER, and SUPABASE_DB_PASSWORD in .env or the process environment to connect.");
         }
         if (!url.startsWith("jdbc:postgresql://")) {
             throw new SQLException("SUPABASE_JDBC_URL must begin with jdbc:postgresql://");

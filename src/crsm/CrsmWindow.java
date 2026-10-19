@@ -11,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,6 +39,7 @@ import javax.swing.table.DefaultTableModel;
 
 /** Shared application shell and schema-backed management views. */
 public class CrsmWindow extends JFrame {
+    private final UserSession session;
     private final String role;
     private final RepairRepository repository = new RepairRepository();
     private final CardLayout cards = new CardLayout();
@@ -44,10 +47,12 @@ public class CrsmWindow extends JFrame {
     private final JLabel pageTitle = new JLabel("Dashboard");
     private final Map<String, EntityPanel> entityPanels = new LinkedHashMap<>();
     private final Map<String, DashboardPanel> dashboardPanels = new LinkedHashMap<>();
+    private TechnicianRealtimeClient technicianRealtime;
 
-    public CrsmWindow(String role) {
+    public CrsmWindow(UserSession session) {
         super("CRSM | Computer Repair Service Management");
-        this.role = role;
+        this.session = session;
+        this.role = switch (session.role()) { case "ADMIN" -> "Admin"; case "STAFF" -> "Staff"; default -> "Customer"; };
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1180, 760));
         setSize(1500, 950);
@@ -57,6 +62,30 @@ public class CrsmWindow extends JFrame {
         add(buildMainArea(), BorderLayout.CENTER);
         registerViews();
         showPage("Dashboard");
+        if (role.equals("Admin") || role.equals("Staff")) startTechnicianRealtime();
+        addWindowListener(new WindowAdapter() {
+            @Override public void windowClosed(WindowEvent event) {
+                if (technicianRealtime != null) technicianRealtime.close();
+            }
+        });
+    }
+
+    private void startTechnicianRealtime() {
+        try {
+            technicianRealtime = new TechnicianRealtimeClient(session, () -> javax.swing.SwingUtilities.invokeLater(() -> {
+                if ("Technicians".equals(pageTitle.getText())) {
+                    EntityPanel panel = entityPanels.get("Technicians");
+                    if (panel != null) panel.reload();
+                }
+            }), state -> javax.swing.SwingUtilities.invokeLater(() -> {
+                EntityPanel panel = entityPanels.get("Technicians");
+                if (panel != null) panel.setRealtimeState(state);
+            }));
+            technicianRealtime.start();
+        } catch (RuntimeException ex) {
+            EntityPanel panel = entityPanels.get("Technicians");
+            if (panel != null) panel.setRealtimeState("Live updates unavailable; use Refresh.");
+        }
     }
 
     private JPanel buildSidebar() {
@@ -87,7 +116,19 @@ public class CrsmWindow extends JFrame {
         }
         side.add(nav, BorderLayout.CENTER);
         JButton logout = new JButton("↪   Sign out"); logout.setForeground(CrsmTheme.WHITE); logout.setBackground(CrsmTheme.INDIGO); logout.setFocusPainted(false);
-        logout.addActionListener(e -> { dispose(); new CrsmApplication().showLogin(); }); side.add(logout, BorderLayout.SOUTH);
+        logout.addActionListener(e -> {
+            int answer = JOptionPane.showConfirmDialog(this, "Sign out of your CRSM account?", "Sign out", JOptionPane.YES_NO_OPTION);
+            if (answer != JOptionPane.YES_OPTION) return;
+            logout.setEnabled(false);
+            new SwingWorker<Void, Void>() {
+                @Override protected Void doInBackground() throws Exception { new SupabaseAuthService().signOut(session); return null; }
+                @Override protected void done() {
+                    logout.setEnabled(true);
+                    try { get(); dispose(); new CrsmApplication().showLogin(); }
+                    catch (Exception ex) { CrsmApplication.showError(CrsmWindow.this, ex); }
+                }
+            }.execute();
+        }); side.add(logout, BorderLayout.SOUTH);
         return side;
     }
 
@@ -95,7 +136,7 @@ public class CrsmWindow extends JFrame {
         JPanel main = new JPanel(new BorderLayout(0, 12)); main.setBackground(CrsmTheme.CANVAS);
         JPanel top = new JPanel(new BorderLayout()); top.setBackground(CrsmTheme.NAVY); top.setBorder(BorderFactory.createEmptyBorder(14, 22, 14, 22));
         pageTitle.setForeground(CrsmTheme.WHITE); pageTitle.setFont(new Font("Raleway", Font.BOLD, 21));
-        JLabel user = new JLabel("UI PREVIEW  |  " + role + "  ▼"); user.setForeground(CrsmTheme.WHITE);
+        JLabel user = new JLabel(session.fullName() + "  |  " + role + "  ▼"); user.setForeground(CrsmTheme.WHITE);
         top.add(pageTitle, BorderLayout.WEST); top.add(user, BorderLayout.EAST);
         JPanel body = new JPanel(new BorderLayout()); body.setOpaque(false); body.setBorder(BorderFactory.createEmptyBorder(4, 18, 18, 18)); body.add(content, BorderLayout.CENTER);
         main.add(top, BorderLayout.NORTH); main.add(body, BorderLayout.CENTER);
@@ -110,22 +151,23 @@ public class CrsmWindow extends JFrame {
         }
         DashboardPanel dashboard = new DashboardPanel(); dashboardPanels.put("Dashboard", dashboard); content.add(dashboard, "Dashboard");
         content.add(buildReports(), "Reports");
-        content.add(infoPanel("User Accounts", "The UCD requires customer accounts and administrator-managed staff/technician accounts. The current SQL schema has no user, role, credential, or account-status tables. Authentication and account administration are not enabled in this UI preview."), "User Accounts");
-        content.add(infoPanel("Settings", "The supplied design includes system, business, notification, backup, and security settings. No settings schema or persistence rules are present in the current SQL files."), "Settings");
+        if (role.equals("Admin")) content.add(new UserAccountsPanel(), "User Accounts");
+        content.add(new ProfilePanel(), "My Profile");
+        if (role.equals("Admin")) content.add(new SettingsPanel(), "Settings");
     }
 
     private List<String> navigationForRole() {
         return switch (role) {
-            case "Customer" -> List.of("Dashboard", "Computers", "Appointments", "Repair Requests", "Services", "Payments");
-            case "Staff" -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments");
-            default -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "Reports", "User Accounts", "Settings");
+            case "Customer" -> List.of("Dashboard", "Computers", "Appointments", "Repair Requests", "Services", "Payments", "My Profile");
+            case "Staff" -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "My Profile");
+            default -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "Reports", "User Accounts", "Settings", "My Profile");
         };
     }
 
     private String groupFor(String item) {
         if (item.equals("Dashboard")) return "";
         if (List.of("Reports").contains(item)) return "Reports";
-        if (List.of("User Accounts", "Settings").contains(item)) return "System";
+        if (List.of("User Accounts", "Settings", "My Profile").contains(item)) return "System";
         return role.equals("Customer") ? "My Service" : "Management";
     }
 
@@ -134,7 +176,7 @@ public class CrsmWindow extends JFrame {
             case "Dashboard" -> "⌂"; case "Customers" -> "♙"; case "Computers" -> "▣";
             case "Appointments" -> "▦"; case "Repair Requests" -> "⚒"; case "Technicians" -> "♟";
             case "Services" -> "⚙"; case "Payments" -> "₱"; case "Reports" -> "▤";
-            case "User Accounts" -> "♧"; default -> "⚙";
+            case "User Accounts" -> "♧"; case "My Profile" -> "♙"; default -> "⚙";
         };
     }
 
@@ -195,6 +237,123 @@ public class CrsmWindow extends JFrame {
         return panel;
     }
 
+    private final class UserAccountsPanel extends JPanel {
+        private final javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        private final JTable users = new JTable(model);
+        private final JComboBox<String> targetRole = new JComboBox<>(new String[]{"STAFF", "ADMIN"});
+        private final JLabel state = new JLabel("New accounts receive the Customer role by default.");
+        UserAccountsPanel() {
+            setLayout(new BorderLayout(0, 12)); setBackground(CrsmTheme.CANVAS);
+            JLabel heading = new JLabel("User Accounts"); heading.setFont(new Font("Raleway", Font.BOLD, 28)); heading.setForeground(CrsmTheme.NAVY);
+            JButton refresh = new JButton("Refresh"); JButton promote = new JButton("Promote selected account"); CrsmApplication.stylePrimary(promote);
+            JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT)); actions.setBackground(CrsmTheme.WHITE); actions.add(new JLabel("Promote to")); actions.add(targetRole); actions.add(promote); actions.add(refresh);
+            users.setRowHeight(34); users.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); users.getTableHeader().setBackground(CrsmTheme.INDIGO); users.getTableHeader().setForeground(CrsmTheme.WHITE);
+            add(heading, BorderLayout.NORTH); add(new JScrollPane(users), BorderLayout.CENTER);
+            JPanel bottom = new JPanel(new BorderLayout()); bottom.setOpaque(false); bottom.add(actions, BorderLayout.NORTH); bottom.add(state, BorderLayout.SOUTH); add(bottom, BorderLayout.SOUTH);
+            refresh.addActionListener(e -> load());
+            promote.addActionListener(e -> {
+                int row = users.getSelectedRow(); if (row < 0) { JOptionPane.showMessageDialog(this, "Select an account first."); return; }
+                String id = String.valueOf(users.getValueAt(row, 0));
+                if (id.equals(session.userId())) { JOptionPane.showMessageDialog(this, "Choose another account to promote."); return; }
+                int answer = JOptionPane.showConfirmDialog(this, "Promote this account to " + targetRole.getSelectedItem() + "?", "Confirm role promotion", JOptionPane.YES_NO_OPTION);
+                if (answer != JOptionPane.YES_OPTION) return;
+                promote.setEnabled(false);
+                new SwingWorker<Void,Void>() {
+                    protected Void doInBackground() throws Exception { new SupabaseAuthService().promote(session, id, (String)targetRole.getSelectedItem()); return null; }
+                    protected void done() { promote.setEnabled(true); try { get(); state.setText("Account promoted."); load(); } catch (Exception ex) { CrsmApplication.showError(UserAccountsPanel.this, ex); } }
+                }.execute();
+            });
+            load();
+        }
+        private void load() {
+            state.setText("Loading accounts...");
+            new SwingWorker<List<Map<String,Object>>,Void>() {
+                protected List<Map<String,Object>> doInBackground() throws Exception { return new SupabaseAuthService().listProfiles(session); }
+                protected void done() {
+                    try {
+                        List<Map<String,Object>> rows = get(); model.setRowCount(0); model.setColumnCount(0);
+                        String[] columns = {"id", "full_name", "username", "email", "role", "created_at"}; for (String col : columns) model.addColumn(col);
+                        for (Map<String,Object> row : rows) model.addRow(java.util.Arrays.stream(columns).map(row::get).toArray());
+                        state.setText(rows.size() + " accounts. New signups start as CUSTOMER; only an administrator can promote them.");
+                    } catch (Exception ex) { state.setText("Unable to load accounts."); CrsmApplication.showError(UserAccountsPanel.this, ex); }
+                }
+            }.execute();
+        }
+    }
+
+    private final class ProfilePanel extends JPanel {
+        private java.io.File selectedImage;
+        private final JLabel preview = new JLabel("No profile photo selected", SwingConstants.CENTER);
+        private final JLabel state = new JLabel(" ");
+        ProfilePanel() {
+            setLayout(new BorderLayout(0, 14)); setBackground(CrsmTheme.CANVAS);
+            JLabel heading = new JLabel("My Profile"); heading.setFont(new Font("Raleway", Font.BOLD, 28)); heading.setForeground(CrsmTheme.NAVY);
+            JPanel card = new JPanel(new BorderLayout(20, 12)); card.setBackground(CrsmTheme.WHITE); card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(CrsmTheme.BORDER), BorderFactory.createEmptyBorder(22, 24, 22, 24)));
+            JPanel details = new JPanel(new GridLayout(0, 1, 0, 10)); details.setOpaque(false);
+            details.add(new JLabel("Name: " + session.fullName())); details.add(new JLabel("Username: " + session.username())); details.add(new JLabel("Email: " + session.email())); details.add(new JLabel("Role: " + role));
+            preview.setPreferredSize(new Dimension(200, 200)); preview.setBorder(BorderFactory.createLineBorder(CrsmTheme.BORDER));
+            JPanel photoColumn = new JPanel(new BorderLayout(0, 10)); photoColumn.setOpaque(false); photoColumn.add(preview, BorderLayout.CENTER);
+            JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT)); buttons.setOpaque(false); JButton choose = new JButton("Choose photo"); JButton upload = new JButton("Upload profile photo"); CrsmApplication.stylePrimary(upload); buttons.add(choose); buttons.add(upload); photoColumn.add(buttons, BorderLayout.SOUTH);
+            choose.addActionListener(e -> selectImage(preview));
+            upload.addActionListener(e -> {
+                if (selectedImage == null) { JOptionPane.showMessageDialog(this, "Choose a PNG or JPEG image first."); return; }
+                upload.setEnabled(false); state.setText("Uploading profile photo...");
+                new SwingWorker<String,Void>() {
+                    protected String doInBackground() throws Exception {
+                        String path = new SupabaseStorageService().uploadAvatar(session, selectedImage.toPath());
+                        new SupabaseAuthService().updateAvatar(session, path); return path;
+                    }
+                    protected void done() { upload.setEnabled(true); try { String path = get(); state.setText("Profile photo uploaded."); JOptionPane.showMessageDialog(ProfilePanel.this, "Profile photo saved to private Supabase Storage."); } catch (Exception ex) { state.setText("Upload failed."); CrsmApplication.showError(ProfilePanel.this, ex); } }
+                }.execute();
+            });
+            card.add(details, BorderLayout.CENTER); card.add(photoColumn, BorderLayout.EAST);
+            add(heading, BorderLayout.NORTH); add(card, BorderLayout.CENTER); add(state, BorderLayout.SOUTH);
+        }
+        private void selectImage(JLabel target) {
+            java.io.File file = CrsmApplication.chooseImage(this); if (file == null) return;
+            try {
+                java.awt.image.BufferedImage image = javax.imageio.ImageIO.read(file);
+                if (image == null) throw new IllegalArgumentException("The selected image could not be opened.");
+                selectedImage = file; target.setText(""); target.setIcon(new javax.swing.ImageIcon(image.getScaledInstance(190, 190, java.awt.Image.SCALE_SMOOTH)));
+            } catch (Exception ex) { CrsmApplication.showError(this, ex); }
+        }
+    }
+
+    private final class SettingsPanel extends JPanel {
+        private java.io.File selectedLogo;
+        private final JLabel preview = new JLabel("No business logo selected", SwingConstants.CENTER);
+        private final JLabel state = new JLabel("Business logo upload is restricted to authenticated administrators.");
+        SettingsPanel() {
+            setLayout(new BorderLayout(0, 14)); setBackground(CrsmTheme.CANVAS);
+            JLabel heading = new JLabel("Settings"); heading.setFont(new Font("Raleway", Font.BOLD, 28)); heading.setForeground(CrsmTheme.NAVY);
+            JPanel card = new JPanel(new BorderLayout(16, 12)); card.setBackground(CrsmTheme.WHITE); card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(CrsmTheme.BORDER), BorderFactory.createEmptyBorder(22, 24, 22, 24)));
+            JPanel description = new JPanel(new GridLayout(0, 1, 0, 8)); description.setOpaque(false);
+            JLabel title = new JLabel("Business logo"); title.setFont(new Font("Raleway", Font.BOLD, 19)); title.setForeground(CrsmTheme.INDIGO);
+            description.add(title); description.add(new JLabel("Choose a PNG or JPEG image up to 2 MB. It will be stored in the private brand-assets bucket."));
+            JButton choose = new JButton("Choose logo"); JButton upload = new JButton("Upload and save logo"); CrsmApplication.stylePrimary(upload); description.add(choose); description.add(upload);
+            preview.setPreferredSize(new Dimension(300, 200)); preview.setBorder(BorderFactory.createLineBorder(CrsmTheme.BORDER));
+            choose.addActionListener(e -> selectLogo());
+            upload.addActionListener(e -> {
+                if (selectedLogo == null) { JOptionPane.showMessageDialog(this, "Choose a PNG or JPEG image first."); return; }
+                upload.setEnabled(false); state.setText("Uploading business logo...");
+                new SwingWorker<String,Void>() {
+                    protected String doInBackground() throws Exception {
+                        String path = new SupabaseStorageService().uploadLogo(session, selectedLogo.toPath());
+                        new SupabaseAuthService().updateBusinessLogo(session, path); return path;
+                    }
+                    protected void done() { upload.setEnabled(true); try { get(); state.setText("Business logo uploaded and saved."); } catch (Exception ex) { state.setText("Upload failed."); CrsmApplication.showError(SettingsPanel.this, ex); } }
+                }.execute();
+            });
+            card.add(description, BorderLayout.CENTER); card.add(preview, BorderLayout.EAST);
+            add(heading, BorderLayout.NORTH); add(card, BorderLayout.CENTER); add(state, BorderLayout.SOUTH);
+        }
+        private void selectLogo() {
+            java.io.File file = CrsmApplication.chooseImage(this); if (file == null) return;
+            try { java.awt.image.BufferedImage image = javax.imageio.ImageIO.read(file); if (image == null) throw new IllegalArgumentException("The selected image could not be opened."); selectedLogo = file; preview.setText(""); preview.setIcon(new javax.swing.ImageIcon(image.getScaledInstance(290, 190, java.awt.Image.SCALE_SMOOTH))); }
+            catch (Exception ex) { CrsmApplication.showError(this, ex); }
+        }
+    }
+
     private final class DashboardPanel extends JPanel {
         private final JPanel metrics = new JPanel(new GridLayout(1, 4, 12, 12));
         private final JLabel connectionState = new JLabel("Connecting to configured database...");
@@ -248,6 +407,7 @@ public class CrsmWindow extends JFrame {
         private final JTable table = new JTable(tableModel);
         private final JTextField search = new JTextField(24);
         private final JLabel status = new JLabel(" ");
+        private final JLabel realtimeStatus = new JLabel(" ");
         private final Timer searchTimer;
         private boolean customerScopeGap;
 
@@ -269,6 +429,9 @@ public class CrsmWindow extends JFrame {
             table.getTableHeader().setBackground(CrsmTheme.INDIGO); table.getTableHeader().setForeground(CrsmTheme.WHITE); table.getTableHeader().setReorderingAllowed(false);
             JScrollPane scroll = new JScrollPane(table); scroll.getViewport().setBackground(CrsmTheme.WHITE); scroll.setBorder(BorderFactory.createLineBorder(CrsmTheme.BORDER));
             JPanel bottom = new JPanel(new BorderLayout()); bottom.setOpaque(false); bottom.add(status, BorderLayout.WEST);
+            if (entity == RepairDataModel.Entity.TECHNICIANS && !role.equals("Customer")) {
+                realtimeStatus.setForeground(CrsmTheme.LAVENDER); bottom.add(realtimeStatus, BorderLayout.EAST);
+            }
             add(head, BorderLayout.NORTH); add(scroll, BorderLayout.CENTER); add(bottom, BorderLayout.SOUTH);
             searchTimer = new Timer(350, e -> reload()); searchTimer.setRepeats(false);
             search.addKeyListener(new KeyAdapter() { public void keyReleased(KeyEvent e) { searchTimer.restart(); } });
@@ -281,6 +444,10 @@ public class CrsmWindow extends JFrame {
             customerScopeGap = true; tableModel.setRowCount(0); tableModel.setColumnCount(0);
             tableModel.addColumn("Customer data access unavailable"); tableModel.addRow(new Object[]{"The current schema has no authenticated customer identity or ownership scope. No customer records were loaded."});
             status.setText("Own-record access is blocked until authentication and row scoping are defined.");
+        }
+
+        void setRealtimeState(String message) {
+            if (entity == RepairDataModel.Entity.TECHNICIANS) realtimeStatus.setText(message);
         }
 
         void reload() {

@@ -1,5 +1,9 @@
 COMPUTER REPAIR APPOINTMENT AND SERVICE MANAGEMENT SYSTEM
 
-The current Java Swing application is launched from src/Main.java. See README.md for build/run steps, local Supabase JDBC environment configuration, implemented scope, and unresolved UCD/schema gaps.
+The current Java Swing application is launched from src/Main.java. See README.md for build/run steps, local Supabase environment configuration, implemented scope, and unresolved database access requirements.
 
-The sign-in screen is a UI preview only. It does not authenticate users. Customer-owned database records remain unavailable until authentication and data scoping are designed and implemented. PostgreSQL connection settings are supplied through SUPABASE_JDBC_URL, SUPABASE_DB_USER, and SUPABASE_DB_PASSWORD; do not put credentials in source code.
+Sign-in and sign-up use Supabase Auth. New profiles are assigned the Customer role by a database trigger; Admin promotion is performed through a server-side function. Sign-up does not offer role selection. For a new empty Supabase project, run docs/supabase_fresh_setup.sql once in the SQL Editor. It sets up the business tables, reports, account profiles, image buckets, and Staff/Admin technician Realtime subscription. If the project already has the earlier schema, run docs/enable_technician_realtime.sql. Do not also run the older auth-only docs/supabase_auth_profiles_and_storage.sql file.
+
+No live Supabase Auth, Storage, or JDBC connection has been verified. The business-data JDBC repository currently uses a shared configured database credential and is not scoped to the signed-in user's role. Customer records remain unavailable until authenticated ownership and database access controls are implemented.
+
+Staff/Admin technician screens subscribe to Realtime and reload after technician table changes. Refresh-token handling and database-side locking for competing repair assignments are not implemented.
