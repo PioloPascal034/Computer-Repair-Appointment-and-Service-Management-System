@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1240" viewBox="0 0 1500 1240">
+  <defs>
+    <style>
+      .title { font: 700 27px Arial, sans-serif; fill: #202033; }
+      .subtitle { font: 15px Arial, sans-serif; fill: #626273; }
+      .boundary { fill: #fcfbff; stroke: #5a46a8; stroke-width: 2.5; }
+      .boundary-title { font: 700 19px Arial, sans-serif; fill: #34236f; }
+      .actor-line { fill: none; stroke: #50505c; stroke-width: 2; }
+      .association { fill: none; stroke: #777484; stroke-width: 1.5; }
+      .oval { fill: #f1eaff; stroke: #8b5cf6; stroke-width: 2; }
+      .case { font: 15px Arial, sans-serif; fill: #292638; text-anchor: middle; }
+      .actor-label { font: 700 16px Arial, sans-serif; fill: #292638; text-anchor: middle; }
+      .col-rule { stroke: #e1dcef; stroke-width: 1.5; stroke-dasharray: 5 6; }
+      .col-head { font: 700 17px Arial, sans-serif; fill: #53477b; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect width="1500" height="1240" fill="#ffffff"/>
+  <text class="title" x="750" y="37" text-anchor="middle">Level 1 Use Case Diagram</text>
+  <text class="subtitle" x="750" y="62" text-anchor="middle">Computer Repair Appointment and Service System</text>
+
+  <!-- System boundary -->
+  <rect class="boundary" x="100" y="190" width="1300" height="1005" rx="8"/>
+  <text class="boundary-title" x="750" y="223" text-anchor="middle">Computer Repair Appointment and Service System</text>
+  <line class="col-rule" x1="533" y1="245" x2="533" y2="1170"/>
+  <line class="col-rule" x1="967" y1="245" x2="967" y2="1170"/>
+
+  <!-- Actors outside boundary -->
+  <g transform="translate(316 65)">
+    <circle cx="0" cy="0" r="15" fill="white" stroke="#33333d" stroke-width="2"/>
+    <path class="actor-line" d="M0 15 V54 M-22 29 H22 M0 54 L-20 82 M0 54 L20 82"/>
+    <text class="actor-label" x="0" y="108">Customer</text>
+  </g>
+  <g transform="translate(750 65)">
+    <circle cx="0" cy="0" r="15" fill="white" stroke="#33333d" stroke-width="2"/>
+    <path class="actor-line" d="M0 15 V54 M-22 29 H22 M0 54 L-20 82 M0 54 L20 82"/>
+    <text class="actor-label" x="0" y="108">Staff</text>
+  </g>
+  <g transform="translate(1184 65)">
+    <circle cx="0" cy="0" r="15" fill="white" stroke="#33333d" stroke-width="2"/>
+    <path class="actor-line" d="M0 15 V54 M-22 29 H22 M0 54 L-20 82 M0 54 L20 82"/>
+    <text class="actor-label" x="0" y="108">Admin</text>
+  </g>
+
+  <text class="col-head" x="316" y="264">Customer actions</text>
+  <text class="col-head" x="750" y="264">Staff actions</text>
+  <text class="col-head" x="1184" y="264">Admin actions</text>
+
+  <!-- Associations: actors connect to the use cases in their column. -->
+  <g class="association">
+    <path d="M316 147 L142 310"/><path d="M316 147 L142 440"/><path d="M316 147 L142 570"/>
+    <path d="M316 147 L142 700"/><path d="M316 147 L142 830"/><path d="M316 147 L142 960"/><path d="M316 147 L142 1090"/>
+    <path d="M750 147 L576 310"/><path d="M750 147 L576 440"/><path d="M750 147 L576 570"/>
+    <path d="M750 147 L576 700"/><path d="M750 147 L576 830"/><path d="M750 147 L576 960"/>
+    <path d="M1184 147 L1358 310"/><path d="M1184 147 L1358 440"/><path d="M1184 147 L1358 570"/>
+    <path d="M1184 147 L1358 700"/><path d="M1184 147 L1358 830"/><path d="M1184 147 L1358 960"/><path d="M1184 147 L1358 1090"/>
+  </g>
+
+  <!-- Customer use cases -->
+  <g>
+    <ellipse class="oval" cx="316" cy="310" rx="174" ry="34"/><text class="case" x="316" y="316">Log in and manage own account</text>
+    <ellipse class="oval" cx="316" cy="440" rx="174" ry="34"/><text class="case" x="316" y="446">Add and view own computers</text>
+    <ellipse class="oval" cx="316" cy="570" rx="174" ry="34"/><text class="case" x="316" y="576">Book and view appointments</text>
+    <ellipse class="oval" cx="316" cy="700" rx="174" ry="34"/><text class="case" x="316" y="696"><tspan x="316">Submit repair requests</tspan><tspan x="316" dy="18">and track progress</tspan></text>
+    <ellipse class="oval" cx="316" cy="830" rx="174" ry="34"/><text class="case" x="316" y="826"><tspan x="316">Submit device details</tspan><tspan x="316" dy="18">and damage photos</tspan></text>
+    <ellipse class="oval" cx="316" cy="960" rx="174" ry="34"/><text class="case" x="316" y="966">View services and prices</text>
+    <ellipse class="oval" cx="316" cy="1090" rx="174" ry="34"/><text class="case" x="316" y="1086"><tspan x="316">View payments and approve</tspan><tspan x="316" dy="18">upgrades or replacements</tspan></text>
+  </g>
+
+  <!-- Staff use cases -->
+  <g>
+    <ellipse class="oval" cx="750" cy="310" rx="174" ry="34"/><text class="case" x="750" y="306"><tspan x="750">View dashboard and</tspan><tspan x="750" dy="18">daily work</tspan></text>
+    <ellipse class="oval" cx="750" cy="440" rx="174" ry="34"/><text class="case" x="750" y="436"><tspan x="750">Find customer and</tspan><tspan x="750" dy="18">computer records</tspan></text>
+    <ellipse class="oval" cx="750" cy="570" rx="174" ry="34"/><text class="case" x="750" y="576">Manage appointments</text>
+    <ellipse class="oval" cx="750" cy="700" rx="174" ry="34"/><text class="case" x="750" y="696"><tspan x="750">Review requests and</tspan><tspan x="750" dy="18">update repair status</tspan></text>
+    <ellipse class="oval" cx="750" cy="830" rx="174" ry="34"/><text class="case" x="750" y="826"><tspan x="750">Record device condition,</tspan><tspan x="750" dy="18">diagnosis, and repair work</tspan></text>
+    <ellipse class="oval" cx="750" cy="960" rx="174" ry="34"/><text class="case" x="750" y="966">Record payments and receipts</text>
+  </g>
+
+  <!-- Admin use cases -->
+  <g>
+    <ellipse class="oval" cx="1184" cy="310" rx="174" ry="34"/><text class="case" x="1184" y="306"><tspan x="1184">View dashboard and</tspan><tspan x="1184" dy="18">all system activity</tspan></text>
+    <ellipse class="oval" cx="1184" cy="440" rx="174" ry="34"/><text class="case" x="1184" y="436"><tspan x="1184">Manage customer and</tspan><tspan x="1184" dy="18">computer records</tspan></text>
+    <ellipse class="oval" cx="1184" cy="570" rx="174" ry="34"/><text class="case" x="1184" y="576">Manage appointments</text>
+    <ellipse class="oval" cx="1184" cy="700" rx="174" ry="34"/><text class="case" x="1184" y="696"><tspan x="1184">Manage repair requests</tspan><tspan x="1184" dy="18">and approvals</tspan></text>
+    <ellipse class="oval" cx="1184" cy="830" rx="174" ry="34"/><text class="case" x="1184" y="836">Manage technicians</text>
+    <ellipse class="oval" cx="1184" cy="960" rx="174" ry="34"/><text class="case" x="1184" y="956"><tspan x="1184">Manage services, prices,</tspan><tspan x="1184" dy="18">and payments</tspan></text>
+    <ellipse class="oval" cx="1184" cy="1090" rx="174" ry="34"/><text class="case" x="1184" y="1096">View business reports</text>
+  </g>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1570" viewBox="0 0 1600 1570">
+ <defs><style>
+  .title{font:700 28px Arial,sans-serif;fill:#202033}.sub{font:15px Arial,sans-serif;fill:#626273}
+  .boundary{fill:#fcfbff;stroke:#5a46a8;stroke-width:2.5}.rule{stroke:#ded8ed;stroke-width:1.5;stroke-dasharray:5 6}
+  .head{font:700 18px Arial,sans-serif;fill:#53477b;text-anchor:middle}.oval{fill:#f1eaff;stroke:#8b5cf6;stroke-width:2}
+  .parent{fill:#e6dcff;stroke:#6842bd;stroke-width:2.5}.txt{font:14px Arial,sans-serif;fill:#292638;text-anchor:middle}
+  .small{font:13px Arial,sans-serif;fill:#555064;text-anchor:middle}.actor{fill:none;stroke:#33333d;stroke-width:2}
+  .assoc{fill:none;stroke:#777484;stroke-width:1.5}.include{fill:none;stroke:#7156a5;stroke-width:1.5;stroke-dasharray:5 4;marker-end:url(#arrow)}
+  .label{font:12px Arial,sans-serif;fill:#68528f;text-anchor:middle}
+ </style><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7156a5"/></marker></defs>
+ <rect width="1600" height="1570" fill="white"/>
+ <text class="title" x="800" y="38" text-anchor="middle">Level 3 Use Case Diagram</text>
+ <text class="sub" x="800" y="64" text-anchor="middle">Detailed repair request and repair process</text>
+ <rect class="boundary" x="55" y="200" width="1490" height="1325" rx="8"/>
+ <text x="800" y="233" text-anchor="middle" style="font:700 19px Arial;fill:#34236f">Computer Repair Appointment and Service System</text>
+ <line class="rule" x1="548" y1="260" x2="548" y2="1495"/><line class="rule" x1="1052" y1="260" x2="1052" y2="1495"/>
+
+ <!-- Actors outside the system boundary -->
+ <g transform="translate(300 93)"><circle r="14" fill="white" stroke="#33333d" stroke-width="2"/><path class="actor" d="M0 14V48M-19 27H19M0 48L-17 72M0 48L17 72"/><text class="head" y="94">Customer</text></g>
+ <g transform="translate(800 93)"><circle r="14" fill="white" stroke="#33333d" stroke-width="2"/><path class="actor" d="M0 14V48M-19 27H19M0 48L-17 72M0 48L17 72"/><text class="head" y="94">Staff</text><text class="sub" x="0" y="112" text-anchor="middle">(includes technicians)</text></g>
+ <g transform="translate(1300 93)"><circle r="14" fill="white" stroke="#33333d" stroke-width="2"/><path class="actor" d="M0 14V48M-19 27H19M0 48L-17 72M0 48L17 72"/><text class="head" y="94">Admin</text></g>
+ <text class="head" x="300" y="270">Customer tasks</text><text class="head" x="800" y="270">Staff tasks</text><text class="head" x="1300" y="270">Admin tasks</text>
+
+ <!-- Actor connections to main use cases -->
+ <g class="assoc">
+  <path d="M300 166H80V825 M80 355H110 M80 825H110"/>
+  <path d="M800 166H580V1165 M580 355H610 M580 760H610 M580 1165H610"/>
+  <path d="M1300 166H1520V1165 M1520 355H1490 M1520 760H1490 M1520 1165H1490"/>
+ </g>
+
+ <!-- Customer: submit request and follow repair -->
+ <g>
+  <ellipse class="parent" cx="300" cy="355" rx="190" ry="42"/><text class="txt" x="300" y="351"><tspan x="300">Submit repair</tspan><tspan x="300" dy="18">request</tspan></text>
+  <ellipse class="oval" cx="300" cy="455" rx="184" ry="33"/><text class="small" x="300" y="460">Choose a registered computer</text>
+  <ellipse class="oval" cx="300" cy="535" rx="184" ry="33"/><text class="small" x="300" y="540">Describe the problem</text>
+  <ellipse class="oval" cx="300" cy="615" rx="184" ry="33"/><text class="small" x="300" y="620">Upload photos of damage</text>
+  <ellipse class="oval" cx="300" cy="695" rx="184" ry="33"/><text class="small" x="300" y="700">Choose a drop-off appointment</text>
+  <path class="include" d="M300 397V422"/><text class="label" x="365" y="416">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 488V502"/><text class="label" x="365" y="499">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 568V582"/><text class="label" x="365" y="579">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 648V662"/><text class="label" x="365" y="659">&lt;&lt;include&gt;&gt;</text>
+  <ellipse class="parent" cx="300" cy="825" rx="190" ry="42"/><text class="txt" x="300" y="821"><tspan x="300">Approve estimate</tspan><tspan x="300" dy="18">and track repair</tspan></text>
+  <ellipse class="oval" cx="300" cy="925" rx="184" ry="33"/><text class="small" x="300" y="930">Review diagnosis and estimated cost</text>
+  <ellipse class="oval" cx="300" cy="1005" rx="184" ry="33"/><text class="small" x="300" y="1010">Approve or decline the repair</text>
+  <ellipse class="oval" cx="300" cy="1085" rx="184" ry="33"/><text class="small" x="300" y="1090">Check repair status and updates</text>
+  <ellipse class="oval" cx="300" cy="1165" rx="184" ry="33"/><text class="small" x="300" y="1170">View completion notice and receipt</text>
+  <path class="include" d="M300 867V892"/><text class="label" x="365" y="886">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 958V972"/><text class="label" x="365" y="969">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 1038V1052"/><text class="label" x="365" y="1049">&lt;&lt;include&gt;&gt;</text><path class="include" d="M300 1118V1132"/><text class="label" x="365" y="1129">&lt;&lt;include&gt;&gt;</text>
+ </g>
+
+ <!-- Staff: staff and technicians handle the repair -->
+ <g>
+  <ellipse class="parent" cx="800" cy="355" rx="190" ry="42"/><text class="txt" x="800" y="351"><tspan x="800">Check in and inspect</tspan><tspan x="800" dy="18">device</tspan></text>
+  <ellipse class="oval" cx="800" cy="455" rx="184" ry="33"/><text class="small" x="800" y="460">Confirm customer and device details</text>
+  <ellipse class="oval" cx="800" cy="535" rx="184" ry="33"/><text class="small" x="800" y="540">Record condition and items received</text>
+  <ellipse class="oval" cx="800" cy="615" rx="184" ry="33"/><text class="small" x="800" y="620">Assign repair to a technician</text>
+  <path class="include" d="M800 397V422"/><text class="label" x="865" y="416">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 488V502"/><text class="label" x="865" y="499">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 568V582"/><text class="label" x="865" y="579">&lt;&lt;include&gt;&gt;</text>
+  <ellipse class="parent" cx="800" cy="760" rx="190" ry="42"/><text class="txt" x="800" y="756"><tspan x="800">Diagnose and repair</tspan><tspan x="800" dy="18">assigned device</tspan></text>
+  <ellipse class="oval" cx="800" cy="860" rx="184" ry="33"/><text class="small" x="800" y="865">Run tests and record diagnosis</text>
+  <ellipse class="oval" cx="800" cy="940" rx="184" ry="33"/><text class="small" x="800" y="945">Prepare estimate for customer</text>
+  <ellipse class="oval" cx="800" cy="1020" rx="184" ry="33"/><text class="small" x="800" y="1025">Complete approved work and update status</text>
+  <path class="include" d="M800 802V827"/><text class="label" x="865" y="821">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 893V907"/><text class="label" x="865" y="904">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 973V987"/><text class="label" x="865" y="984">&lt;&lt;include&gt;&gt;</text>
+  <ellipse class="parent" cx="800" cy="1165" rx="190" ry="42"/><text class="txt" x="800" y="1161"><tspan x="800">Complete payment</tspan><tspan x="800" dy="18">and return device</tspan></text>
+  <ellipse class="oval" cx="800" cy="1265" rx="184" ry="33"/><text class="small" x="800" y="1270">Record final cost and payment</text>
+  <ellipse class="oval" cx="800" cy="1345" rx="184" ry="33"/><text class="small" x="800" y="1350">Issue receipt and mark ready for pickup</text>
+  <ellipse class="oval" cx="800" cy="1425" rx="184" ry="33"/><text class="small" x="800" y="1430">Record device pickup</text>
+  <path class="include" d="M800 1207V1232"/><text class="label" x="865" y="1226">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 1298V1312"/><text class="label" x="865" y="1309">&lt;&lt;include&gt;&gt;</text><path class="include" d="M800 1378V1392"/><text class="label" x="865" y="1389">&lt;&lt;include&gt;&gt;</text>
+ </g>
+
+ <!-- Admin: oversight and system management -->
+ <g>
+  <ellipse class="parent" cx="1300" cy="355" rx="190" ry="42"/><text class="txt" x="1300" y="351"><tspan x="1300">Manage staff and</tspan><tspan x="1300" dy="18">technician access</tspan></text>
+  <ellipse class="oval" cx="1300" cy="455" rx="184" ry="33"/><text class="small" x="1300" y="460">Create or update staff accounts</text>
+  <ellipse class="oval" cx="1300" cy="535" rx="184" ry="33"/><text class="small" x="1300" y="540">Set technician skills and availability</text>
+  <ellipse class="oval" cx="1300" cy="615" rx="184" ry="33"/><text class="small" x="1300" y="620">Review technician assignments</text>
+  <path class="include" d="M1300 397V422"/><text class="label" x="1365" y="416">&lt;&lt;include&gt;&gt;</text><path class="include" d="M1300 488V502"/><text class="label" x="1365" y="499">&lt;&lt;include&gt;&gt;</text><path class="include" d="M1300 568V582"/><text class="label" x="1365" y="579">&lt;&lt;include&gt;&gt;</text>
+  <ellipse class="parent" cx="1300" cy="760" rx="190" ry="42"/><text class="txt" x="1300" y="756"><tspan x="1300">Oversee repair</tspan><tspan x="1300" dy="18">requests and decisions</tspan></text>
+  <ellipse class="oval" cx="1300" cy="860" rx="184" ry="33"/><text class="small" x="1300" y="865">View all repair requests and status</text>
+  <ellipse class="oval" cx="1300" cy="940" rx="184" ry="33"/><text class="small" x="1300" y="945">Review upgrade or replacement requests</text>
+  <ellipse class="oval" cx="1300" cy="1020" rx="184" ry="33"/><text class="small" x="1300" y="1025">Resolve escalated repair issues</text>
+  <path class="include" d="M1300 802V827"/><text class="label" x="1365" y="821">&lt;&lt;include&gt;&gt;</text><path class="include" d="M1300 893V907"/><text class="label" x="1365" y="904">&lt;&lt;include&gt;&gt;</text><path class="include" d="M1300 973V987"/><text class="label" x="1365" y="984">&lt;&lt;include&gt;&gt;</text>
+  <ellipse class="parent" cx="1300" cy="1165" rx="190" ry="42"/><text class="txt" x="1300" y="1161"><tspan x="1300">Manage services and</tspan><tspan x="1300" dy="18">review reports</tspan></text>
+  <ellipse class="oval" cx="1300" cy="1265" rx="184" ry="33"/><text class="small" x="1300" y="1270">Update service descriptions and prices</text>
+  <ellipse class="oval" cx="1300" cy="1345" rx="184" ry="33"/><text class="small" x="1300" y="1350">Review repair and payment reports</text>
+  <path class="include" d="M1300 1207V1232"/><text class="label" x="1365" y="1226">&lt;&lt;include&gt;&gt;</text><path class="include" d="M1300 1298V1312"/><text class="label" x="1365" y="1309">&lt;&lt;include&gt;&gt;</text>
+ </g>
+ <text class="sub" x="800" y="1510" text-anchor="middle">Staff includes front-desk staff and technicians. Admin oversees the system and repair operations.</text>
+</svg>
