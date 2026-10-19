@@ -1,0 +1,393 @@
+package crsm;
+
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.EmptyBorder;
+
+/** Native Swing building blocks that follow the supplied palette and layouts. */
+final class CrsmUi {
+    private CrsmUi() {}
+
+    static JPanel card() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(CrsmTheme.WHITE);
+        panel.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(CrsmTheme.LAVENDER, 16),
+                new EmptyBorder(18, 18, 18, 18)));
+        return panel;
+    }
+
+    static JPanel padded(Color background, int pad) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(background);
+        panel.setBorder(new EmptyBorder(pad, pad, pad, pad));
+        return panel;
+    }
+
+    static JLabel heading(String text, int size) {
+        JLabel label = new JLabel(text);
+        label.setFont(CrsmTheme.font(Font.BOLD, size));
+        label.setForeground(CrsmTheme.NAVY);
+        return label;
+    }
+
+    static JLabel muted(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(CrsmTheme.font(Font.PLAIN, 13));
+        label.setForeground(CrsmTheme.LAVENDER);
+        return label;
+    }
+
+    static JLabel html(String text, Color color, int size) {
+        JLabel label = new JLabel("<html>" + text + "</html>");
+        label.setFont(CrsmTheme.font(Font.PLAIN, size));
+        label.setForeground(color);
+        return label;
+    }
+
+    static JButton primary(String text) {
+        JButton button = new JButton(text);
+        button.setFont(CrsmTheme.font(Font.BOLD, 14));
+        button.setForeground(CrsmTheme.NAVY);
+        button.setBackground(CrsmTheme.PEACH);
+        button.setOpaque(true);
+        button.setBorder(new EmptyBorder(10, 18, 10, 18));
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static JButton navy(String text) {
+        JButton button = new JButton(text);
+        button.setFont(CrsmTheme.font(Font.BOLD, 13));
+        button.setForeground(CrsmTheme.WHITE);
+        button.setBackground(CrsmTheme.INDIGO);
+        button.setOpaque(true);
+        button.setBorder(new EmptyBorder(9, 14, 9, 14));
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static JButton ghost(String text) {
+        JButton button = new JButton(text);
+        button.setFont(CrsmTheme.font(Font.PLAIN, 13));
+        button.setForeground(CrsmTheme.INDIGO);
+        button.setBackground(CrsmTheme.WHITE);
+        button.setOpaque(true);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(CrsmTheme.LAVENDER, 12),
+                new EmptyBorder(8, 12, 8, 12)));
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static JButton link(String text) {
+        JButton button = new JButton(text);
+        button.setFont(CrsmTheme.font(Font.BOLD, 12));
+        button.setForeground(CrsmTheme.INDIGO);
+        button.setBackground(CrsmTheme.WHITE);
+        button.setBorder(new EmptyBorder(4, 4, 4, 4));
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static JButton navItem(String text, boolean selected) {
+        JButton button = new JButton(text);
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setFont(CrsmTheme.font(selected ? Font.BOLD : Font.PLAIN, 13));
+        button.setForeground(CrsmTheme.WHITE);
+        button.setBackground(selected ? CrsmTheme.INDIGO : CrsmTheme.NAVY);
+        button.setOpaque(true);
+        button.setBorder(new EmptyBorder(10, 14, 10, 14));
+        button.setFocusPainted(false);
+        button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static void styleField(JTextField field) {
+        field.setFont(CrsmTheme.font(Font.PLAIN, 14));
+        field.setForeground(CrsmTheme.NAVY);
+        field.setBackground(CrsmTheme.WHITE);
+        field.setCaretColor(CrsmTheme.NAVY);
+        field.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(CrsmTheme.LAVENDER, 12),
+                new EmptyBorder(8, 12, 8, 12)));
+        field.setPreferredSize(new Dimension(100, 42));
+    }
+
+    static JPanel labeled(String caption, JComponent field) {
+        JPanel block = new JPanel(new BorderLayout(0, 6));
+        block.setOpaque(false);
+        JLabel label = new JLabel(caption);
+        label.setFont(CrsmTheme.font(Font.BOLD, 13));
+        label.setForeground(CrsmTheme.NAVY);
+        block.add(label, BorderLayout.NORTH);
+        block.add(field, BorderLayout.CENTER);
+        return block;
+    }
+
+    static JPanel passwordRow(JPasswordField password) {
+        styleField(password);
+        JButton toggle = link("Show");
+        toggle.addActionListener(e -> {
+            boolean reveal = password.getEchoChar() != 0;
+            password.setEchoChar(reveal ? (char) 0 : '\u2022');
+            toggle.setText(reveal ? "Hide" : "Show");
+        });
+        JPanel row = new JPanel(new BorderLayout(8, 0));
+        row.setOpaque(false);
+        row.add(password, BorderLayout.CENTER);
+        row.add(toggle, BorderLayout.EAST);
+        return row;
+    }
+
+    static JPanel metric(String title, String value, String note) {
+        JPanel card = card();
+        JLabel name = muted(title);
+        JLabel number = heading(value, 28);
+        JPanel body = new JPanel();
+        body.setOpaque(false);
+        body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
+        name.setAlignmentX(Component.LEFT_ALIGNMENT);
+        number.setAlignmentX(Component.LEFT_ALIGNMENT);
+        body.add(name);
+        body.add(Box.createVerticalStrut(8));
+        body.add(number);
+        if (note != null && !note.isBlank()) {
+            JLabel extra = muted(note);
+            extra.setAlignmentX(Component.LEFT_ALIGNMENT);
+            body.add(Box.createVerticalStrut(6));
+            body.add(extra);
+        }
+        card.add(body, BorderLayout.CENTER);
+        return card;
+    }
+
+    static JPanel notice(String title, String detail) {
+        JPanel card = card();
+        JPanel body = new JPanel();
+        body.setOpaque(false);
+        body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
+        JLabel heading = heading(title, 16);
+        heading.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JLabel text = html("<div style='width:620px'>" + detail + "</div>", CrsmTheme.INDIGO, 13);
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
+        body.add(heading);
+        body.add(Box.createVerticalStrut(8));
+        body.add(text);
+        card.add(body, BorderLayout.CENTER);
+        return card;
+    }
+
+    static void styleTable(JTable table) {
+        table.setRowHeight(36);
+        table.setShowHorizontalLines(true);
+        table.setShowVerticalLines(false);
+        table.setGridColor(CrsmTheme.LAVENDER);
+        table.setBackground(CrsmTheme.WHITE);
+        table.setForeground(CrsmTheme.NAVY);
+        table.setSelectionBackground(CrsmTheme.LAVENDER);
+        table.setSelectionForeground(CrsmTheme.WHITE);
+        table.getTableHeader().setBackground(CrsmTheme.NAVY);
+        table.getTableHeader().setForeground(CrsmTheme.WHITE);
+        table.getTableHeader().setFont(CrsmTheme.font(Font.BOLD, 12));
+        table.getTableHeader().setReorderingAllowed(false);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    }
+
+    static JScrollPane scroll(Component view) {
+        JScrollPane scroll = new JScrollPane(view);
+        scroll.setBorder(new RoundedBorder(CrsmTheme.LAVENDER, 12));
+        scroll.getViewport().setBackground(CrsmTheme.WHITE);
+        scroll.setBackground(CrsmTheme.WHITE);
+        return scroll;
+    }
+
+    static JPanel pageHead(String title, String subtitle, JComponent trailing) {
+        JPanel head = new JPanel(new BorderLayout(16, 0));
+        head.setOpaque(false);
+        JPanel titles = new JPanel();
+        titles.setOpaque(false);
+        titles.setLayout(new BoxLayout(titles, BoxLayout.Y_AXIS));
+        JLabel heading = heading(title, 28);
+        heading.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JLabel sub = muted(subtitle);
+        sub.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titles.add(heading);
+        titles.add(Box.createVerticalStrut(4));
+        titles.add(sub);
+        head.add(titles, BorderLayout.WEST);
+        if (trailing != null) head.add(trailing, BorderLayout.EAST);
+        return head;
+    }
+
+    static JPanel metricsRow(JPanel... cards) {
+        JPanel row = new JPanel(new GridLayout(1, Math.max(1, cards.length), 12, 12));
+        row.setOpaque(false);
+        for (JPanel card : cards) row.add(card);
+        return row;
+    }
+
+    static JPanel logoMark(int size, boolean light) {
+        return new LogoPanel(size, light);
+    }
+
+    static JPanel workshopScene() {
+        return new WorkshopPanel();
+    }
+
+    static JTextArea multiline(int rows) {
+        JTextArea area = new JTextArea(rows, 20);
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setFont(CrsmTheme.font(Font.PLAIN, 13));
+        area.setForeground(CrsmTheme.NAVY);
+        area.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(CrsmTheme.LAVENDER, 10),
+                new EmptyBorder(8, 8, 8, 8)));
+        return area;
+    }
+
+    static JPanel flowLeft(Component... components) {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
+        panel.setOpaque(false);
+        for (Component component : components) panel.add(component);
+        return panel;
+    }
+
+    static final class RoundedBorder extends AbstractBorder {
+        private final Color color;
+        private final int radius;
+        RoundedBorder(Color color, int radius) { this.color = color; this.radius = radius; }
+        @Override public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(color);
+            g2.setStroke(new BasicStroke(1.2f));
+            g2.draw(new RoundRectangle2D.Float(x + 1, y + 1, width - 3, height - 3, radius, radius));
+            g2.dispose();
+        }
+        @Override public Insets getBorderInsets(Component c) { return new Insets(4, 4, 4, 4); }
+    }
+
+    private static final class LogoPanel extends JPanel {
+        private final int size;
+        private final boolean light;
+        LogoPanel(int size, boolean light) {
+            this.size = size; this.light = light;
+            setOpaque(false);
+            setPreferredSize(new Dimension(size, size));
+            setMaximumSize(new Dimension(size, size));
+        }
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            Color ink = light ? CrsmTheme.WHITE : CrsmTheme.NAVY;
+            g2.setColor(ink);
+            int s = Math.min(getWidth(), getHeight()) - 4;
+            g2.setStroke(new BasicStroke(Math.max(2f, s / 12f)));
+            g2.drawRoundRect(6, 10, s / 2, s / 2, 6, 6);
+            g2.drawLine(6 + s / 4, 10, 6 + s / 4, 10 + s / 2);
+            g2.drawOval(6 + s / 2, 6, s / 3, s / 3);
+            g2.fillOval(6 + s / 2 + s / 10, 6 + s / 10, 6, 6);
+            g2.dispose();
+        }
+    }
+
+    private static final class WorkshopPanel extends JPanel {
+        WorkshopPanel() {
+            setBackground(CrsmTheme.NAVY);
+            setPreferredSize(new Dimension(520, 0));
+            setLayout(new BorderLayout());
+            JPanel copy = new JPanel();
+            copy.setOpaque(false);
+            copy.setLayout(new BoxLayout(copy, BoxLayout.Y_AXIS));
+            copy.setBorder(new EmptyBorder(48, 42, 36, 36));
+            JPanel brand = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+            brand.setOpaque(false);
+            brand.setAlignmentX(Component.LEFT_ALIGNMENT);
+            brand.add(logoMark(54, true));
+            JPanel names = new JPanel();
+            names.setOpaque(false);
+            names.setLayout(new BoxLayout(names, BoxLayout.Y_AXIS));
+            JLabel mark = new JLabel("CRSM");
+            mark.setFont(CrsmTheme.font(Font.BOLD, 36));
+            mark.setForeground(CrsmTheme.WHITE);
+            JLabel name = new JLabel("COMPUTER REPAIR SERVICE MANAGEMENT");
+            name.setFont(CrsmTheme.font(Font.BOLD, 12));
+            name.setForeground(CrsmTheme.WHITE);
+            names.add(mark); names.add(name);
+            brand.add(names);
+            JPanel accent = new JPanel();
+            accent.setBackground(CrsmTheme.PEACH);
+            accent.setMaximumSize(new Dimension(72, 4));
+            accent.setPreferredSize(new Dimension(72, 4));
+            accent.setAlignmentX(Component.LEFT_ALIGNMENT);
+            JLabel tag = new JLabel("Manage Devices. Deliver Solutions.");
+            tag.setFont(CrsmTheme.font(Font.PLAIN, 20));
+            tag.setForeground(CrsmTheme.WHITE);
+            tag.setAlignmentX(Component.LEFT_ALIGNMENT);
+            copy.add(brand);
+            copy.add(Box.createVerticalStrut(18));
+            copy.add(accent);
+            copy.add(Box.createVerticalStrut(16));
+            copy.add(tag);
+            add(copy, BorderLayout.NORTH);
+        }
+        @Override protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            int w = getWidth(), h = getHeight();
+            g2.setColor(CrsmTheme.INDIGO);
+            g2.fillRoundRect(48, h - 280, 210, 140, 16, 16);
+            g2.setColor(CrsmTheme.LAVENDER);
+            g2.fillRoundRect(68, h - 262, 170, 100, 10, 10);
+            g2.setColor(CrsmTheme.WHITE);
+            g2.fillRoundRect(280, h - 210, 150, 95, 14, 14);
+            g2.setColor(CrsmTheme.PEACH);
+            g2.fillOval(w - 120, 80, 70, 70);
+            g2.setColor(CrsmTheme.INDIGO);
+            g2.fillRoundRect(40, h - 90, w - 80, 18, 8, 8);
+            g2.dispose();
+        }
+    }
+
+    static void drawCentered(Graphics2D g2, String text, int cx, int cy) {
+        FontMetrics metrics = g2.getFontMetrics();
+        g2.drawString(text, cx - metrics.stringWidth(text) / 2, cy + metrics.getAscent() / 2);
+    }
+}

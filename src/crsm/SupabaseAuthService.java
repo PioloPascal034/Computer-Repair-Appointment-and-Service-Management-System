@@ -74,5 +74,53 @@ public class SupabaseAuthService {
         SupabaseClient.requireSuccess(response);
     }
 
+    public void updatePassword(UserSession session, String currentPassword, String newPassword) throws IOException, InterruptedException {
+        signIn(session.email(), currentPassword);
+        HttpResponse<String> response = client.send("PUT", "/auth/v1/user", session.accessToken(), Map.of("password", newPassword), null);
+        SupabaseClient.requireSuccess(response);
+    }
+
+    public UserSession updateProfile(UserSession session, String fullName, String username) throws IOException, InterruptedException {
+        Map<String,Object> body = new LinkedHashMap<>();
+        body.put("full_name", fullName);
+        body.put("username", username);
+        HttpResponse<String> response = client.send("PATCH", "/rest/v1/crsm_profiles?id=eq." + SupabaseClient.queryValue(session.userId()),
+                session.accessToken(), body, Map.of("Prefer", "return=minimal"));
+        SupabaseClient.requireSuccess(response);
+        return session.withProfile(fullName, username);
+    }
+
+    public void clearAvatar(UserSession session) throws IOException, InterruptedException {
+        Map<String,Object> body = new LinkedHashMap<>();
+        body.put("avatar_path", "");
+        HttpResponse<String> response = client.send("PATCH", "/rest/v1/crsm_profiles?id=eq." + SupabaseClient.queryValue(session.userId()),
+                session.accessToken(), body, Map.of("Prefer", "return=minimal"));
+        SupabaseClient.requireSuccess(response);
+    }
+
+    public Map<String,String> loadSettings(UserSession session) throws IOException, InterruptedException {
+        HttpResponse<String> response = client.send("GET", "/rest/v1/crsm_settings?select=setting_key,setting_value", session.accessToken(), null, null);
+        SupabaseClient.requireSuccess(response);
+        Object parsed = JsonCodec.parse(response.body());
+        Map<String,String> settings = new LinkedHashMap<>();
+        if (parsed instanceof List<?> list) {
+            for (Object item : list) {
+                if (item instanceof Map<?,?> row) {
+                    settings.put(str(row.get("setting_key")), str(row.get("setting_value")));
+                }
+            }
+        }
+        return settings;
+    }
+
+    public void saveSetting(UserSession session, String key, String value) throws IOException, InterruptedException {
+        Map<String,Object> body = new LinkedHashMap<>();
+        body.put("setting_key", key);
+        body.put("setting_value", value);
+        HttpResponse<String> response = client.send("POST", "/rest/v1/crsm_settings?on_conflict=setting_key", session.accessToken(), body,
+                Map.of("Prefer", "resolution=merge-duplicates,return=minimal"));
+        SupabaseClient.requireSuccess(response);
+    }
+
     private static String str(Object value) { return value == null ? "" : value.toString(); }
 }
