@@ -10,4 +10,7 @@ interface CrsmHost {
     void signOut();
     int pageSize();
     void refreshHeader();
+    void applySearch(String query);
+    boolean canMutate(RepairDataModel.Entity entity);
+    boolean customerRecordsBlocked();
 }

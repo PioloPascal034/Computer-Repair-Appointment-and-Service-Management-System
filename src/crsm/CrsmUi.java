@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -74,27 +75,15 @@ final class CrsmUi {
     }
 
     static JButton primary(String text) {
-        JButton button = new JButton(text);
-        button.setFont(CrsmTheme.font(Font.BOLD, 14));
-        button.setForeground(CrsmTheme.NAVY);
-        button.setBackground(CrsmTheme.PEACH);
-        button.setOpaque(true);
-        button.setBorder(new EmptyBorder(10, 18, 10, 18));
-        button.setFocusPainted(false);
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        return button;
+        return filled(text, CrsmTheme.PEACH, CrsmTheme.NAVY, Font.BOLD, 14);
     }
 
     static JButton navy(String text) {
-        JButton button = new JButton(text);
-        button.setFont(CrsmTheme.font(Font.BOLD, 13));
-        button.setForeground(CrsmTheme.WHITE);
-        button.setBackground(CrsmTheme.INDIGO);
-        button.setOpaque(true);
-        button.setBorder(new EmptyBorder(9, 14, 9, 14));
-        button.setFocusPainted(false);
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        return button;
+        return filled(text, CrsmTheme.INDIGO, CrsmTheme.WHITE, Font.BOLD, 13);
+    }
+
+    static JButton danger(String text) {
+        return filled(text, CrsmTheme.NAVY, CrsmTheme.WHITE, Font.BOLD, 12);
     }
 
     static JButton ghost(String text) {
@@ -106,6 +95,37 @@ final class CrsmUi {
         button.setBorder(BorderFactory.createCompoundBorder(
                 new RoundedBorder(CrsmTheme.LAVENDER, 12),
                 new EmptyBorder(8, 12, 8, 12)));
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    static JButton iconAction(String text) {
+        JButton button = link(text);
+        button.setFont(CrsmTheme.font(Font.BOLD, 14));
+        button.setForeground(CrsmTheme.INDIGO);
+        return button;
+    }
+
+    private static JButton filled(String text, Color background, Color foreground, int style, int size) {
+        JButton button = new JButton(text) {
+            @Override protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                Color fill = background;
+                if (getModel().isPressed()) fill = CrsmTheme.INDIGO;
+                else if (getModel().isRollover()) fill = CrsmTheme.LAVENDER;
+                g2.setColor(fill);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+        button.setFont(CrsmTheme.font(style, size));
+        button.setForeground(foreground);
+        button.setContentAreaFilled(false);
+        button.setOpaque(false);
+        button.setBorder(new EmptyBorder(10, 16, 10, 16));
         button.setFocusPainted(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         return button;
@@ -124,17 +144,82 @@ final class CrsmUi {
     }
 
     static JButton navItem(String text, boolean selected) {
-        JButton button = new JButton(text);
+        JButton button = new JButton(text) {
+            @Override protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                boolean on = Boolean.TRUE.equals(getClientProperty("selected"));
+                g2.setColor(on ? CrsmTheme.INDIGO : CrsmTheme.NAVY);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+        button.putClientProperty("selected", selected);
         button.setHorizontalAlignment(SwingConstants.LEFT);
         button.setFont(CrsmTheme.font(selected ? Font.BOLD : Font.PLAIN, 13));
         button.setForeground(CrsmTheme.WHITE);
-        button.setBackground(selected ? CrsmTheme.INDIGO : CrsmTheme.NAVY);
-        button.setOpaque(true);
+        button.setContentAreaFilled(false);
+        button.setOpaque(false);
         button.setBorder(new EmptyBorder(10, 14, 10, 14));
         button.setFocusPainted(false);
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.setAlignmentX(Component.LEFT_ALIGNMENT);
         return button;
+    }
+
+    static void selectNav(JButton button, boolean selected) {
+        button.putClientProperty("selected", selected);
+        button.setFont(CrsmTheme.font(selected ? Font.BOLD : Font.PLAIN, 13));
+        button.repaint();
+    }
+
+    static JLabel badge(String text) {
+        JLabel label = new JLabel(text == null || text.isBlank() ? "—" : text, SwingConstants.CENTER);
+        label.setOpaque(true);
+        label.setFont(CrsmTheme.font(Font.BOLD, 11));
+        label.setBorder(new EmptyBorder(4, 10, 4, 10));
+        String value = text == null ? "" : text;
+        if (List.of("Paid", "Completed", "Confirmed", "Ready for Pickup").contains(value)) {
+            label.setBackground(CrsmTheme.PEACH);
+            label.setForeground(CrsmTheme.NAVY);
+        } else if (List.of("Pending", "Unpaid", "Partial", "Waiting for Parts").contains(value)) {
+            label.setBackground(CrsmTheme.LAVENDER);
+            label.setForeground(CrsmTheme.WHITE);
+        } else if (List.of("ADMIN", "Admin", "Under Repair", "Under Diagnosis").contains(value)) {
+            label.setBackground(CrsmTheme.INDIGO);
+            label.setForeground(CrsmTheme.WHITE);
+        } else {
+            label.setBackground(CrsmTheme.NAVY);
+            label.setForeground(CrsmTheme.WHITE);
+        }
+        return label;
+    }
+
+    static String money(Object value) {
+        if (value == null || String.valueOf(value).isBlank()) return "—";
+        try {
+            return "₱" + new java.math.BigDecimal(String.valueOf(value)).setScale(2, java.math.RoundingMode.HALF_UP);
+        } catch (RuntimeException ex) {
+            return String.valueOf(value);
+        }
+    }
+
+    static String text(Object value) {
+        return value == null ? "" : String.valueOf(value);
+    }
+
+    static String titleCase(String field) {
+        if (field == null || field.isBlank()) return "";
+        String[] parts = field.split("_");
+        StringBuilder label = new StringBuilder();
+        for (String part : parts) {
+            if (part.isBlank()) continue;
+            if (!label.isEmpty()) label.append(' ');
+            label.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
+        }
+        return label.toString();
     }
 
     static void styleField(JTextField field) {
