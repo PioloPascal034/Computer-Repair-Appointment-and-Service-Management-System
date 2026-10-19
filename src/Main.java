@@ -1,9 +1,8 @@
-import javax.swing.*;
+import javax.swing.SwingUtilities;
+import crsm.CrsmApplication;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new LoginFrame().setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new CrsmApplication().showLogin());
     }
 }
