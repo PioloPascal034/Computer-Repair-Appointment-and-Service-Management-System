@@ -1,0 +1,23 @@
+# Workflow implementation notes
+
+Apply `supabase_fresh_setup.sql` first, then `customer_workflow_migration.sql` in the Supabase SQL Editor. The migration adds account ownership, customer intake, private repair photo storage, history events, estimate options, and guarded RPCs for request submission, technician assignment, estimate decisions, and pickup.
+
+After those two files, run `customer_catalog_and_demo_seed.sql`. It adds a searchable device catalog, device-type-specific service prices, and repeatable demo Customers, technicians, services, computers, appointments, repair requests, and a payment. The demo business records are not linked to Auth sign-in accounts. Create real sign-in accounts through Supabase Auth; do not insert fabricated rows into `auth.users`.
+
+The implementation uses these defaults until the business rules are refined:
+
+- A Customer Auth account maps to one `customers` row. Phone and address are collected at first request.
+- Technicians authenticate as `STAFF`; an administrator links their Auth ID to a technician record. Assignment is performed by Staff.
+- A technician can hold one active repair. `Busy`, `Unavailable`, and `Off Duty` block assignment. `Confirmed`, `Under Diagnosis`, `Under Repair`, `Waiting for Parts`, `Ready for Testing`, and `Ready for Pickup` consume capacity.
+- Customer estimate decisions approve the base repair and any selected subset of options. Declining leaves the request `Pending` for staff follow-up.
+- Pickup completion requires `Ready for Pickup` and a final cost. Payment capture/receipt recording remains a separate operation.
+
+The desktop Customer request, tracking, estimate decision, and photo upload flows call Supabase using the signed-in user's JWT. Customer device choices load from `crsm_device_catalog`, the service cards load from `repair_services`, and the request form looks up prices from `repair_service_device_prices`. Staff repair assignment, estimate creation, work history, final cost, payment, receipt, photo viewing, and pickup actions use guarded database RPCs and JWT-authenticated Storage access. Admin account activation, login activity, promotion, technician linking, and payment refunds also use RPCs. Customer ownership and active-account checks are enforced by RLS and the RPCs.
+
+The starter device catalog contains common brands and models and supports free-text model entry for anything missing; it is extendable in Supabase as the shop encounters additional devices. The catalog is a curated starter dataset, not a claim to enumerate every model ever manufactured. Customer intake accepts up to three PNG/JPEG photos (2 MB each); upload failures now display the Storage service's response so bucket/policy/configuration errors are diagnosable.
+
+The migration is additive and does not backfill existing Customer/Auth matches. An administrator must link existing rows after verifying identity. The generic `RepairRepository` still uses JDBC and a shared database login for legacy CRUD, dashboards, and reports; those operations do not inherit Supabase Auth RLS. Do not expose that database credential in a distributed desktop build. Replace those operations with JWT-backed API calls or a trusted backend before treating the full app as securely role-scoped.
+
+Business contact details and appointment hours, working days, booking window, and daily capacity now persist in `crsm_settings`; new Customer bookings validate those rules in the request RPC. Account deactivation/reactivation and login activity are available to Admin, and Staff accounts can be linked to Technician records.
+
+Remaining implementation work includes printable receipts, notification delivery, backup controls, and migration of every legacy JDBC-backed path to the trusted access design. Customers can request Admin review after declining an estimate; Admin can re-quote, leave the decision unchanged, or close the request. Refunds are Admin-only and recorded with a reason. Payment records include receipt numbers and the Customer view displays payment details; a printable receipt document is still absent. The migration has not yet been applied to a Supabase project, and existing Customer records need identity-verified ownership links before Customer access can show their history.

@@ -44,9 +44,26 @@ public class CrsmWindow extends JFrame {
     private final RepairRepository repository = new RepairRepository();
     private final CardLayout cards = new CardLayout();
     private final JPanel content = new JPanel(cards);
+<<<<<<< Updated upstream
     private final JLabel pageTitle = new JLabel("Dashboard");
     private final Map<String, EntityPanel> entityPanels = new LinkedHashMap<>();
     private final Map<String, DashboardPanel> dashboardPanels = new LinkedHashMap<>();
+=======
+    private final Map<String, JButton> navButtons = new LinkedHashMap<>();
+    private final Map<String, CrsmListing> listings = new LinkedHashMap<>();
+    private final JLabel headerUser = new JLabel();
+    private final JLabel headerClock = new JLabel();
+    private final JTextField headerSearch = new JTextField();
+    private final Preferences prefs = Preferences.userNodeForPackage(CrsmApplication.class);
+    private CrsmPages.DashboardPage dashboard;
+    private CrsmPages.ReportsPage reports;
+    private CrsmPages.UserAccountsPage accounts;
+    private CrsmPages.ProfilePage profile;
+    private CrsmPages.SettingsPage settings;
+    private CustomerRequestPage customerRequest;
+    private CustomerServicesPage customerServices;
+    private String currentPage = "Dashboard";
+>>>>>>> Stashed changes
     private TechnicianRealtimeClient technicianRealtime;
 
     public CrsmWindow(UserSession session) {
@@ -70,6 +87,68 @@ public class CrsmWindow extends JFrame {
         });
     }
 
+<<<<<<< Updated upstream
+=======
+    @Override public UserSession session() { return session; }
+    @Override public void replaceSession(UserSession next) { this.session = next; refreshHeader(); }
+    @Override public String roleName() { return role; }
+    @Override public RepairRepository repository() { return repository; }
+    @Override public int pageSize() { return CrsmApplication.pageSize(); }
+    @Override public boolean customerRecordsBlocked() { return "Customer".equals(role); }
+
+    @Override public boolean canMutate(RepairDataModel.Entity entity) {
+        if ("Admin".equals(role)) return true;
+        if ("Staff".equals(role)) {
+            return entity == RepairDataModel.Entity.CUSTOMERS
+                    || entity == RepairDataModel.Entity.COMPUTERS
+                    || entity == RepairDataModel.Entity.APPOINTMENTS
+                    || entity == RepairDataModel.Entity.REPAIR_REQUESTS
+                    || entity == RepairDataModel.Entity.PAYMENTS;
+        }
+        return false;
+    }
+
+    @Override public void applySearch(String query) {
+        CrsmListing listing = listings.get(currentPage);
+        if (listing != null) listing.applySearch(query);
+        else if ("Services".equals(currentPage) && customerServices != null) customerServices.applySearch(query);
+        else if ("New Repair Request".equals(currentPage) && customerRequest != null) customerRequest.applySearch(query);
+        else if ("User Accounts".equals(currentPage) && accounts != null) accounts.reload();
+    }
+
+    @Override public void refreshHeader() {
+        headerUser.setText(session.fullName() + "  ·  " + role);
+    }
+
+    @Override public void showDatabaseError(Exception exception) {
+        Throwable cause = exception.getCause() == null ? exception : exception.getCause();
+        JOptionPane.showMessageDialog(this, cause.getMessage(), "Database operation unavailable", JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override public void signOut() { signOut(true); }
+
+    private void signOut(boolean confirm) {
+        if (confirm) {
+            int answer = JOptionPane.showConfirmDialog(this, "Sign out of your CRSM account?", "Sign out", JOptionPane.YES_NO_OPTION);
+            if (answer != JOptionPane.YES_OPTION) return;
+        }
+        new SwingWorker<Void, Void>() {
+            @Override protected Void doInBackground() throws Exception {
+                new SupabaseAuthService().signOut(session);
+                return null;
+            }
+            @Override protected void done() {
+                try {
+                    get();
+                    if (technicianRealtime != null) technicianRealtime.close();
+                    dispose();
+                    new CrsmApplication().showLogin();
+                } catch (Exception ex) { CrsmApplication.showError(CrsmWindow.this, ex); }
+            }
+        }.execute();
+    }
+
+>>>>>>> Stashed changes
     private void startTechnicianRealtime() {
         try {
             technicianRealtime = new TechnicianRealtimeClient(session, () -> javax.swing.SwingUtilities.invokeLater(() -> {
@@ -133,6 +212,7 @@ public class CrsmWindow extends JFrame {
     }
 
     private JPanel buildMainArea() {
+<<<<<<< Updated upstream
         JPanel main = new JPanel(new BorderLayout(0, 12)); main.setBackground(CrsmTheme.CANVAS);
         JPanel top = new JPanel(new BorderLayout()); top.setBackground(CrsmTheme.NAVY); top.setBorder(BorderFactory.createEmptyBorder(14, 22, 14, 22));
         pageTitle.setForeground(CrsmTheme.WHITE); pageTitle.setFont(new Font("Raleway", Font.BOLD, 21));
@@ -140,14 +220,96 @@ public class CrsmWindow extends JFrame {
         top.add(pageTitle, BorderLayout.WEST); top.add(user, BorderLayout.EAST);
         JPanel body = new JPanel(new BorderLayout()); body.setOpaque(false); body.setBorder(BorderFactory.createEmptyBorder(4, 18, 18, 18)); body.add(content, BorderLayout.CENTER);
         main.add(top, BorderLayout.NORTH); main.add(body, BorderLayout.CENTER);
+=======
+        JPanel main = new JPanel(new BorderLayout());
+        main.setBackground(CrsmTheme.CANVAS);
+        JPanel top = new JPanel(new BorderLayout(16, 0));
+        top.setBackground(CrsmTheme.NAVY);
+        top.setBorder(BorderFactory.createEmptyBorder(12, 18, 12, 18));
+        CrsmUi.styleField(headerSearch);
+        headerSearch.setPreferredSize(new Dimension(420, 40));
+        headerSearch.putClientProperty("JTextField.placeholderText", "Search…");
+        headerSearch.addActionListener(e -> applySearch(headerSearch.getText()));
+        JButton searchButton = CrsmUi.ghost("Search");
+        searchButton.setForeground(CrsmTheme.WHITE);
+        searchButton.addActionListener(e -> applySearch(headerSearch.getText()));
+        headerClock.setForeground(CrsmTheme.WHITE);
+        headerClock.setFont(CrsmTheme.font(Font.PLAIN, 12));
+        headerUser.setForeground(CrsmTheme.WHITE);
+        headerUser.setFont(CrsmTheme.font(Font.BOLD, 13));
+        refreshHeader();
+        JButton bell = CrsmUi.link("Alerts");
+        bell.setForeground(CrsmTheme.WHITE);
+        bell.addActionListener(e -> JOptionPane.showMessageDialog(this,
+                "There is no notifications table in the current schema. Operational lists on Dashboard and each module are the live data source.",
+                "Alerts", JOptionPane.INFORMATION_MESSAGE));
+        JButton profileButton = CrsmUi.link("Account ▾");
+        profileButton.setForeground(CrsmTheme.WHITE);
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem myProfile = new JMenuItem("My Profile");
+        myProfile.addActionListener(e -> showPage("My Profile"));
+        menu.add(myProfile);
+        if ("Admin".equals(role)) {
+            JMenuItem settingsItem = new JMenuItem("Settings");
+            settingsItem.addActionListener(e -> showPage("Settings"));
+            menu.add(settingsItem);
+        }
+        JMenuItem signOutItem = new JMenuItem("Sign out");
+        signOutItem.addActionListener(e -> signOut());
+        menu.add(signOutItem);
+        profileButton.addActionListener(e -> menu.show(profileButton, 0, profileButton.getHeight()));
+        JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 12, 0));
+        right.setOpaque(false);
+        right.add(headerClock);
+        right.add(bell);
+        right.add(headerUser);
+        right.add(profileButton);
+        JPanel searchSlot = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        searchSlot.setOpaque(false);
+        searchSlot.add(headerSearch);
+        searchSlot.add(searchButton);
+        top.add(searchSlot, BorderLayout.CENTER);
+        top.add(right, BorderLayout.EAST);
+        JPanel body = new JPanel(new BorderLayout());
+        body.setOpaque(false);
+        body.setBorder(BorderFactory.createEmptyBorder(8, 16, 16, 16));
+        body.add(content, BorderLayout.CENTER);
+        main.add(top, BorderLayout.NORTH);
+        main.add(body, BorderLayout.CENTER);
+>>>>>>> Stashed changes
         return main;
     }
 
     private void registerViews() {
+<<<<<<< Updated upstream
         for (RepairDataModel.Entity entity : RepairDataModel.Entity.values()) {
             if (role.equals("Customer") && entity != RepairDataModel.Entity.COMPUTERS && entity != RepairDataModel.Entity.APPOINTMENTS && entity != RepairDataModel.Entity.REPAIR_REQUESTS && entity != RepairDataModel.Entity.REPAIR_SERVICES && entity != RepairDataModel.Entity.PAYMENTS) continue;
             EntityPanel panel = new EntityPanel(entity);
             entityPanels.put(entity.label, panel); content.add(panel, entity.label);
+=======
+        dashboard = CrsmPages.dashboard(this);
+        content.add(dashboard, "Dashboard");
+        if ("Customer".equals(role)) {
+            customerRequest = new CustomerRequestPage(session);
+            content.add(customerRequest, "New Repair Request");
+            content.add(new CustomerTrackingPage(session), "My Repairs");
+            customerServices = new CustomerServicesPage(session, service -> {
+                customerRequest.selectService(Integer.parseInt(String.valueOf(service.get("service_id"))), String.valueOf(service.get("service_name")), String.valueOf(service.get("description")));
+                showPage("New Repair Request");
+            });
+            content.add(customerServices, "Services");
+        } else {
+            content.add(new RepairOperationsPage(session), "Repair Workflow");
+        }
+        for (RepairDataModel.Entity entity : RepairDataModel.Entity.values()) {
+            if ("Customer".equals(role)) continue;
+            if ("Staff".equals(role) && entity == RepairDataModel.Entity.REPAIR_SERVICES) {
+                // Staff may view the catalog when assigning a service on a repair request.
+            }
+            CrsmListing panel = new CrsmListing(this, entity);
+            listings.put(entity.label, panel);
+            content.add(panel, entity.label);
+>>>>>>> Stashed changes
         }
         DashboardPanel dashboard = new DashboardPanel(); dashboardPanels.put("Dashboard", dashboard); content.add(dashboard, "Dashboard");
         content.add(buildReports(), "Reports");
@@ -158,9 +320,9 @@ public class CrsmWindow extends JFrame {
 
     private List<String> navigationForRole() {
         return switch (role) {
-            case "Customer" -> List.of("Dashboard", "Computers", "Appointments", "Repair Requests", "Services", "Payments", "My Profile");
-            case "Staff" -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "My Profile");
-            default -> List.of("Dashboard", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "Reports", "User Accounts", "Settings", "My Profile");
+            case "Customer" -> List.of("Dashboard", "New Repair Request", "My Repairs", "Services", "My Profile");
+            case "Staff" -> List.of("Dashboard", "Repair Workflow", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "My Profile");
+            default -> List.of("Dashboard", "Repair Workflow", "Customers", "Computers", "Appointments", "Repair Requests", "Technicians", "Services", "Payments", "Reports", "User Accounts", "Settings", "My Profile");
         };
     }
 
@@ -171,6 +333,7 @@ public class CrsmWindow extends JFrame {
         return role.equals("Customer") ? "My Service" : "Management";
     }
 
+<<<<<<< Updated upstream
     private String iconFor(String label) {
         return switch (label) {
             case "Dashboard" -> "⌂"; case "Customers" -> "♙"; case "Computers" -> "▣";
@@ -178,6 +341,19 @@ public class CrsmWindow extends JFrame {
             case "Services" -> "⚙"; case "Payments" -> "₱"; case "Reports" -> "▤";
             case "User Accounts" -> "♧"; case "My Profile" -> "♙"; default -> "⚙";
         };
+=======
+    @Override public void showPage(String name) {
+        if (!navigationForRole().contains(name)) name = "Dashboard";
+        String activePage = name;
+        currentPage = activePage;
+        navButtons.forEach((key, button) -> CrsmUi.selectNav(button, key.equals(activePage)));
+        cards.show(content, activePage);
+        CrsmListing listing = listings.get(activePage);
+        if (listing != null) listing.reload();
+        if ("Dashboard".equals(activePage) && dashboard != null) dashboard.reload();
+        if ("Reports".equals(activePage) && reports != null) reports.reload();
+        if ("User Accounts".equals(activePage) && accounts != null) accounts.reload();
+>>>>>>> Stashed changes
     }
 
     private void showPage(String name) {

@@ -7,12 +7,9 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.UUID;
 
 public class SupabaseStorageService {
-    private final SupabaseClient client = new SupabaseClient();
-
     public String uploadAvatar(UserSession session, Path file) throws IOException, InterruptedException {
         validateImage(file);
         return upload(session, "crsm-profile-images", session.userId() + "/" + UUID.randomUUID() + extension(file), file);
@@ -23,6 +20,11 @@ public class SupabaseStorageService {
         return upload(session, "crsm-brand-assets", "branding/" + UUID.randomUUID() + extension(file), file);
     }
 
+    public String uploadRepairPhoto(UserSession session, int repairId, Path file) throws IOException, InterruptedException {
+        validateImage(file);
+        return upload(session,"crsm-repair-photos",session.userId()+"/"+repairId+"/"+UUID.randomUUID()+extension(file),file);
+    }
+
     private String upload(UserSession session, String bucket, String path, Path file) throws IOException, InterruptedException {
         String encodedPath = encodePath(path);
         byte[] bytes = Files.readAllBytes(file);
@@ -31,9 +33,19 @@ public class SupabaseStorageService {
                 .header("apikey", AppConfig.get("SUPABASE_ANON_KEY"))
                 .header("Authorization", "Bearer " + session.accessToken())
                 .header("Content-Type", mime).header("x-upsert", "true")
-                .PUT(HttpRequest.BodyPublishers.ofByteArray(bytes)).build();
+                .POST(HttpRequest.BodyPublishers.ofByteArray(bytes)).build();
         HttpResponse<String> response = java.net.http.HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        SupabaseClient.requireSuccess(response);
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
+            String detail = response.body();
+            try {
+                Object parsed = JsonCodec.parse(detail);
+                if (parsed instanceof java.util.Map<?,?> map) {
+                    Object value = map.get("message"); if (value == null) value = map.get("error"); if (value == null) value = map.get("msg");
+                    if (value != null) detail = value.toString();
+                }
+            } catch (RuntimeException ignored) { }
+            throw new IllegalStateException("Supabase Storage upload failed (HTTP " + response.statusCode() + "): " + detail);
+        }
         return path;
     }
 
