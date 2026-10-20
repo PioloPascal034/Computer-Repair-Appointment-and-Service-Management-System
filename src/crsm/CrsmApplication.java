@@ -252,7 +252,9 @@ public class CrsmApplication {
     private JPanel formCard() {
         JPanel card = new JPanel(new GridBagLayout());
         card.setBackground(CrsmTheme.WHITE);
-        card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(AUTH_BORDER), BorderFactory.createEmptyBorder(30, 34, 30, 34)));
+        card.setBorder(BorderFactory.createCompoundBorder(
+                new CrsmUi.RoundedBorder(AUTH_BORDER, 20),
+                BorderFactory.createEmptyBorder(30, 34, 30, 34)));
         return card;
     }
 
@@ -303,18 +305,26 @@ public class CrsmApplication {
 
     private static void styleField(JTextField field) {
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14)); field.setForeground(CrsmTheme.TEXT); field.setBackground(CrsmTheme.WHITE);
-        field.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(AUTH_BORDER), BorderFactory.createEmptyBorder(9, 11, 9, 11)));
+        field.setBorder(BorderFactory.createCompoundBorder(new CrsmUi.RoundedBorder(AUTH_BORDER, 12), BorderFactory.createEmptyBorder(9, 11, 9, 11)));
         field.setPreferredSize(new Dimension(100, 43));
+        field.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override public void focusGained(java.awt.event.FocusEvent e) {
+                field.setBorder(BorderFactory.createCompoundBorder(new CrsmUi.RoundedBorder(CrsmTheme.LAVENDER, 12), BorderFactory.createEmptyBorder(9, 11, 9, 11)));
+            }
+            @Override public void focusLost(java.awt.event.FocusEvent e) {
+                field.setBorder(BorderFactory.createCompoundBorder(new CrsmUi.RoundedBorder(AUTH_BORDER, 12), BorderFactory.createEmptyBorder(9, 11, 9, 11)));
+            }
+        });
     }
 
     private static JButton authPrimaryButton(String text) {
-        JButton button = new JButton(text); button.setFont(new Font("Segoe UI", Font.BOLD, 15)); button.setForeground(CrsmTheme.NAVY); button.setBackground(CrsmTheme.PEACH);
-        button.setOpaque(true); button.setBorder(BorderFactory.createEmptyBorder(12, 18, 12, 18)); button.setFocusPainted(false); button.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
+        JButton button = new JButton(text); button.setFont(new Font("Segoe UI", Font.BOLD, 15)); button.setForeground(CrsmTheme.WHITE); button.setBackground(CrsmTheme.LAVENDER);
+        button.setOpaque(true); button.setBorder(BorderFactory.createCompoundBorder(new CrsmUi.RoundedBorder(CrsmTheme.LAVENDER, 12), BorderFactory.createEmptyBorder(12, 18, 12, 18))); button.setFocusPainted(false); button.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR));
         button.setPreferredSize(new Dimension(100, 48)); return button;
     }
 
     private static JButton secondaryButton(String text) {
-        JButton button = new JButton(text); button.setForeground(CrsmTheme.INDIGO); button.setBackground(CrsmTheme.WHITE); button.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(AUTH_BORDER), BorderFactory.createEmptyBorder(10, 14, 10, 14)));
+        JButton button = new JButton(text); button.setForeground(CrsmTheme.INDIGO); button.setBackground(CrsmTheme.WHITE); button.setBorder(BorderFactory.createCompoundBorder(new CrsmUi.RoundedBorder(AUTH_BORDER, 12), BorderFactory.createEmptyBorder(10, 14, 10, 14)));
         button.setFocusPainted(false); button.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.HAND_CURSOR)); return button;
     }
 

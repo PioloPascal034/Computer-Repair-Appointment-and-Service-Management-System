@@ -85,6 +85,43 @@ public class SupabaseAuthService {
         SupabaseClient.requireSuccess(response);
     }
 
+    public void updateProfile(UserSession session, String fullName, String username) throws IOException, InterruptedException {
+        if (fullName == null || fullName.isBlank()) throw new IllegalArgumentException("Enter your full name.");
+        if (username == null || username.isBlank()) throw new IllegalArgumentException("Enter a username.");
+        Map<String,Object> body = Map.of("full_name", fullName.trim(), "username", username.trim());
+        HttpResponse<String> response = client.send("PATCH",
+                "/rest/v1/crsm_profiles?id=eq." + SupabaseClient.queryValue(session.userId()),
+                session.accessToken(), body, Map.of("Prefer", "return=minimal"));
+        SupabaseClient.requireSuccess(response);
+    }
+
+    public Map<String,String> settings(UserSession session) throws IOException, InterruptedException {
+        HttpResponse<String> response = client.send("GET",
+                "/rest/v1/crsm_settings?select=setting_key,setting_value&order=setting_key",
+                session.accessToken(), null, null);
+        SupabaseClient.requireSuccess(response);
+        Object parsed = JsonCodec.parse(response.body());
+        if (!(parsed instanceof List<?> rows)) throw new IllegalStateException("Unexpected settings response.");
+        Map<String,String> result = new LinkedHashMap<>();
+        for (Object item : rows) {
+            if (!(item instanceof Map<?,?> row)) continue;
+            Object key = row.get("setting_key");
+            Object value = row.get("setting_value");
+            if (key != null && value != null) result.put(key.toString(), value.toString());
+        }
+        return result;
+    }
+
+    public void saveSettings(UserSession session, Map<String,String> settings) throws IOException, InterruptedException {
+        if (settings.isEmpty()) return;
+        List<Map<String,Object>> values = new java.util.ArrayList<>();
+        settings.forEach((key, value) -> values.add(Map.of("setting_key", key, "setting_value", value)));
+        HttpResponse<String> response = client.send("POST",
+                "/rest/v1/crsm_settings?on_conflict=setting_key", session.accessToken(), values,
+                Map.of("Prefer", "resolution=merge-duplicates,return=minimal"));
+        SupabaseClient.requireSuccess(response);
+    }
+
     public void updateBusinessLogo(UserSession session, String path) throws IOException, InterruptedException {
         HttpResponse<String> response = client.send("POST", "/rest/v1/rpc/set_crsm_business_logo", session.accessToken(), Map.of("logo_path", path), null);
         SupabaseClient.requireSuccess(response);

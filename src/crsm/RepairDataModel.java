@@ -1,6 +1,7 @@
 package crsm;
 
 import java.util.LinkedHashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public final class RepairDataModel {
     }
 
     public record Row(Entity entity, Map<String, Object> values) {
-        public Row { values = Map.copyOf(new LinkedHashMap<>(values)); }
+        public Row { values = Collections.unmodifiableMap(new LinkedHashMap<>(values)); }
         public Object id() { return values.get(entity.idColumn); }
         public String value(String column) { Object value = values.get(column); return value == null ? "" : value.toString(); }
     }

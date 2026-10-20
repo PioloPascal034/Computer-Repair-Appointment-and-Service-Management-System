@@ -1,7 +1,9 @@
 package crsm;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
@@ -19,29 +21,55 @@ final class RepairOperationsPage extends JPanel {
     private final UserSession session;
     private final CustomerWorkflowService service=new CustomerWorkflowService();
     private final JComboBox<RepairOption> repairs=new JComboBox<>();
+    private final List<JButton> repairActions=new ArrayList<>();
 
     RepairOperationsPage(UserSession session) {
-        this.session=session; setLayout(new BorderLayout(12,12)); setBorder(BorderFactory.createEmptyBorder(24,28,24,28));
-        JPanel top=new JPanel(new BorderLayout(8,8)); top.add(new JLabel("Select repair request"),BorderLayout.WEST); top.add(repairs,BorderLayout.CENTER);
-        JButton refresh=new JButton("Refresh"); refresh.addActionListener(e->reload()); top.add(refresh,BorderLayout.EAST); add(top,BorderLayout.NORTH);
-        JPanel actions=new JPanel(new GridLayout(0,1,8,8));
-        JButton work=new JButton("Record diagnosis, work and parts"); work.addActionListener(e->recordWork());
-        JButton assign=new JButton("Assign technician"); assign.addActionListener(e->assign());
-        JButton estimate=new JButton("Prepare estimate and options"); estimate.addActionListener(e->estimate());
-        JButton finish=new JButton("Set final cost and ready state"); finish.addActionListener(e->finish());
-        JButton payment=new JButton("Record payment and receipt"); payment.addActionListener(e->payment());
-        JButton refund=new JButton("Refund payment (Admin)"); refund.addActionListener(e->refund()); refund.setVisible("ADMIN".equals(session.role()));
-        JButton pickup=new JButton("Confirm device pickup"); pickup.addActionListener(e->pickup());
-        JButton photos=new JButton("View repair photos"); photos.addActionListener(e->viewPhotos());
-        JButton reviews=new JButton("Estimate review queue (Admin)"); reviews.addActionListener(e->reviewQueue()); reviews.setVisible("ADMIN".equals(session.role()));
-        actions.add(assign); actions.add(estimate); actions.add(work); actions.add(finish); actions.add(payment); actions.add(refund); actions.add(photos); actions.add(reviews); actions.add(pickup); add(actions,BorderLayout.CENTER); reload();
+        this.session=session; setLayout(new BorderLayout(16,16)); setBackground(CrsmTheme.CANVAS); setBorder(BorderFactory.createEmptyBorder(4,2,4,2));
+        JButton refresh=CrsmUi.ghost("Refresh"); refresh.addActionListener(e->reload());
+        add(CrsmUi.pageHead("Repair workflow","Manage technician assignment, diagnosis, estimates, payments, and pickup.",refresh),BorderLayout.NORTH);
+        JPanel requestPicker=new JPanel(new BorderLayout(10,0)); requestPicker.setOpaque(false); CrsmUi.styleCombo(repairs);
+        requestPicker.add(new JLabel("Repair request"),BorderLayout.WEST); requestPicker.add(repairs,BorderLayout.CENTER);
+        JPanel actions=new JPanel(new GridLayout(0,2,12,12)); actions.setOpaque(false);
+        JButton work=action("Record diagnosis, work and parts",e->recordWork());
+        JButton assign=action("Assign technician",e->assign());
+        JButton estimate=action("Prepare estimate and options",e->estimate());
+        JButton finish=action("Set final cost and ready state",e->finish());
+        JButton payment=action("Record payment and receipt",e->payment());
+        JButton refund=action("Refund payment (Admin)",e->refund()); refund.setVisible("ADMIN".equals(session.role()));
+        JButton pickup=action("Confirm device pickup",e->pickup());
+        JButton photos=action("View repair photos",e->viewPhotos());
+        JButton reviews=action("Estimate review queue (Admin)",e->reviewQueue()); reviews.setVisible("ADMIN".equals(session.role()));
+        actions.add(assign); actions.add(estimate); actions.add(work); actions.add(finish); actions.add(payment); actions.add(refund); actions.add(photos); actions.add(reviews); actions.add(pickup);
+        repairs.addActionListener(e->updateActionAvailability());
+        JPanel workflow=new JPanel(new BorderLayout(0,16)); workflow.setOpaque(false);
+        workflow.add(requestPicker,BorderLayout.NORTH); workflow.add(actions,BorderLayout.CENTER);
+        add(CrsmUi.section("Select a request and choose an action","Available actions follow the selected repair and your account permissions.",workflow),BorderLayout.CENTER);
+        reload();
     }
 
     private void reload() {
         new SwingWorker<List<Map<String,Object>>,Void>() {
             protected List<Map<String,Object>> doInBackground() throws Exception { return service.repairs(session); }
-            protected void done() { try { repairs.removeAllItems(); for(Map<String,Object> row:get()) { int id=Integer.parseInt(String.valueOf(row.get("repair_request_id"))); Map<?,?> device=(Map<?,?>)row.get("computers"); repairs.addItem(new RepairOption(id,str(row.get("repair_status"))+" · "+str(device.get("brand"))+" "+str(device.get("model")))); } } catch(Exception ex) { error(ex); } }
+            protected void done() { try { repairs.removeAllItems(); for(Map<String,Object> row:get()) { int id=Integer.parseInt(String.valueOf(row.get("repair_request_id"))); Object related=row.get("computers"); Map<?,?> device=related instanceof Map<?,?> map?map:Map.of(); repairs.addItem(new RepairOption(id,str(row.get("repair_status"))+" · "+str(device.get("brand"))+" "+str(device.get("model")))); } updateActionAvailability(); } catch(Exception ex) { updateActionAvailability(); error(ex); } }
         }.execute();
+    }
+
+    private JButton action(String label, java.awt.event.ActionListener listener) {
+        JButton button=CrsmUi.ghost(label);
+        button.addActionListener(listener);
+        repairActions.add(button);
+        return button;
+    }
+
+    private void updateActionAvailability() {
+        boolean selected=repairs.getSelectedItem()!=null;
+        for(JButton button:repairActions) {
+            boolean adminOnly = button.getText().startsWith("Refund") || button.getText().startsWith("Estimate review");
+            boolean roleAllowed = !adminOnly || "ADMIN".equals(session.role());
+            button.setEnabled(selected && roleAllowed);
+            button.setToolTipText(!selected ? "Refresh repairs and select a request first."
+                    : !roleAllowed ? "This action requires an Admin account." : null);
+        }
     }
 
     private int selected() { RepairOption item=(RepairOption)repairs.getSelectedItem(); if(item==null) throw new IllegalStateException("Select a repair request first."); return item.id(); }

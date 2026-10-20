@@ -15,6 +15,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -50,14 +52,14 @@ final class CustomerRequestPage extends JPanel {
     private final JPanel photoNames = new JPanel(new FlowLayout(FlowLayout.LEFT, 6, 0));
     private final List<Path> photos = new ArrayList<>();
     private final JLabel selectedService = new JLabel("No service selected");
-    private final JLabel servicePrice = new JLabel(" ");
+    private final JLabel selectedServiceDescription = new JLabel("Staff can recommend a service after diagnosis.");
+    private final JLabel servicePrice = new JLabel("Choose a service and device to see a tailored estimate.");
     private final JButton browseServices = new JButton("Choose / Change");
     private final Timer estimateTimer = new Timer(300, e -> refreshServiceEstimate());
     private final List<Map<String,Object>> deviceCatalog = new ArrayList<>();
     private final Runnable onBrowseServices;
     private int selectedServiceId = -1;
     private String selectedServiceName = "";
-    private BigDecimal selectedServiceStartingPrice;
     private int estimateGeneration;
 
     CustomerRequestPage(UserSession session, Runnable onBrowseServices) {
@@ -65,17 +67,20 @@ final class CustomerRequestPage extends JPanel {
         this.onBrowseServices = onBrowseServices;
         estimateTimer.setRepeats(false);
         setLayout(new BorderLayout(16, 16));
-        setBackground(Color.WHITE);
-        setBorder(BorderFactory.createEmptyBorder(18, 22, 18, 22));
-        JPanel top = new JPanel(new BorderLayout(4, 5)); top.setOpaque(false);
-        JLabel title = new JLabel("Tell us about your device"); title.setFont(title.getFont().deriveFont(Font.BOLD, 22f));
-        top.add(title, BorderLayout.NORTH);
-        top.add(new JLabel("Register your device, describe the issue, and choose a drop-off time. Final pricing is confirmed after hands-on inspection."), BorderLayout.SOUTH);
-        add(top, BorderLayout.NORTH);
+        setBackground(CrsmTheme.CANVAS);
+        setBorder(BorderFactory.createEmptyBorder(4, 2, 4, 2));
+        add(CrsmUi.pageHead("New repair request",
+                "Tell us about your device and choose a convenient drop-off time.", null), BorderLayout.NORTH);
 
-        JPanel form = new JPanel(new GridLayout(0, 2, 18, 14)); form.setOpaque(false);
+        JPanel form = new JPanel();
+        form.setOpaque(false);
+        form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
+        form.setBorder(BorderFactory.createEmptyBorder(4, 2, 10, 2));
         style(deviceType); style(brand); style(model); style(purpose);
-        brand.setEnabled(false); model.setEnabled(false); model.setEditable(false);
+        CrsmUi.styleField(phone); CrsmUi.styleField(address); CrsmUi.styleField(serial);
+        CrsmUi.styleField(specification); CrsmUi.styleField(appointmentDate); CrsmUi.styleField(appointmentTime);
+        styleArea(problem); styleArea(work); styleArea(accessories);
+        brand.setEnabled(false); model.setEnabled(false); model.setEditable(true);
         conditionChoices.setOpaque(false);
         for (String option : new String[]{"Working", "Intermittent", "No power", "Physical damage"}) {
             JRadioButton radio = new JRadioButton(option); radio.setOpaque(false); conditionGroup.add(radio); conditionChoices.add(radio);
@@ -84,30 +89,57 @@ final class CustomerRequestPage extends JPanel {
         deviceType.addActionListener(e -> { refreshBrands(); refreshModels(); clearSpecification(); scheduleServiceEstimate(); });
         brand.addActionListener(e -> { refreshModels(); clearSpecification(); scheduleServiceEstimate(); });
         model.addActionListener(e -> { refreshSpecificationSuggestions(); scheduleServiceEstimate(); });
-        addRow(form, "Contact number *", phone); addRow(form, "Address", address);
-        addRow(form, "Device category *", deviceType); addRow(form, "Brand *", brand);
-        addRow(form, "Model", model); addRow(form, "Specification (optional)", specification); addRow(form, "Serial number (optional)", serial);
-        addRow(form, "Device condition *", conditionChoices); addRow(form, "Items handed in", accessories);
-        addRow(form, "What is wrong? *", problem); addRow(form, "What would you like us to do?", work);
+        JPanel contact = fieldGrid();
+        contact.add(CrsmUi.labeled("Contact number *", phone));
+        contact.add(CrsmUi.labeled("Address", address));
+        JPanel appointment = new JPanel(new GridLayout(1, 2, 12, 0)); appointment.setOpaque(false);
+        appointment.add(CrsmUi.labeled("Date (YYYY-MM-DD)", appointmentDate));
+        appointment.add(CrsmUi.labeled("Time (HH:MM)", appointmentTime));
+        contact.add(CrsmUi.labeled("Drop-off appointment", appointment));
+        contact.add(CrsmUi.labeled("Appointment type", purpose));
+        form.add(CrsmUi.section("Contact & drop-off", "How we can reach you and when you plan to bring in the device.", contact));
+        form.add(Box.createVerticalStrut(14));
+
+        JPanel device = fieldGrid();
+        device.add(CrsmUi.labeled("Device category *", deviceType));
+        device.add(CrsmUi.labeled("Brand *", brand));
+        device.add(CrsmUi.labeled("Model *", model));
+        device.add(CrsmUi.labeled("Specifications (optional)", specification));
+        device.add(CrsmUi.labeled("Serial number (optional)", serial));
+        device.add(CrsmUi.labeled("Device condition *", conditionChoices));
+        form.add(CrsmUi.section("Your device", "Choose the closest category, brand, and model so the estimate can use matching device data.", device));
+        form.add(Box.createVerticalStrut(14));
+
+        JPanel issue = fieldGrid();
+        issue.add(CrsmUi.labeled("What is wrong? *", areaScroll(problem)));
+        issue.add(CrsmUi.labeled("What would you like us to do?", areaScroll(work)));
+        issue.add(CrsmUi.labeled("Items handed in with the device", areaScroll(accessories)));
+        form.add(CrsmUi.section("Repair details", "Describe the symptoms and any work you would like us to consider.", issue));
+        form.add(Box.createVerticalStrut(14));
+
         JPanel photosRow = new JPanel(new BorderLayout(4, 4)); photosRow.setOpaque(false);
-        JButton attach = new JButton("Add photos (up to 3)"); attach.addActionListener(e -> choosePhotos());
+        JButton attach = CrsmUi.ghost("Add photos (up to 3)"); attach.addActionListener(e -> choosePhotos());
         photosRow.add(attach, BorderLayout.NORTH); photosRow.add(photoNames, BorderLayout.CENTER);
-        addRow(form, "Damage photos", photosRow);
-        JPanel appt = new JPanel(new GridLayout(1, 2, 8, 0)); appt.setOpaque(false); appt.add(appointmentDate); appt.add(appointmentTime);
-        style(appointmentDate); style(appointmentTime);
-        addRow(form, "Drop-off date / time (YYYY-MM-DD / HH:MM)", appt);
-        addRow(form, "Appointment type", purpose);
-        JPanel servicePanel = new JPanel(new BorderLayout(6, 4)); servicePanel.setOpaque(false);
-        selectedService.setText("No service selected — staff can recommend one after diagnosis.");
-        servicePanel.add(selectedService, BorderLayout.CENTER);
-        servicePanel.add(servicePrice, BorderLayout.SOUTH);
+        JPanel servicePanel = new JPanel(new BorderLayout(8, 8)); servicePanel.setOpaque(false);
+        JPanel serviceText = new JPanel(); serviceText.setOpaque(false); serviceText.setLayout(new BoxLayout(serviceText, BoxLayout.Y_AXIS));
+        selectedService.setFont(CrsmTheme.font(Font.BOLD, 15)); selectedService.setForeground(CrsmTheme.NAVY);
+        selectedServiceDescription.setForeground(CrsmTheme.MUTED);
+        servicePrice.setFont(CrsmTheme.font(Font.BOLD, 14)); servicePrice.setForeground(CrsmTheme.INDIGO);
+        serviceText.add(selectedService); serviceText.add(Box.createVerticalStrut(4)); serviceText.add(selectedServiceDescription);
+        serviceText.add(Box.createVerticalStrut(10)); serviceText.add(servicePrice);
+        servicePanel.add(serviceText, BorderLayout.CENTER);
         browseServices.addActionListener(e -> onBrowseServices.run());
         servicePanel.add(browseServices, BorderLayout.EAST);
-        addRow(form, "Selected service", servicePanel);
-        JScrollPane scroll = new JScrollPane(form); scroll.setBorder(null); scroll.getViewport().setOpaque(false);
+        JLabel estimateNote = CrsmUi.muted("Estimates update dynamically when the service or device details change. Final pricing is confirmed after physical technician inspection.");
+        estimateNote.setFont(CrsmTheme.font(Font.PLAIN, 12));
+        JPanel estimate = new JPanel(new BorderLayout(0, 10)); estimate.setOpaque(false);
+        estimate.add(servicePanel, BorderLayout.CENTER); estimate.add(estimateNote, BorderLayout.SOUTH);
+        form.add(CrsmUi.section("Service & estimate", "Select a repair service to calculate a device-aware estimate.", estimate));
+        form.add(Box.createVerticalStrut(14));
+        form.add(CrsmUi.section("Damage photos", "Optional: attach up to three clear PNG or JPG images (2 MB each).", photosRow));
+        JScrollPane scroll = new JScrollPane(form); scroll.setBorder(null); scroll.getViewport().setOpaque(false); scroll.getViewport().setBackground(CrsmTheme.CANVAS);
         add(scroll, BorderLayout.CENTER);
-        JButton submit = new JButton("Submit repair request"); submit.setPreferredSize(new Dimension(0, 44));
-        submit.setBackground(new Color(45, 50, 80)); submit.setForeground(Color.WHITE); submit.setFocusPainted(false);
+        JButton submit = CrsmUi.primary("Submit repair request"); submit.setPreferredSize(new Dimension(0, 46));
         submit.addActionListener(e -> submit(submit)); add(submit, BorderLayout.SOUTH);
         loadDeviceCatalog();
         installSpecificationAutocomplete();
@@ -121,9 +153,9 @@ final class CustomerRequestPage extends JPanel {
     void selectService(Map<String,Object> serviceRow) {
         selectedServiceId = CustomerWorkflowService.integerId(serviceRow.get("service_id"), "repair_services.service_id");
         selectedServiceName = text(serviceRow.get("service_name"));
-        selectedServiceStartingPrice = CustomerWorkflowService.moneyValue(serviceRow.get("service_price"));
-        selectedService.setText("Selected: " + selectedServiceName + " · Starting at " + money(selectedServiceStartingPrice)
-                + (text(serviceRow.get("description")).isBlank() ? "" : " — " + text(serviceRow.get("description"))));
+        selectedService.setText(selectedServiceName);
+        selectedServiceDescription.setText(text(serviceRow.get("description")).isBlank()
+                ? "The repair scope will be confirmed by a technician." : text(serviceRow.get("description")));
         work.setText(selectedServiceName);
         estimateTimer.stop();
         refreshServiceEstimate();
@@ -142,10 +174,11 @@ final class CustomerRequestPage extends JPanel {
     }
 
     private void refreshModels() {
-        String b = String.valueOf(brand.getSelectedItem()).trim().toLowerCase();
-        String t = String.valueOf(deviceType.getSelectedItem());
+        String b = selectedItem(brand).toLowerCase();
+        String t = selectedDeviceType();
         List<String> models = deviceCatalog.stream().filter(r -> t.equals(String.valueOf(r.get("device_type"))) && b.equals(String.valueOf(r.get("brand")).toLowerCase())).map(r -> String.valueOf(r.get("model"))).distinct().sorted().toList();
-        model.removeAllItems(); models.forEach(model::addItem); model.setEnabled(!models.isEmpty());
+        model.removeAllItems(); models.forEach(model::addItem);
+        model.setEnabled(!b.isBlank() && !t.isBlank());
         refreshSpecificationSuggestions();
     }
 
@@ -154,7 +187,7 @@ final class CustomerRequestPage extends JPanel {
             protected List<Map<String,Object>> doInBackground() throws Exception { return DeviceCatalogLoader.load(); }
             protected void done() { try { deviceCatalog.clear(); deviceCatalog.addAll(get()); deviceType.removeAllItems();
                     deviceCatalog.stream().map(r->String.valueOf(r.get("device_type"))).distinct().sorted().forEach(deviceType::addItem);
-                    brand.removeAllItems(); model.removeAllItems(); brand.setEnabled(false); model.setEnabled(false);
+                    refreshBrands(); refreshModels();
                 } catch (Exception ex) { JOptionPane.showMessageDialog(CustomerRequestPage.this, ex.getMessage(), "Device catalog unavailable", JOptionPane.ERROR_MESSAGE); } }
         }.execute();
     }
@@ -212,12 +245,16 @@ final class CustomerRequestPage extends JPanel {
                     BigDecimal partPrice = CustomerWorkflowService.moneyValue(quote.get("part_price"));
                     String message = text(quote.get("message"));
                     if ("estimated".equalsIgnoreCase(text(quote.get("status"))) && amount != null) {
-                        String composition = "Service fee: " + money(baseFee);
-                        if (partPrice != null) composition += " · " + (text(quote.get("part_name")).isBlank() ? "Compatible part" : text(quote.get("part_name"))) + ": " + money(partPrice);
-                        setServicePrice("Estimated total: " + money(amount) + " (" + composition + "). Final price confirmed after hands-on inspection.");
+                        if (partPrice != null && baseFee != null) {
+                            String part = text(quote.get("part_name")).isBlank() ? "matched part" : text(quote.get("part_name"));
+                            setServicePrice("Current estimate range: " + money(baseFee) + " – " + money(amount)
+                                    + " (service fee through service fee + " + part + ").");
+                        } else {
+                            setServicePrice("Current device-specific estimate: " + money(amount) + ".");
+                        }
                     } else {
                         String base = baseFee == null ? "" : "Known service fee: " + money(baseFee) + ". ";
-                        setServicePrice(base + (message.isBlank() ? "A complete estimate requires technician inspection." : message) + " Final price is confirmed after hands-on inspection.");
+                        setServicePrice(base + (message.isBlank() ? "A complete estimate requires technician inspection." : message));
                     }
                 } catch (Exception ex) {
                     Throwable cause = ex.getCause() == null ? ex : ex.getCause();
@@ -308,7 +345,27 @@ final class CustomerRequestPage extends JPanel {
     private static LocalDate nextWeekday() { LocalDate d=LocalDate.now().plusDays(1); while (d.getDayOfWeek().getValue()>5) d=d.plusDays(1); return d; }
     private String selectedCondition() { for (java.awt.Component c : conditionChoices.getComponents()) if (c instanceof JRadioButton radio && radio.isSelected()) return radio.getText(); return "Other"; }
     private static JTextArea area(int rows) { JTextArea a=new JTextArea(rows,22); a.setLineWrap(true); a.setWrapStyleWord(true); a.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(190,195,215)),BorderFactory.createEmptyBorder(7,8,7,8))); return a; }
-    private static void style(java.awt.Component c) { c.setPreferredSize(new Dimension(220,34)); }
-    private static void addRow(JPanel panel,String label,java.awt.Component field) { panel.add(new JLabel(label)); panel.add(field); }
+    private static void style(java.awt.Component c) {
+        if (c instanceof JComboBox<?> combo) CrsmUi.styleCombo(combo);
+        else c.setPreferredSize(new Dimension(220,42));
+    }
+    private static JPanel fieldGrid() { JPanel panel = new JPanel(new GridLayout(0, 2, 14, 14)); panel.setOpaque(false); return panel; }
+    private static void styleArea(JTextArea area) {
+        area.setFont(CrsmTheme.font(Font.PLAIN, 13));
+        area.setForeground(CrsmTheme.NAVY);
+        area.setBackground(CrsmTheme.WHITE);
+        area.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+        area.setPreferredSize(new Dimension(220, 78));
+    }
+    private static JScrollPane areaScroll(JTextArea area) {
+        JScrollPane scroll=new JScrollPane(area);
+        scroll.setBorder(new CrsmUi.RoundedBorder(CrsmTheme.BORDER,12));
+        scroll.getViewport().setBackground(CrsmTheme.WHITE);
+        area.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override public void focusGained(java.awt.event.FocusEvent e) { scroll.setBorder(new CrsmUi.RoundedBorder(CrsmTheme.LAVENDER,12)); }
+            @Override public void focusLost(java.awt.event.FocusEvent e) { scroll.setBorder(new CrsmUi.RoundedBorder(CrsmTheme.BORDER,12)); }
+        });
+        return scroll;
+    }
     private static final class SubmitResult { final int id; final List<String> failures; final int photoCount; SubmitResult(int id,List<String> failures,int photoCount){this.id=id;this.failures=failures;this.photoCount=photoCount;} }
 }

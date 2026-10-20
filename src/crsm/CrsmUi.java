@@ -38,12 +38,44 @@ final class CrsmUi {
     private CrsmUi() {}
 
     static JPanel card() {
-        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout()) {
+            @Override protected void paintComponent(Graphics graphics) {
+                Graphics2D g = (Graphics2D) graphics.create();
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g.setColor(new Color(30, 38, 64, 12));
+                g.fillRoundRect(2, 3, getWidth() - 5, getHeight() - 5, 18, 18);
+                g.setColor(getBackground());
+                g.fillRoundRect(1, 1, getWidth() - 5, getHeight() - 5, 18, 18);
+                g.dispose();
+                super.paintComponent(graphics);
+            }
+        };
         panel.setBackground(CrsmTheme.WHITE);
+        panel.setOpaque(false);
         panel.setBorder(BorderFactory.createCompoundBorder(
-                new RoundedBorder(CrsmTheme.LAVENDER, 16),
+                new RoundedBorder(CrsmTheme.BORDER, 16),
                 new EmptyBorder(18, 18, 18, 18)));
         return panel;
+    }
+
+    static JPanel section(String title, String detail, Component content) {
+        JPanel card = card();
+        JPanel body = new JPanel(new BorderLayout(0, 12));
+        body.setOpaque(false);
+        JPanel heading = new JPanel();
+        heading.setOpaque(false);
+        heading.setLayout(new BoxLayout(heading, BoxLayout.Y_AXIS));
+        JLabel titleLabel = heading(title, 16);
+        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JLabel detailLabel = muted(detail);
+        detailLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        heading.add(titleLabel);
+        heading.add(Box.createVerticalStrut(4));
+        heading.add(detailLabel);
+        body.add(heading, BorderLayout.NORTH);
+        body.add(content, BorderLayout.CENTER);
+        card.add(body, BorderLayout.CENTER);
+        return card;
     }
 
     static JPanel padded(Color background, int pad) {
@@ -75,7 +107,7 @@ final class CrsmUi {
     }
 
     static JButton primary(String text) {
-        return filled(text, CrsmTheme.PEACH, CrsmTheme.NAVY, Font.BOLD, 14);
+        return filled(text, CrsmTheme.LAVENDER, CrsmTheme.WHITE, Font.BOLD, 14);
     }
 
     static JButton navy(String text) {
@@ -113,8 +145,8 @@ final class CrsmUi {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 Color fill = background;
-                if (getModel().isPressed()) fill = CrsmTheme.INDIGO;
-                else if (getModel().isRollover()) fill = CrsmTheme.LAVENDER;
+                if (getModel().isPressed()) fill = CrsmTheme.NAVY;
+                else if (getModel().isRollover()) fill = CrsmTheme.INDIGO;
                 g2.setColor(fill);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
                 g2.dispose();
@@ -149,7 +181,7 @@ final class CrsmUi {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 boolean on = Boolean.TRUE.equals(getClientProperty("selected"));
-                g2.setColor(on ? CrsmTheme.INDIGO : CrsmTheme.NAVY);
+                g2.setColor(on ? CrsmTheme.INDIGO : getModel().isRollover() ? CrsmTheme.SIDEBAR_HOVER : CrsmTheme.SIDEBAR);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
                 g2.dispose();
                 super.paintComponent(g);
@@ -182,19 +214,23 @@ final class CrsmUi {
         label.setOpaque(true);
         label.setFont(CrsmTheme.font(Font.BOLD, 11));
         label.setBorder(new EmptyBorder(4, 10, 4, 10));
+        label.setOpaque(true);
         String value = text == null ? "" : text;
         if (List.of("Paid", "Completed", "Confirmed", "Ready for Pickup").contains(value)) {
-            label.setBackground(CrsmTheme.PEACH);
-            label.setForeground(CrsmTheme.NAVY);
+            label.setBackground(new Color(225, 244, 237));
+            label.setForeground(CrsmTheme.SUCCESS);
         } else if (List.of("Pending", "Unpaid", "Partial", "Waiting for Parts").contains(value)) {
-            label.setBackground(CrsmTheme.LAVENDER);
-            label.setForeground(CrsmTheme.WHITE);
+            label.setBackground(new Color(255, 243, 220));
+            label.setForeground(CrsmTheme.WARNING);
         } else if (List.of("ADMIN", "Admin", "Under Repair", "Under Diagnosis").contains(value)) {
-            label.setBackground(CrsmTheme.INDIGO);
-            label.setForeground(CrsmTheme.WHITE);
+            label.setBackground(new Color(230, 238, 250));
+            label.setForeground(CrsmTheme.INDIGO);
+        } else if (List.of("Cancelled", "Canceled", "Declined", "Inactive", "Unavailable").contains(value)) {
+            label.setBackground(new Color(252, 231, 231));
+            label.setForeground(new Color(174, 58, 58));
         } else {
-            label.setBackground(CrsmTheme.NAVY);
-            label.setForeground(CrsmTheme.WHITE);
+            label.setBackground(new Color(237, 240, 245));
+            label.setForeground(CrsmTheme.TEXT);
         }
         return label;
     }
@@ -230,9 +266,31 @@ final class CrsmUi {
         field.setBackground(CrsmTheme.WHITE);
         field.setCaretColor(CrsmTheme.NAVY);
         field.setBorder(BorderFactory.createCompoundBorder(
-                new RoundedBorder(CrsmTheme.LAVENDER, 12),
+                new RoundedBorder(CrsmTheme.BORDER, 12),
                 new EmptyBorder(8, 12, 8, 12)));
         field.setPreferredSize(new Dimension(100, 42));
+        field.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override public void focusGained(java.awt.event.FocusEvent e) {
+                field.setBorder(BorderFactory.createCompoundBorder(
+                        new RoundedBorder(CrsmTheme.LAVENDER, 12),
+                        new EmptyBorder(8, 12, 8, 12)));
+            }
+            @Override public void focusLost(java.awt.event.FocusEvent e) {
+                field.setBorder(BorderFactory.createCompoundBorder(
+                        new RoundedBorder(CrsmTheme.BORDER, 12),
+                        new EmptyBorder(8, 12, 8, 12)));
+            }
+        });
+    }
+
+    static void styleCombo(javax.swing.JComboBox<?> combo) {
+        combo.setFont(CrsmTheme.font(Font.PLAIN, 13));
+        combo.setForeground(CrsmTheme.NAVY);
+        combo.setBackground(CrsmTheme.WHITE);
+        combo.setBorder(BorderFactory.createCompoundBorder(
+                new RoundedBorder(CrsmTheme.BORDER, 12),
+                new EmptyBorder(6, 8, 6, 8)));
+        combo.setPreferredSize(new Dimension(100, 42));
     }
 
     static JPanel labeled(String caption, JComponent field) {
