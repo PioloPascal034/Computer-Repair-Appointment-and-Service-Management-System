@@ -38,7 +38,7 @@ final class CustomerTrackingPage extends JPanel {
             protected List<Repair> doInBackground() throws Exception {
                 List<Repair> result=new ArrayList<>();
                 for (Map<String,Object> row:service.repairs(session)) {
-                    int id=Integer.parseInt(String.valueOf(row.get("repair_request_id")));
+                    int id=CustomerWorkflowService.integerId(row.get("repair_request_id"), "repair_requests.repair_request_id");
                     List<Map<String,Object>> options=service.estimateOptions(session,id);
                     List<Map<String,Object>> payments=service.payments(session,id);
                     result.add(new Repair(row,options,payments));
@@ -57,18 +57,20 @@ final class CustomerTrackingPage extends JPanel {
     }
 
     private JPanel card(Repair repair) {
-        Map<String,Object> row=repair.row(); int id=Integer.parseInt(String.valueOf(row.get("repair_request_id")));
+        Map<String,Object> row=repair.row(); int id=CustomerWorkflowService.integerId(row.get("repair_request_id"), "repair_requests.repair_request_id");
         Map<?,?> device=(Map<?,?>)row.get("computers");
+        Map<?,?> selected=(Map<?,?>)row.get("repair_services");
         String deviceName=String.join(" ",str(device.get("brand")),str(device.get("model"))).trim();
         JPanel card=new JPanel(); card.setLayout(new BoxLayout(card,BoxLayout.Y_AXIS));
         card.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),BorderFactory.createEmptyBorder(12,14,12,14)));
         JLabel title=new JLabel("Request #"+id+" · "+deviceName+" · "+str(row.get("repair_status")));
         title.setFont(title.getFont().deriveFont(Font.BOLD)); card.add(title);
+        card.add(new JLabel("Selected service: "+(selected == null ? "Staff recommendation after diagnosis" : str(selected.get("service_name")))));
         card.add(new JLabel("Problem: "+str(row.get("reported_problem"))));
         card.add(new JLabel("Requested work: "+str(row.get("requested_work"))));
-        card.add(new JLabel("Estimate: "+str(row.get("estimated_cost"))+"   Final cost: "+str(row.get("final_cost"))));
+        card.add(new JLabel("Estimated cost (not final): "+money(row.get("estimated_cost"))+"   Final cost after inspection: "+money(row.get("final_cost"))));
         for(Map<String,Object> payment:repair.payments()) card.add(new JLabel("Payment "+str(payment.get("payment_date"))+" · "+str(payment.get("amount_paid"))+" · "+str(payment.get("payment_method"))+" · Receipt "+str(payment.get("receipt_number"))));
-        if (row.get("estimated_cost")!=null && row.get("customer_decision")==null) {
+        if (row.get("estimated_cost")!=null && row.get("customer_decision")==null && "Under Diagnosis".equals(str(row.get("repair_status")))) {
             List<JCheckBox> choices=new ArrayList<>();
             if(!repair.options().isEmpty()) card.add(new JLabel("Optional estimate items (the base repair is included):"));
             for (Map<String,Object> option:repair.options()) {
@@ -120,5 +122,6 @@ final class CustomerTrackingPage extends JPanel {
 
     private static String message(Exception ex) { Throwable t=ex.getCause()==null?ex:ex.getCause(); return t.getMessage()==null?"Request failed.":t.getMessage(); }
     private static String str(Object o) { return o==null?"—":o.toString(); }
+    private static String money(Object value) { return value==null?"Not set":"PHP "+value; }
     private record Repair(Map<String,Object> row,List<Map<String,Object>> options,List<Map<String,Object>> payments) {}
 }

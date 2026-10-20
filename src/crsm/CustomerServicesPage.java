@@ -21,6 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -44,6 +45,7 @@ final class CustomerServicesPage extends JPanel {
     private final JLabel selectionDetails = new JLabel("Choose a service to continue with your repair request.");
     private final JButton continueButton = new JButton("Continue to request");
     private final Supplier<String> selectedDeviceTypeSupplier;
+    private final Consumer<Map<String,Object>> onSelect;
     private List<Map<String, Object>> allServices = List.of();
     private List<Map<String, Object>> serviceDevicePrices = List.of();
     private Map<String, Object> selectedService;
@@ -55,6 +57,7 @@ final class CustomerServicesPage extends JPanel {
     CustomerServicesPage(UserSession session, Supplier<String> selectedDeviceTypeSupplier, Consumer<Map<String, Object>> onSelect) {
         this.session = session;
         this.selectedDeviceTypeSupplier = selectedDeviceTypeSupplier;
+        this.onSelect = onSelect;
         setLayout(new BorderLayout(12, 12)); setBackground(Color.WHITE);
         JPanel header = new JPanel(); header.setOpaque(false); header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
         JLabel title = new JLabel("Repair Services"); title.setFont(title.getFont().deriveFont(Font.BOLD, 24f)); title.setForeground(NAVY); header.add(title);
@@ -68,7 +71,7 @@ final class CustomerServicesPage extends JPanel {
         JScrollPane scroll = new JScrollPane(rows); scroll.setBorder(null); scroll.getViewport().setOpaque(false); add(scroll, BorderLayout.CENTER);
         JPanel bottom = new JPanel(new BorderLayout(12, 4)); bottom.setBackground(new Color(246, 249, 255)); bottom.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(210, 222, 241)), BorderFactory.createEmptyBorder(8, 12, 8, 12)));
         JPanel summary = new JPanel(); summary.setOpaque(false); summary.setLayout(new BoxLayout(summary, BoxLayout.Y_AXIS)); selectionSummary.setFont(selectionSummary.getFont().deriveFont(Font.BOLD, 14f)); selectionSummary.setForeground(NAVY); summary.add(selectionSummary); summary.add(Box.createVerticalStrut(3)); summary.add(selectionDetails); bottom.add(summary, BorderLayout.CENTER);
-        continueButton.setEnabled(false); continueButton.addActionListener(e -> { if (selectedService != null) onSelect.accept(selectedService); }); bottom.add(continueButton, BorderLayout.EAST); add(bottom, BorderLayout.SOUTH);
+        continueButton.setEnabled(false); continueButton.setText("Review selected service"); continueButton.addActionListener(e -> { if (selectedService != null) confirmService(selectedService); }); bottom.add(continueButton, BorderLayout.EAST); add(bottom, BorderLayout.SOUTH);
         DocumentListener listener = new DocumentListener() { public void insertUpdate(DocumentEvent e) { render(); } public void removeUpdate(DocumentEvent e) { render(); } public void changedUpdate(DocumentEvent e) { render(); } };
         search.getDocument().addDocumentListener(listener); category.addActionListener(e -> render()); deviceType.addActionListener(e -> render()); reload();
     }
@@ -112,7 +115,28 @@ final class CustomerServicesPage extends JPanel {
         int id = intValue(service.get("service_id")); boolean selected = selectedService != null && intValue(selectedService.get("service_id")) == id;
         JPanel row = new JPanel(new BorderLayout(12, 4)); row.setAlignmentX(LEFT_ALIGNMENT); row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 118)); row.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(selected ? new Color(28, 114, 220) : new Color(210, 220, 235), selected ? 2 : 1), BorderFactory.createEmptyBorder(10, 12, 10, 12))); row.setBackground(Color.WHITE);
         JPanel details = new JPanel(); details.setOpaque(false); details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS)); JLabel title = new JLabel(escape(name)); title.setFont(title.getFont().deriveFont(Font.BOLD, 15f)); title.setForeground(NAVY); details.add(title); details.add(Box.createVerticalStrut(4)); details.add(htmlLabel(description.isBlank() ? "Description will be confirmed by staff." : description, 680)); details.add(Box.createVerticalStrut(5)); String compatible = compatibleTypes(id); details.add(new JLabel(categoryName + "  |  Compatible: " + (compatible.isBlank() ? "General service" : compatible))); row.add(details, BorderLayout.CENTER);
-        JPanel action = new JPanel(); action.setOpaque(false); action.setLayout(new BoxLayout(action, BoxLayout.Y_AXIS)); JLabel price = new JLabel("Starting at " + price(service.get("service_price"))); price.setFont(price.getFont().deriveFont(Font.BOLD, 14f)); price.setForeground(NAVY); action.add(price); action.add(Box.createVerticalStrut(8)); JButton choose = new JButton(selected ? "Selected" : "Choose service"); choose.addActionListener(e -> { selectedService = service; updateSummary(); render(); }); action.add(choose); row.add(action, BorderLayout.EAST); return row;
+        JPanel action = new JPanel(); action.setOpaque(false); action.setLayout(new BoxLayout(action, BoxLayout.Y_AXIS)); JLabel price = new JLabel("Starting at " + price(service.get("service_price"))); price.setFont(price.getFont().deriveFont(Font.BOLD, 14f)); price.setForeground(NAVY); action.add(price); action.add(Box.createVerticalStrut(8)); JButton choose = new JButton(selected ? "Selected" : "Choose service"); choose.addActionListener(e -> confirmService(service)); action.add(choose); row.add(action, BorderLayout.EAST); return row;
+    }
+
+    private void confirmService(Map<String,Object> service) {
+        String name = text(service.get("service_name"));
+        String description = text(service.get("description"));
+        JPanel details = new JPanel(); details.setOpaque(false); details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS));
+        JLabel title = new JLabel(escape(name)); title.setFont(title.getFont().deriveFont(Font.BOLD, 16f)); title.setForeground(NAVY); details.add(title);
+        details.add(Box.createVerticalStrut(8));
+        details.add(htmlLabel(description.isBlank() ? "Description will be confirmed by staff." : description, 420));
+        details.add(Box.createVerticalStrut(8));
+        details.add(new JLabel("Starting price: " + price(service.get("service_price"))));
+        details.add(Box.createVerticalStrut(8));
+        details.add(htmlLabel("The final cost depends on your device, required replacement parts, and technician inspection. The starting price is not a confirmed charge.", 420));
+        Object[] actions = {"Cancel", "Continue to Repair Request"};
+        int choice = JOptionPane.showOptionDialog(this, details, "Confirm repair service", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, actions, actions[0]);
+        if (choice != 1) return;
+        selectedService = service;
+        updateSummary();
+        render();
+        onSelect.accept(service);
     }
 
     private boolean isCompatible(Map<String, Object> service, String selectedType) { int id = intValue(service.get("service_id")); boolean hasRows = false; for (Map<String, Object> row : serviceDevicePrices) { if (intValue(row.get("service_id")) != id) continue; hasRows = true; if (selectedType.equalsIgnoreCase(text(row.get("device_type")))) return true; } return !hasRows; }
@@ -122,8 +146,8 @@ final class CustomerServicesPage extends JPanel {
     private JLabel htmlLabel(String value, int width) { return new JLabel("<html><div style='width:" + width + "px'>" + escape(value) + "</div></html>"); }
     private String categoryFor(Map<String, Object> service) { String explicit = text(service.get("category")); if (!explicit.isBlank()) return explicit; String name = text(service.get("service_name")).toLowerCase(); if (name.contains("diagnos")) return "Diagnostics"; if (name.contains("clean")) return "Cleaning"; if (name.contains("screen") || name.contains("display")) return "Display"; if (name.contains("battery") || name.contains("power")) return "Battery and Power"; if (name.contains("keyboard") || name.contains("input")) return "Keyboard and Input"; if (name.contains("storage") || name.contains("data")) return "Storage and Data Recovery"; if (name.contains("network") || name.contains("wifi") || name.contains("internet")) return "Network and Connectivity"; if (name.contains("hardware") || name.contains("replacement")) return "Hardware Repair"; return "Software"; }
     private static String text(Object value) { return value == null ? "" : String.valueOf(value).trim(); }
-    private static int intValue(Object value) { try { return Integer.parseInt(text(value)); } catch (RuntimeException ex) { return -1; } }
-    private static String price(Object value) { String v = text(value); return v.isBlank() ? "Price to be confirmed" : "PHP " + v; }
+    private static int intValue(Object value) { try { return CustomerWorkflowService.integerId(value, "service_id"); } catch (RuntimeException ex) { return -1; } }
+    private static String price(Object value) { String v = text(value); if (v.isBlank()) return "Price to be confirmed"; try { return "PHP " + new java.math.BigDecimal(v).setScale(2, java.math.RoundingMode.HALF_UP).toPlainString(); } catch (NumberFormatException ex) { return "PHP " + v; } }
     private static String safeMessage(Throwable t) { return t.getMessage() == null || t.getMessage().isBlank() ? t.getClass().getSimpleName() : t.getMessage(); }
     private static String escape(String value) { return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;"); }
     private record CatalogData(List<Map<String, Object>> services, List<Map<String, Object>> compatibility) { }

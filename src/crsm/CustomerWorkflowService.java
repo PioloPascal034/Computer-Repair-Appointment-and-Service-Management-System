@@ -1,6 +1,7 @@
 package crsm;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.http.HttpResponse;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ final class CustomerWorkflowService {
 
     int completeProfile(UserSession session, String phone, String address) throws IOException, InterruptedException {
         Object result = rpc(session, "complete_crsm_customer_profile", Map.of("contact", phone, "address", address));
-        return Integer.parseInt(String.valueOf(result));
+        return integerId(result, "complete_crsm_customer_profile customer_id");
     }
 
     int customerId(UserSession session) throws IOException, InterruptedException {
@@ -21,7 +22,7 @@ final class CustomerWorkflowService {
         SupabaseClient.requireSuccess(response);
         Object parsed = JsonCodec.parse(response.body());
         if (!(parsed instanceof List<?> rows) || rows.isEmpty()) return -1;
-        return Integer.parseInt(String.valueOf(((Map<?,?>) rows.get(0)).get("customer_id")));
+        return integerId(((Map<?,?>) rows.get(0)).get("customer_id"), "customers.customer_id");
     }
 
     int submit(UserSession session, int customerId, Map<String,Object> fields) throws IOException, InterruptedException {
@@ -35,11 +36,40 @@ final class CustomerWorkflowService {
         args.put("purpose", fields.get("purpose"));
         args.put("selected_service",fields.get("service_id"));
         Object result = rpc(session, "submit_crsm_repair_request_v2", args);
-        return Integer.parseInt(String.valueOf(result));
+        return integerId(result, "submit_crsm_repair_request_v2 repair_request_id");
+    }
+
+    Map<String,Object> quoteService(UserSession session, int serviceId, String deviceType, String brand, String model, String specification) throws IOException, InterruptedException {
+        Map<String,Object> args = new LinkedHashMap<>();
+        args.put("p_service_id", serviceId);
+        args.put("p_device_type", deviceType);
+        args.put("p_brand", brand);
+        args.put("p_model", model);
+        args.put("p_specification", specification);
+        Object result = rpc(session, "quote_crsm_service", args);
+        if (!(result instanceof Map<?,?> map)) throw new IllegalStateException("The pricing service returned an unexpected estimate response.");
+        Map<String,Object> response = new LinkedHashMap<>();
+        map.forEach((key,value) -> response.put(String.valueOf(key), value));
+        return response;
+    }
+
+    static int integerId(Object value, String field) {
+        if (value == null) throw new IllegalStateException("Supabase returned no value for " + field + ".");
+        try {
+            return new BigDecimal(String.valueOf(value).trim()).intValueExact();
+        } catch (NumberFormatException | ArithmeticException ex) {
+            throw new IllegalStateException("Supabase returned an invalid " + field + " (" + value + "); expected a whole-number ID.", ex);
+        }
+    }
+
+    static BigDecimal moneyValue(Object value) {
+        if (value == null) return null;
+        try { return new BigDecimal(String.valueOf(value).trim()); }
+        catch (NumberFormatException ex) { throw new IllegalStateException("Supabase returned an invalid monetary amount (" + value + ").", ex); }
     }
 
     List<Map<String,Object>> repairs(UserSession session) throws IOException, InterruptedException {
-        HttpResponse<String> response=client.send("GET","/rest/v1/repair_requests?select=repair_request_id,reported_problem,requested_work,repair_status,estimated_cost,final_cost,customer_decision,computers!inner(brand,model,device_type,specification,verified_specification)&order=repair_request_id.desc",session.accessToken(),null,null);
+        HttpResponse<String> response=client.send("GET","/rest/v1/repair_requests?select=repair_request_id,service_id,reported_problem,requested_work,repair_status,estimated_cost,final_cost,customer_decision,repair_services(service_name),computers!inner(brand,model,device_type,specification,verified_specification)&order=repair_request_id.desc",session.accessToken(),null,null);
         SupabaseClient.requireSuccess(response);
         Object parsed=JsonCodec.parse(response.body());
         if (!(parsed instanceof List<?> list)) throw new IllegalStateException("Unexpected repair list response.");
@@ -47,15 +77,17 @@ final class CustomerWorkflowService {
     }
 
     List<Map<String,Object>> services(UserSession session) throws IOException,InterruptedException {
-        String fullPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price,category,common_problems&order=service_name";
+        String fullPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price,category,common_problems,requires_replacement_part&order=service_name";
         try {
             return parseServiceRows(client.send("GET",fullPath,session.accessToken(),null,null));
         } catch (IllegalStateException metadataUnavailable) {
-            // Older databases do not have the optional catalog metadata columns yet.
-            // Load the actual service records so the catalog remains usable; the UI derives
-            // a sensible category from the service name until the migration is applied.
-            String legacyPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price&order=service_name";
-            return parseServiceRows(client.send("GET",legacyPath,session.accessToken(),null,null));
+            try {
+                String metadataPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price,category,common_problems&order=service_name";
+                return parseServiceRows(client.send("GET",metadataPath,session.accessToken(),null,null));
+            } catch (IllegalStateException olderMetadataUnavailable) {
+                String legacyPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price&order=service_name";
+                return parseServiceRows(client.send("GET",legacyPath,session.accessToken(),null,null));
+            }
         }
     }
 

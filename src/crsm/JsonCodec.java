@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.math.BigDecimal;
 
 /** Small JSON codec for the Supabase Auth and REST payloads used by this desktop client. */
 final class JsonCodec {
@@ -77,7 +78,9 @@ final class JsonCodec {
         Object number() {
             int start = index; while (index < text.length() && "-+0123456789.eE".indexOf(text.charAt(index)) >= 0) index++;
             if (start == index) throw new IllegalArgumentException("Invalid JSON value.");
-            String n = text.substring(start, index); try { return n.contains(".") || n.contains("e") || n.contains("E") ? Double.valueOf(n) : Long.valueOf(n); } catch (NumberFormatException ex) { throw new IllegalArgumentException("Invalid JSON number."); }
+            String n = text.substring(start, index);
+            try { return n.contains(".") || n.contains("e") || n.contains("E") ? new BigDecimal(n) : Long.valueOf(n); }
+            catch (NumberFormatException ex) { throw new IllegalArgumentException("Invalid JSON number."); }
         }
         Object literal(String expected, Object value) { if (!text.startsWith(expected, index)) throw new IllegalArgumentException("Invalid JSON literal."); index += expected.length(); return value; }
         boolean take(char c) { if (index < text.length() && text.charAt(index) == c) { index++; return true; } return false; }

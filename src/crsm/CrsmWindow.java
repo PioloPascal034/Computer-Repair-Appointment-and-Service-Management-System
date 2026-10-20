@@ -54,8 +54,8 @@ public final class CrsmWindow extends JFrame implements CrsmHost {
     private void registerViews() {
         dashboard = CrsmPages.dashboard(this); content.add(dashboard, "Dashboard");
         if ("Customer".equals(role)) {
-            customerRequest = new CustomerRequestPage(session); content.add(customerRequest, "New Repair Request"); content.add(new CustomerTrackingPage(session), "My Repairs");
-            content.add(new CustomerServicesPage(session, customerRequest::selectedDeviceType, service -> { customerRequest.selectService(Integer.parseInt(String.valueOf(service.get("service_id"))), String.valueOf(service.get("service_name")), String.valueOf(service.get("description"))); showPage("New Repair Request"); }), "Services");
+            customerRequest = new CustomerRequestPage(session, () -> showPage("Services")); content.add(customerRequest, "New Repair Request"); content.add(new CustomerTrackingPage(session), "My Repairs");
+            content.add(new CustomerServicesPage(session, customerRequest::selectedDeviceType, service -> { customerRequest.selectService(service); showPage("New Repair Request"); }), "Services");
         } else {
             content.add(new RepairOperationsPage(session), "Repair Workflow"); for (RepairDataModel.Entity entity : RepairDataModel.Entity.values()) { CrsmListing listing = new CrsmListing(this, entity); listings.put(entity.label, listing); content.add(listing, entity.label); }
             if ("Admin".equals(role)) { content.add(CrsmPages.reports(this), "Reports"); content.add(CrsmPages.accounts(this), "User Accounts"); content.add(CrsmPages.settings(this), "Settings"); }

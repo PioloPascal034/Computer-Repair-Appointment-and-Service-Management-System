@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.JList;
 import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
@@ -48,18 +51,26 @@ final class CustomerRequestPage extends JPanel {
     private final List<Path> photos = new ArrayList<>();
     private final JLabel selectedService = new JLabel("No service selected");
     private final JLabel servicePrice = new JLabel(" ");
+    private final JButton browseServices = new JButton("Choose / Change");
+    private final Timer estimateTimer = new Timer(300, e -> refreshServiceEstimate());
     private final List<Map<String,Object>> deviceCatalog = new ArrayList<>();
+    private final Runnable onBrowseServices;
     private int selectedServiceId = -1;
+    private String selectedServiceName = "";
+    private BigDecimal selectedServiceStartingPrice;
+    private int estimateGeneration;
 
-    CustomerRequestPage(UserSession session) {
+    CustomerRequestPage(UserSession session, Runnable onBrowseServices) {
         this.session = session;
+        this.onBrowseServices = onBrowseServices;
+        estimateTimer.setRepeats(false);
         setLayout(new BorderLayout(16, 16));
         setBackground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(18, 22, 18, 22));
         JPanel top = new JPanel(new BorderLayout(4, 5)); top.setOpaque(false);
         JLabel title = new JLabel("Tell us about your device"); title.setFont(title.getFont().deriveFont(Font.BOLD, 22f));
         top.add(title, BorderLayout.NORTH);
-        top.add(new JLabel("Register your device, describe the issue, and choose a drop-off time."), BorderLayout.SOUTH);
+        top.add(new JLabel("Register your device, describe the issue, and choose a drop-off time. Final pricing is confirmed after hands-on inspection."), BorderLayout.SOUTH);
         add(top, BorderLayout.NORTH);
 
         JPanel form = new JPanel(new GridLayout(0, 2, 18, 14)); form.setOpaque(false);
@@ -70,9 +81,9 @@ final class CustomerRequestPage extends JPanel {
             JRadioButton radio = new JRadioButton(option); radio.setOpaque(false); conditionGroup.add(radio); conditionChoices.add(radio);
             if (option.equals("Working")) radio.setSelected(true);
         }
-        deviceType.addActionListener(e -> { refreshBrands(); refreshModels(); clearSpecification(); refreshServicePrice(); });
-        brand.addActionListener(e -> { refreshModels(); clearSpecification(); });
-        model.addActionListener(e -> { refreshSpecificationSuggestions(); });
+        deviceType.addActionListener(e -> { refreshBrands(); refreshModels(); clearSpecification(); scheduleServiceEstimate(); });
+        brand.addActionListener(e -> { refreshModels(); clearSpecification(); scheduleServiceEstimate(); });
+        model.addActionListener(e -> { refreshSpecificationSuggestions(); scheduleServiceEstimate(); });
         addRow(form, "Contact number *", phone); addRow(form, "Address", address);
         addRow(form, "Device category *", deviceType); addRow(form, "Brand *", brand);
         addRow(form, "Model", model); addRow(form, "Specification (optional)", specification); addRow(form, "Serial number (optional)", serial);
@@ -90,6 +101,8 @@ final class CustomerRequestPage extends JPanel {
         selectedService.setText("No service selected — staff can recommend one after diagnosis.");
         servicePanel.add(selectedService, BorderLayout.CENTER);
         servicePanel.add(servicePrice, BorderLayout.SOUTH);
+        browseServices.addActionListener(e -> onBrowseServices.run());
+        servicePanel.add(browseServices, BorderLayout.EAST);
         addRow(form, "Selected service", servicePanel);
         JScrollPane scroll = new JScrollPane(form); scroll.setBorder(null); scroll.getViewport().setOpaque(false);
         add(scroll, BorderLayout.CENTER);
@@ -98,13 +111,22 @@ final class CustomerRequestPage extends JPanel {
         submit.addActionListener(e -> submit(submit)); add(submit, BorderLayout.SOUTH);
         loadDeviceCatalog();
         installSpecificationAutocomplete();
+        specification.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { scheduleServiceEstimate(); }
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { scheduleServiceEstimate(); }
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { scheduleServiceEstimate(); }
+        });
     }
 
-    void selectService(int serviceId, String name, String description) {
-        selectedServiceId = serviceId;
-        selectedService.setText("Selected: " + name + (description == null || description.isBlank() ? "" : " — " + description));
-        work.setText(name);
-        refreshServicePrice();
+    void selectService(Map<String,Object> serviceRow) {
+        selectedServiceId = CustomerWorkflowService.integerId(serviceRow.get("service_id"), "repair_services.service_id");
+        selectedServiceName = text(serviceRow.get("service_name"));
+        selectedServiceStartingPrice = CustomerWorkflowService.moneyValue(serviceRow.get("service_price"));
+        selectedService.setText("Selected: " + selectedServiceName + " · Starting at " + money(selectedServiceStartingPrice)
+                + (text(serviceRow.get("description")).isBlank() ? "" : " — " + text(serviceRow.get("description"))));
+        work.setText(selectedServiceName);
+        estimateTimer.stop();
+        refreshServiceEstimate();
     }
 
     void applySearch(String query) {
@@ -130,7 +152,7 @@ final class CustomerRequestPage extends JPanel {
     private void loadDeviceCatalog() {
         new SwingWorker<List<Map<String,Object>>,Void>() {
             protected List<Map<String,Object>> doInBackground() throws Exception { return DeviceCatalogLoader.load(); }
-            protected void done() { try { deviceCatalog.clear(); deviceCatalog.addAll(DeviceCatalogLoader.load()); deviceType.removeAllItems();
+            protected void done() { try { deviceCatalog.clear(); deviceCatalog.addAll(get()); deviceType.removeAllItems();
                     deviceCatalog.stream().map(r->String.valueOf(r.get("device_type"))).distinct().sorted().forEach(deviceType::addItem);
                     brand.removeAllItems(); model.removeAllItems(); brand.setEnabled(false); model.setEnabled(false);
                 } catch (Exception ex) { JOptionPane.showMessageDialog(CustomerRequestPage.this, ex.getMessage(), "Device catalog unavailable", JOptionPane.ERROR_MESSAGE); } }
@@ -163,11 +185,68 @@ final class CustomerRequestPage extends JPanel {
         });
         suggestions.addListSelectionListener(e -> { if (!e.getValueIsAdjusting() && suggestions.getSelectedValue()!=null) { specification.setText(suggestions.getSelectedValue()); popup.setVisible(false); } });
     }
-    private void refreshServicePrice() {
-        if(selectedServiceId<0)return; String type=String.valueOf(deviceType.getSelectedItem()); servicePrice.setText("Checking price for "+type+"…");
-        new SwingWorker<String,Void>() { protected String doInBackground() throws Exception { return service.devicePrice(session,selectedServiceId,type); }
-            protected void done(){try{String price=get();servicePrice.setText(price.isBlank()?"Device-specific price not set; staff will confirm.":"Estimated catalog price for "+type+": ₱"+price);}catch(Exception ignored){servicePrice.setText("Staff will confirm the device-specific price.");}} }.execute();
+    private void refreshServiceEstimate() {
+        int generation = ++estimateGeneration;
+        if (selectedServiceId < 0) {
+            setServicePrice("No service selected. Staff can recommend one after diagnosis.");
+            return;
+        }
+        String type = selectedDeviceType();
+        String make = selectedItem(brand), deviceModel = selectedItem(model), spec = specification.getText().trim();
+        if (type.isBlank() || make.isBlank() || deviceModel.isBlank()) {
+            setServicePrice("Select the device type, brand, and model to calculate an estimate. Final price is confirmed after inspection.");
+            return;
+        }
+        int serviceId = selectedServiceId;
+        setServicePrice("Calculating an estimate for " + make + " " + deviceModel + "…");
+        new SwingWorker<Map<String,Object>,Void>() {
+            protected Map<String,Object> doInBackground() throws Exception {
+                return service.quoteService(session, serviceId, type, make, deviceModel, spec);
+            }
+            protected void done() {
+                if (generation != estimateGeneration) return;
+                try {
+                    Map<String,Object> quote = get();
+                    BigDecimal baseFee = CustomerWorkflowService.moneyValue(quote.get("base_fee"));
+                    BigDecimal amount = CustomerWorkflowService.moneyValue(quote.get("amount"));
+                    BigDecimal partPrice = CustomerWorkflowService.moneyValue(quote.get("part_price"));
+                    String message = text(quote.get("message"));
+                    if ("estimated".equalsIgnoreCase(text(quote.get("status"))) && amount != null) {
+                        String composition = "Service fee: " + money(baseFee);
+                        if (partPrice != null) composition += " · " + (text(quote.get("part_name")).isBlank() ? "Compatible part" : text(quote.get("part_name"))) + ": " + money(partPrice);
+                        setServicePrice("Estimated total: " + money(amount) + " (" + composition + "). Final price confirmed after hands-on inspection.");
+                    } else {
+                        String base = baseFee == null ? "" : "Known service fee: " + money(baseFee) + ". ";
+                        setServicePrice(base + (message.isBlank() ? "A complete estimate requires technician inspection." : message) + " Final price is confirmed after hands-on inspection.");
+                    }
+                } catch (Exception ex) {
+                    Throwable cause = ex.getCause() == null ? ex : ex.getCause();
+                    setServicePrice("Pricing could not be confirmed (" + cause.getMessage() + "). Final estimate requires technician inspection.");
+                }
+            }
+        }.execute();
     }
+
+    private void scheduleServiceEstimate() {
+        estimateGeneration++;
+        if (selectedServiceId >= 0) setServicePrice("Updating the device-aware estimate…");
+        estimateTimer.restart();
+    }
+
+    private static String selectedItem(JComboBox<String> combo) {
+        Object value = combo.getSelectedItem();
+        return value == null ? "" : String.valueOf(value).trim();
+    }
+
+    private static String money(BigDecimal amount) {
+        return amount == null ? "not available" : "PHP " + amount.setScale(2, RoundingMode.HALF_UP).toPlainString();
+    }
+
+    private void setServicePrice(String message) {
+        servicePrice.setText("<html><div style='width:520px'>" + message.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") + "</div></html>");
+    }
+
+    private static String text(Object value) { return value == null ? "" : String.valueOf(value).trim(); }
 
     private void choosePhotos() {
         int remaining = 3 - photos.size();
