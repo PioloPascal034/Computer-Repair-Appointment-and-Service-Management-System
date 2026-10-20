@@ -28,7 +28,7 @@ final class CustomerWorkflowService {
         Map<String,Object> args = new LinkedHashMap<>();
         args.put("cid", customerId);
         args.put("device_type", fields.get("device_type")); args.put("brand", fields.get("brand"));
-        args.put("model", fields.get("model")); args.put("serial", fields.get("serial"));
+        args.put("model", fields.get("model")); args.put("specification", fields.get("specification")); args.put("serial", fields.get("serial"));
         args.put("problem", fields.get("problem")); args.put("work", fields.get("work"));
         args.put("condition", fields.get("condition")); args.put("accessories", fields.get("accessories"));
         args.put("appointment_date", fields.get("appointment_date")); args.put("appointment_time", fields.get("appointment_time"));
@@ -39,7 +39,7 @@ final class CustomerWorkflowService {
     }
 
     List<Map<String,Object>> repairs(UserSession session) throws IOException, InterruptedException {
-        HttpResponse<String> response=client.send("GET","/rest/v1/repair_requests?select=repair_request_id,reported_problem,requested_work,repair_status,estimated_cost,final_cost,customer_decision,computers!inner(brand,model,device_type)&order=repair_request_id.desc",session.accessToken(),null,null);
+        HttpResponse<String> response=client.send("GET","/rest/v1/repair_requests?select=repair_request_id,reported_problem,requested_work,repair_status,estimated_cost,final_cost,customer_decision,computers!inner(brand,model,device_type,specification,verified_specification)&order=repair_request_id.desc",session.accessToken(),null,null);
         SupabaseClient.requireSuccess(response);
         Object parsed=JsonCodec.parse(response.body());
         if (!(parsed instanceof List<?> list)) throw new IllegalStateException("Unexpected repair list response.");
@@ -47,14 +47,33 @@ final class CustomerWorkflowService {
     }
 
     List<Map<String,Object>> services(UserSession session) throws IOException,InterruptedException {
-        HttpResponse<String> response=client.send("GET","/rest/v1/repair_services?select=service_id,service_name,description,service_price&order=service_name",session.accessToken(),null,null);
+        String fullPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price,category,common_problems&order=service_name";
+        try {
+            return parseServiceRows(client.send("GET",fullPath,session.accessToken(),null,null));
+        } catch (IllegalStateException metadataUnavailable) {
+            // Older databases do not have the optional catalog metadata columns yet.
+            // Load the actual service records so the catalog remains usable; the UI derives
+            // a sensible category from the service name until the migration is applied.
+            String legacyPath="/rest/v1/repair_services?select=service_id,service_name,description,service_price&order=service_name";
+            return parseServiceRows(client.send("GET",legacyPath,session.accessToken(),null,null));
+        }
+    }
+
+    private List<Map<String,Object>> parseServiceRows(HttpResponse<String> response) throws IOException {
         SupabaseClient.requireSuccess(response); Object parsed=JsonCodec.parse(response.body());
         if(!(parsed instanceof List<?> list))throw new IllegalStateException("Unexpected services response.");
         return rowsAsMaps(list);
     }
 
+    List<Map<String,Object>> serviceDevicePrices(UserSession session) throws IOException,InterruptedException {
+        HttpResponse<String> response=client.send("GET","/rest/v1/repair_service_device_prices?select=service_id,device_type,service_price&order=device_type,service_id",session.accessToken(),null,null);
+        SupabaseClient.requireSuccess(response); Object parsed=JsonCodec.parse(response.body());
+        if(!(parsed instanceof List<?> list))throw new IllegalStateException("Unexpected service compatibility response.");
+        return rowsAsMaps(list);
+    }
+
     List<Map<String,Object>> deviceCatalog(UserSession session) throws IOException,InterruptedException {
-        HttpResponse<String> response=client.send("GET","/rest/v1/crsm_device_catalog?select=device_type,brand,model&order=device_type,brand,model",session.accessToken(),null,null);
+        HttpResponse<String> response=client.send("GET","/rest/v1/crsm_device_catalog?select=device_type,brand,model,specification&order=device_type,brand,model",session.accessToken(),null,null);
         SupabaseClient.requireSuccess(response); Object parsed=JsonCodec.parse(response.body());
         if(!(parsed instanceof List<?> list))throw new IllegalStateException("Unexpected device catalog response.");
         return rowsAsMaps(list);
@@ -103,6 +122,10 @@ final class CustomerWorkflowService {
     void recordWork(UserSession session,int repairId,String diagnosis,String work,String parts,String cost) throws IOException,InterruptedException {
         Map<String,Object> args=new LinkedHashMap<>(); args.put("rid",repairId); args.put("diagnosis",diagnosis); args.put("work",work); args.put("parts",parts); args.put("cost",new java.math.BigDecimal(cost));
         rpcVoid(session,"record_crsm_work",args);
+    }
+
+    void verifyDeviceSpecification(UserSession session,int repairId,String verified) throws IOException,InterruptedException {
+        rpcVoid(session,"verify_crsm_device_specification",Map.of("rid",repairId,"verified",verified == null ? "" : verified));
     }
 
     void finishRepair(UserSession session,int repairId,String total) throws IOException,InterruptedException {

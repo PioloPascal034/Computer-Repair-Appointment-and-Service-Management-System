@@ -10,7 +10,7 @@ public final class RepairDataModel {
 
     public enum Entity {
         CUSTOMERS("Customers", "customer_id", "Customers", new String[]{"customer_name", "contact_number", "email", "address"}, new String[]{"customer_name", "contact_number"}),
-        COMPUTERS("Computers", "computer_id", "Computers", new String[]{"customer_id", "device_type", "brand", "model", "serial_number", "reported_problem"}, new String[]{"customer_id", "device_type", "brand"}),
+        COMPUTERS("Computers", "computer_id", "Computers", new String[]{"customer_id", "device_type", "brand", "model", "specification", "verified_specification", "serial_number", "reported_problem"}, new String[]{"customer_id", "device_type", "brand"}),
         APPOINTMENTS("Appointments", "appointment_id", "Appointments", new String[]{"customer_id", "computer_id", "appointment_date", "appointment_time", "purpose", "appointment_status"}, new String[]{"customer_id", "computer_id", "appointment_date", "appointment_time", "appointment_status"}),
         REPAIR_REQUESTS("Repair Requests", "repair_request_id", "Repair_Requests", new String[]{"computer_id", "technician_id", "service_id", "reported_problem", "diagnosis", "repair_status", "estimated_cost", "final_cost"}, new String[]{"computer_id", "reported_problem", "repair_status"}),
         TECHNICIANS("Technicians", "technician_id", "Technicians", new String[]{"technician_name", "contact_number", "specialization", "availability"}, new String[]{"technician_name"}),

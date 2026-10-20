@@ -531,10 +531,9 @@ final class CrsmUi {
     }
 
     private static final class LogoPanel extends JPanel {
-        private final int size;
         private final boolean light;
         LogoPanel(int size, boolean light) {
-            this.size = size; this.light = light;
+            this.light = light;
             setOpaque(false);
             setPreferredSize(new Dimension(size, size));
             setMaximumSize(new Dimension(size, size));

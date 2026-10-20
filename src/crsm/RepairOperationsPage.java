@@ -47,11 +47,11 @@ final class RepairOperationsPage extends JPanel {
     private int selected() { RepairOption item=(RepairOption)repairs.getSelectedItem(); if(item==null) throw new IllegalStateException("Select a repair request first."); return item.id(); }
 
     private void recordWork() {
-        JTextField diagnosis=new JTextField(), description=new JTextField(), parts=new JTextField(), cost=new JTextField("0.00");
-        JPanel form=form("Diagnosis",diagnosis,"Work performed",description,"Parts used",parts,"Work/parts cost",cost);
+        JTextField diagnosis=new JTextField(), verified=new JTextField(), description=new JTextField(), parts=new JTextField(), cost=new JTextField("0.00");
+        JPanel form=form("Verified hardware specifications",verified,"Diagnosis",diagnosis,"Work performed",description,"Parts used",parts,"Work/parts cost",cost);
         if(JOptionPane.showConfirmDialog(this,form,"Record work",JOptionPane.OK_CANCEL_OPTION)!=JOptionPane.OK_OPTION)return;
         int id=selected();
-        run(()->service.recordWork(session,id,diagnosis.getText(),description.getText(),parts.getText(),cost.getText()),"Work history saved.");
+        run(()->{ service.verifyDeviceSpecification(session,id,verified.getText()); service.recordWork(session,id,diagnosis.getText(),description.getText(),parts.getText(),cost.getText()); },"Verified device details and work history saved.");
     }
 
     private void assign() {

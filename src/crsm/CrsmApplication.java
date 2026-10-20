@@ -43,7 +43,6 @@ public class CrsmApplication {
     private void showAuthPage(boolean signup) {
         JFrame frame = new JFrame(signup ? "CRSM | Create an Account" : "CRSM | Sign In");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-<<<<<<< Updated upstream
         frame.setMinimumSize(new Dimension(900, 650));
         frame.setSize(1180, 760);
         frame.setLocationRelativeTo(null);
@@ -51,22 +50,6 @@ public class CrsmApplication {
         JPanel root = new JPanel(new BorderLayout(0, 0));
         root.setBackground(AUTH_CANVAS);
         root.add(buildBrandPanel(), BorderLayout.WEST);
-=======
-        frame.setMinimumSize(new Dimension(1100, 720));
-        frame.setSize(1440, 900);
-        frame.setLocationRelativeTo(null);
-
-        JPanel root = new JPanel(new GridBagLayout());
-        root.setBackground(CrsmTheme.NAVY);
-        GridBagConstraints sceneConstraints = new GridBagConstraints();
-        sceneConstraints.gridx = 0;
-        sceneConstraints.gridy = 0;
-        sceneConstraints.weightx = 0.54;
-        sceneConstraints.weighty = 1;
-        sceneConstraints.fill = GridBagConstraints.BOTH;
-        root.add(CrsmUi.workshopScene(), sceneConstraints);
->>>>>>> Stashed changes
-
         JPanel formHost = new JPanel(new GridBagLayout());
         formHost.setBackground(AUTH_CANVAS);
         formHost.setBorder(BorderFactory.createEmptyBorder(34, 34, 34, 34));
@@ -79,7 +62,7 @@ public class CrsmApplication {
         formConstraints.weightx = 0.46;
         formConstraints.weighty = 1;
         formConstraints.fill = GridBagConstraints.BOTH;
-        root.add(new JScrollPane(formHost, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), formConstraints);
+        root.add(new JScrollPane(formHost, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), BorderLayout.CENTER);
         frame.setContentPane(root);
         frame.setVisible(true);
     }
@@ -136,10 +119,7 @@ public class CrsmApplication {
         JLabel title = heading("Welcome Back");
         JLabel subtitle = subtitle("Sign in to your account to continue.");
         JTextField email = new JTextField(PREFERENCES.get(REMEMBER_EMAIL_KEY, ""));
-<<<<<<< Updated upstream
         styleField(email);
-=======
->>>>>>> Stashed changes
         JPasswordField password = new JPasswordField();
         styleField(password);
         JCheckBox remember = new JCheckBox("Remember my email on this device");
@@ -148,7 +128,6 @@ public class CrsmApplication {
         JButton showPassword = linkButton("Show");
         showPassword.addActionListener(e -> togglePassword(password, showPassword));
 
-<<<<<<< Updated upstream
         JButton forgot = linkButton("Forgot password?");
         JButton signIn = authPrimaryButton("Sign In");
         JButton switchSignup = secondaryButton("Create a Customer account");
@@ -161,15 +140,6 @@ public class CrsmApplication {
         JPanel options = new JPanel(new BorderLayout()); options.setOpaque(false);
         options.add(remember, BorderLayout.WEST); options.add(forgot, BorderLayout.EAST);
         addRow(card, options, 2, new Insets(4, 0, 12, 0));
-=======
-        addField(card, "Email Address", CrsmUi.authInput(email, "user", "Enter your email address"), 0);
-        addField(card, "Password", CrsmUi.authPassword(password, "Enter your password"), 1);
-        JPanel options = new JPanel(new BorderLayout());
-        options.setOpaque(false);
-        options.add(remember, BorderLayout.WEST);
-        options.add(forgot, BorderLayout.EAST);
-        addRow(card, options, 2, new Insets(2, 0, 12, 0));
->>>>>>> Stashed changes
         addRow(card, signIn, 3, new Insets(0, 0, 10, 0));
         addRow(card, separator("OR"), 4, new Insets(5, 0, 5, 0));
         addRow(card, switchSignup, 5, new Insets(4, 0, 0, 0));
@@ -217,7 +187,6 @@ public class CrsmApplication {
 
     private JPanel buildSignupForm(JFrame frame) {
         JPanel card = formCard();
-<<<<<<< Updated upstream
         JLabel title = heading("Create an Account");
         JLabel subtitle = subtitle("Sign up as a customer. An administrator may change account access later.");
         JTextField fullName = new JTextField(); styleField(fullName);
@@ -246,31 +215,6 @@ public class CrsmApplication {
         addRow(card, submit, 7, new Insets(2, 0, 8, 0));
         addRow(card, separator("OR"), 8, new Insets(3, 0, 3, 0));
         addRow(card, switchSignin, 9, new Insets(2, 0, 0, 0));
-=======
-        addFormHeader(card, "Create an Account", "Join now to get started with your computer repair service management.");
-        JTextField fullName = new JTextField();
-        JTextField username = new JTextField();
-        JTextField email = new JTextField();
-        JPasswordField password = new JPasswordField();
-        JPasswordField confirm = new JPasswordField();
-        JCheckBox terms = new JCheckBox("I agree to the Terms of Service and Privacy Policy.");
-        terms.setOpaque(false);
-        terms.setForeground(CrsmTheme.NAVY);
-        JButton submit = CrsmUi.primary("Sign Up");
-        submit.setPreferredSize(new Dimension(100, 46));
-        JButton switchSignin = CrsmUi.ghost("Already have an account?  Sign in");
-
-        addField(card, "Full Name", CrsmUi.authInput(fullName, "user", "Enter your full name"), 0);
-        addField(card, "Username", CrsmUi.authInput(username, "user", "Enter your username"), 1);
-        addField(card, "Email Address", CrsmUi.authInput(email, "email", "Enter your email address"), 2);
-        addField(card, "Password", CrsmUi.authPassword(password, "Create a password"), 3);
-        addField(card, "Confirm Password", CrsmUi.authPassword(confirm, "Confirm your password"), 4);
-        addRow(card, terms, 5, new Insets(4, 0, 8, 0));
-        addRow(card, submit, 6, new Insets(0, 0, 8, 0));
-        addRow(card, orSeparator(), 7, new Insets(2, 0, 8, 0));
-        addRow(card, switchSignin, 8, new Insets(0, 0, 0, 0));
-        addRow(card, CrsmUi.muted("New accounts are created as Customer. There is no role selector. Only an administrator can promote an account."), 9, new Insets(12, 0, 0, 0));
->>>>>>> Stashed changes
 
         submit.addActionListener(e -> {
             String name = fullName.getText().trim(), handle = username.getText().trim(), address = email.getText().trim();

@@ -10,6 +10,7 @@ create table if not exists public.crsm_device_catalog (
   device_type text not null,
   brand text not null,
   model text not null,
+  specification text,
   release_year smallint,
   constraint crsm_device_catalog_unique unique(device_type,brand,model)
 );
@@ -31,7 +32,7 @@ create policy crsm_device_prices_read_active on public.repair_service_device_pri
  using(private.current_crsm_role() is not null);
 
 create or replace function public.submit_crsm_repair_request_v2(
- cid integer,device_type text,brand text,model text,serial text,problem text,work text,condition text,accessories text,
+ cid integer,device_type text,brand text,model text,specification text,serial text,problem text,work text,condition text,accessories text,
  appointment_date date,appointment_time time,purpose text,selected_service integer)
 returns integer language plpgsql security definer set search_path = '' as $$
 declare comp integer; app integer; req integer; max_advance integer; max_daily integer; open_at time; close_at time; day_list text; requested_date date;
@@ -54,8 +55,8 @@ begin
   perform pg_advisory_xact_lock(hashtextextended(requested_date::text,0));
   if (select count(*) from public.appointments a where a.appointment_date=requested_date and a.appointment_status<>'Cancelled')>=max_daily then raise exception 'No appointment capacity remains for the selected day'; end if;
  end if;
- insert into public.computers(customer_id,device_type,brand,model,serial_number,reported_problem,condition_on_intake,accessories_received)
- values(cid,trim(device_type),trim(brand),nullif(trim(model),''),nullif(trim(serial),''),trim(problem),nullif(trim(condition),''),nullif(trim(accessories),'')) returning computer_id into comp;
+ insert into public.computers(customer_id,device_type,brand,model,specification,serial_number,reported_problem,condition_on_intake,accessories_received)
+ values(cid,trim(device_type),trim(brand),nullif(trim(model),''),nullif(trim(specification),''),nullif(trim(serial),''),trim(problem),nullif(trim(condition),''),nullif(trim(accessories),'')) returning computer_id into comp;
  insert into public.appointments(customer_id,computer_id,appointment_date,appointment_time,purpose,appointment_status)
  values(cid,comp,appointment_date,appointment_time,nullif(trim(purpose),''),'Pending') returning appointment_id into app;
  insert into public.repair_requests(computer_id,service_id,reported_problem,requested_work,repair_status)
@@ -64,8 +65,8 @@ begin
  values(req,auth.uid(),'submitted',jsonb_build_object('appointment_id',app,'service_id',selected_service));
  return req;
 end $$;
-revoke all on function public.submit_crsm_repair_request_v2(integer,text,text,text,text,text,text,text,text,date,time,text,integer) from public,anon,authenticated;
-grant execute on function public.submit_crsm_repair_request_v2(integer,text,text,text,text,text,text,text,text,date,time,text,integer) to authenticated;
+revoke all on function public.submit_crsm_repair_request_v2(integer,text,text,text,text,text,text,text,text,text,date,time,text,integer) from public,anon,authenticated;
+grant execute on function public.submit_crsm_repair_request_v2(integer,text,text,text,text,text,text,text,text,text,date,time,text,integer) to authenticated;
 
 insert into public.crsm_device_catalog(device_type,brand,model,release_year) values
 ('Laptop','Apple','MacBook Air 13-inch (M1)',2020),('Laptop','Apple','MacBook Air 13-inch (M2)',2022),('Laptop','Apple','MacBook Air 13-inch (M3)',2024),('Laptop','Apple','MacBook Air 15-inch (M3)',2024),('Laptop','Apple','MacBook Pro 14-inch (M3)',2023),('Laptop','Apple','MacBook Pro 16-inch (M3)',2023),

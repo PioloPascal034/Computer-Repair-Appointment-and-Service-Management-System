@@ -18,6 +18,8 @@ public final class CrsmTheme {
 
     private CrsmTheme() {}
 
+    static Font font(int style, int size) { return new Font("Raleway", style, size); }
+
     public static void install() {
         Font base = new Font("Raleway", Font.PLAIN, 13);
         UIManager.put("Label.font", base);

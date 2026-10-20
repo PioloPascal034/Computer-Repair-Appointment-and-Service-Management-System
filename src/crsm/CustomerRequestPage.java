@@ -24,6 +24,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JPopupMenu;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingWorker;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -31,11 +34,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 final class CustomerRequestPage extends JPanel {
     private final UserSession session;
     private final CustomerWorkflowService service = new CustomerWorkflowService();
-    private final JTextField phone = new JTextField(), address = new JTextField(), serial = new JTextField();
+    private final JTextField phone = new JTextField(), address = new JTextField(), serial = new JTextField(), specification = new JTextField();
     private final JTextField appointmentDate = new JTextField(nextWeekday().toString());
     private final JTextField appointmentTime = new JTextField("09:00");
-    private final JComboBox<String> deviceType = new JComboBox<>(new String[]{"Laptop", "Desktop", "Tablet", "All-in-one", "Gaming PC", "Monitor", "Other"});
-    private final JComboBox<String> brand = new JComboBox<>(new String[]{"Acer", "Apple", "ASUS", "Dell", "HP", "Lenovo", "Microsoft", "MSI", "Samsung", "Other"});
+    private final JComboBox<String> deviceType = new JComboBox<>();
+    private final JComboBox<String> brand = new JComboBox<>();
     private final JComboBox<String> model = new JComboBox<>();
     private final ButtonGroup conditionGroup = new ButtonGroup();
     private final JPanel conditionChoices = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
@@ -61,17 +64,18 @@ final class CustomerRequestPage extends JPanel {
 
         JPanel form = new JPanel(new GridLayout(0, 2, 18, 14)); form.setOpaque(false);
         style(deviceType); style(brand); style(model); style(purpose);
-        brand.setEditable(true); model.setEditable(true);
+        brand.setEnabled(false); model.setEnabled(false); model.setEditable(false);
         conditionChoices.setOpaque(false);
         for (String option : new String[]{"Working", "Intermittent", "No power", "Physical damage"}) {
             JRadioButton radio = new JRadioButton(option); radio.setOpaque(false); conditionGroup.add(radio); conditionChoices.add(radio);
             if (option.equals("Working")) radio.setSelected(true);
         }
-        deviceType.addActionListener(e -> { refreshBrands(); refreshModels(); refreshServicePrice(); }); brand.addActionListener(e -> refreshModels());
-        refreshModels();
+        deviceType.addActionListener(e -> { refreshBrands(); refreshModels(); clearSpecification(); refreshServicePrice(); });
+        brand.addActionListener(e -> { refreshModels(); clearSpecification(); });
+        model.addActionListener(e -> { refreshSpecificationSuggestions(); });
         addRow(form, "Contact number *", phone); addRow(form, "Address", address);
         addRow(form, "Device category *", deviceType); addRow(form, "Brand *", brand);
-        addRow(form, "Model", model); addRow(form, "Serial number (optional)", serial);
+        addRow(form, "Model", model); addRow(form, "Specification (optional)", specification); addRow(form, "Serial number (optional)", serial);
         addRow(form, "Device condition *", conditionChoices); addRow(form, "Items handed in", accessories);
         addRow(form, "What is wrong? *", problem); addRow(form, "What would you like us to do?", work);
         JPanel photosRow = new JPanel(new BorderLayout(4, 4)); photosRow.setOpaque(false);
@@ -93,6 +97,7 @@ final class CustomerRequestPage extends JPanel {
         submit.setBackground(new Color(45, 50, 80)); submit.setForeground(Color.WHITE); submit.setFocusPainted(false);
         submit.addActionListener(e -> submit(submit)); add(submit, BorderLayout.SOUTH);
         loadDeviceCatalog();
+        installSpecificationAutocomplete();
     }
 
     void selectService(int serviceId, String name, String description) {
@@ -115,41 +120,48 @@ final class CustomerRequestPage extends JPanel {
     }
 
     private void refreshModels() {
-        String b = String.valueOf(brand.getEditor().getItem()).trim().toLowerCase();
+        String b = String.valueOf(brand.getSelectedItem()).trim().toLowerCase();
         String t = String.valueOf(deviceType.getSelectedItem());
-        List<String> models = new ArrayList<>();
-        if (!deviceCatalog.isEmpty()) {
-            for (Map<String,Object> row : deviceCatalog) if (t.equals(String.valueOf(row.get("device_type"))) && b.equals(String.valueOf(row.get("brand")).toLowerCase())) models.add(String.valueOf(row.get("model")));
-            if (!models.isEmpty()) { model.removeAllItems(); models.forEach(model::addItem); model.setEditable(true); return; }
-        }
-        if (b.contains("apple")) models.addAll(t.equals("Laptop") ? List.of("MacBook Air 13-inch", "MacBook Air 15-inch", "MacBook Pro 14-inch", "MacBook Pro 16-inch") : List.of("iMac 24-inch", "Mac mini", "Mac Studio"));
-        else if (b.contains("dell")) models.addAll(List.of("Inspiron 14", "Inspiron 15", "XPS 13", "XPS 15", "Latitude 5440", "Precision 5680", "OptiPlex"));
-        else if (b.contains("hp")) models.addAll(List.of("Pavilion 14", "Pavilion 15", "Envy x360", "Spectre x360", "EliteBook 840", "ProBook 450", "ProDesk"));
-        else if (b.contains("lenovo")) models.addAll(List.of("ThinkPad E14", "ThinkPad T14", "ThinkPad X1 Carbon", "IdeaPad Slim 3", "Yoga 7", "Legion 5", "ThinkCentre"));
-        else if (b.contains("asus")) models.addAll(List.of("Vivobook 15", "Zenbook 14", "ROG Zephyrus G14", "TUF Gaming A15", "ExpertBook B1"));
-        else if (b.contains("acer")) models.addAll(List.of("Aspire 5", "Swift Go 14", "Swift X", "Predator Helios Neo 16", "Nitro V 15"));
-        else if (b.contains("microsoft")) models.addAll(List.of("Surface Laptop 5", "Surface Laptop 6", "Surface Pro 9", "Surface Pro 10", "Surface Laptop Studio 2"));
-        else if (b.contains("msi")) models.addAll(List.of("Modern 14", "Prestige 14", "Katana 15", "Cyborg 15", "Raider GE78"));
-        else if (b.contains("samsung")) models.addAll(List.of("Galaxy Book4", "Galaxy Book4 Pro", "Galaxy Book4 Ultra", "Galaxy Book3 360"));
-        if (models.isEmpty()) models.add("Type model name");
-        model.removeAllItems(); models.forEach(model::addItem); model.setEditable(true);
+        List<String> models = deviceCatalog.stream().filter(r -> t.equals(String.valueOf(r.get("device_type"))) && b.equals(String.valueOf(r.get("brand")).toLowerCase())).map(r -> String.valueOf(r.get("model"))).distinct().sorted().toList();
+        model.removeAllItems(); models.forEach(model::addItem); model.setEnabled(!models.isEmpty());
+        refreshSpecificationSuggestions();
     }
 
     private void loadDeviceCatalog() {
         new SwingWorker<List<Map<String,Object>>,Void>() {
-            protected List<Map<String,Object>> doInBackground() throws Exception { return service.deviceCatalog(session); }
-            protected void done() { try { deviceCatalog.clear(); deviceCatalog.addAll(get()); if (!deviceCatalog.isEmpty()) {
-                    Object priorType=deviceType.getSelectedItem(); deviceType.removeAllItems();
-                    deviceCatalog.stream().map(r->String.valueOf(r.get("device_type"))).distinct().forEach(deviceType::addItem);
-                    if (priorType!=null) deviceType.setSelectedItem(priorType);
-                    refreshBrands(); refreshModels();
-                } } catch (Exception ex) { /* retain editable common-brand/model suggestions when the catalog migration is not installed */ } }
+            protected List<Map<String,Object>> doInBackground() throws Exception { return DeviceCatalogLoader.load(); }
+            protected void done() { try { deviceCatalog.clear(); deviceCatalog.addAll(DeviceCatalogLoader.load()); deviceType.removeAllItems();
+                    deviceCatalog.stream().map(r->String.valueOf(r.get("device_type"))).distinct().sorted().forEach(deviceType::addItem);
+                    brand.removeAllItems(); model.removeAllItems(); brand.setEnabled(false); model.setEnabled(false);
+                } catch (Exception ex) { JOptionPane.showMessageDialog(CustomerRequestPage.this, ex.getMessage(), "Device catalog unavailable", JOptionPane.ERROR_MESSAGE); } }
         }.execute();
     }
     private void refreshBrands() {
-        String t=String.valueOf(deviceType.getSelectedItem()); Object old=brand.getEditor().getItem();
+        String t=String.valueOf(deviceType.getSelectedItem());
         List<String> brands=deviceCatalog.stream().filter(r->t.equals(String.valueOf(r.get("device_type")))).map(r->String.valueOf(r.get("brand"))).distinct().toList();
-        if(brands.isEmpty())return; brand.removeAllItems(); brands.forEach(brand::addItem); brand.setEditable(true); if(old!=null)brand.setSelectedItem(old);
+        brand.removeAllItems(); brands.forEach(brand::addItem); brand.setEnabled(!brands.isEmpty());
+    }
+
+    String selectedDeviceType() {
+        Object value = deviceType.getSelectedItem();
+        return value == null ? "" : String.valueOf(value).trim();
+    }
+
+    private void clearSpecification() { specification.setText(""); refreshSpecificationSuggestions(); }
+    private void refreshSpecificationSuggestions() { /* suggestions are rebuilt by the document listener */ }
+    private void installSpecificationAutocomplete() {
+        JPopupMenu popup = new JPopupMenu(); JList<String> suggestions = new JList<>(); suggestions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        popup.add(new JScrollPane(suggestions));
+        specification.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { update(); } public void removeUpdate(javax.swing.event.DocumentEvent e) { update(); } public void changedUpdate(javax.swing.event.DocumentEvent e) { update(); }
+            private void update() {
+                String t=String.valueOf(deviceType.getSelectedItem()), b=String.valueOf(brand.getSelectedItem()), m=String.valueOf(model.getSelectedItem()), q=specification.getText().trim().toLowerCase();
+                List<String> values=deviceCatalog.stream().filter(r->t.equals(String.valueOf(r.get("device_type"))) && b.equals(String.valueOf(r.get("brand"))) && m.equals(String.valueOf(r.get("model")))).map(r->String.valueOf(r.get("specification"))).filter(s->!s.isBlank() && s.toLowerCase().contains(q)).distinct().toList();
+                suggestions.setModel(new javax.swing.AbstractListModel<>() { public int getSize(){return values.size();} public String getElementAt(int i){return values.get(i);} });
+                if (!values.isEmpty() && specification.isFocusOwner()) { popup.pack(); popup.show(specification, 0, specification.getHeight()); } else popup.setVisible(false);
+            }
+        });
+        suggestions.addListSelectionListener(e -> { if (!e.getValueIsAdjusting() && suggestions.getSelectedValue()!=null) { specification.setText(suggestions.getSelectedValue()); popup.setVisible(false); } });
     }
     private void refreshServicePrice() {
         if(selectedServiceId<0)return; String type=String.valueOf(deviceType.getSelectedItem()); servicePrice.setText("Checking price for "+type+"…");
@@ -175,12 +187,12 @@ final class CustomerRequestPage extends JPanel {
     private void updatePhotoNames() { photoNames.removeAll(); for (Path photo : photos) { JButton chip = new JButton("× " + photo.getFileName()); chip.addActionListener(e -> { photos.remove(photo); updatePhotoNames(); }); photoNames.add(chip); } photoNames.revalidate(); photoNames.repaint(); }
 
     private void submit(JButton button) {
-        if (phone.getText().isBlank() || String.valueOf(brand.getEditor().getItem()).isBlank() || problem.getText().isBlank()) { JOptionPane.showMessageDialog(this, "Enter your contact number, device brand, and a description of the problem.", "Required information", JOptionPane.WARNING_MESSAGE); return; }
+        if (phone.getText().isBlank() || deviceType.getSelectedItem()==null || brand.getSelectedItem()==null || model.getSelectedItem()==null || problem.getText().isBlank()) { JOptionPane.showMessageDialog(this, "Enter your contact number, device type, brand, model, and a description of the problem.", "Required information", JOptionPane.WARNING_MESSAGE); return; }
         try { LocalDate.parse(appointmentDate.getText().trim()); java.time.LocalTime.parse(appointmentTime.getText().trim()); }
         catch (RuntimeException ex) { JOptionPane.showMessageDialog(this, "Enter a valid date (YYYY-MM-DD) and time (HH:MM).", "Appointment time", JOptionPane.WARNING_MESSAGE); return; }
         Map<String,Object> values = new LinkedHashMap<>();
-        values.put("device_type", deviceType.getSelectedItem()); values.put("brand", String.valueOf(brand.getEditor().getItem()).trim());
-        values.put("model", String.valueOf(model.getEditor().getItem()).trim()); values.put("serial", serial.getText().trim());
+        values.put("device_type", deviceType.getSelectedItem()); values.put("brand", String.valueOf(brand.getSelectedItem()).trim());
+        values.put("model", String.valueOf(model.getSelectedItem()).trim()); values.put("specification", specification.getText().trim()); values.put("serial", serial.getText().trim());
         values.put("problem", problem.getText().trim()); values.put("work", work.getText().trim()); values.put("condition", selectedCondition());
         values.put("accessories", accessories.getText().trim()); values.put("appointment_date", appointmentDate.getText().trim());
         values.put("appointment_time", appointmentTime.getText().trim()); values.put("purpose", purpose.getSelectedItem());
