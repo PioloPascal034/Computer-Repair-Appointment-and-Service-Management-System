@@ -258,7 +258,12 @@ final class CustomerRequestPage extends JPanel {
                     }
                 } catch (Exception ex) {
                     Throwable cause = ex.getCause() == null ? ex : ex.getCause();
-                    setServicePrice("Pricing could not be confirmed (" + cause.getMessage() + "). Final estimate requires technician inspection.");
+                    String error = cause.getMessage() == null ? "" : cause.getMessage();
+                    if (error.contains("quote_crsm_service") && error.toLowerCase().contains("schema cache")) {
+                        setServicePrice("Device-aware pricing is not installed in Supabase. Run docs/repair_request_pricing_migration.sql in the Supabase SQL Editor, then retry. Final pricing still requires technician inspection.");
+                    } else {
+                        setServicePrice("Pricing could not be confirmed (" + (error.isBlank() ? cause.getClass().getSimpleName() : error) + "). Final estimate requires technician inspection.");
+                    }
                 }
             }
         }.execute();
@@ -294,7 +299,7 @@ final class CustomerRequestPage extends JPanel {
         java.io.File[] chosen=chooser.getSelectedFiles(); if(chosen.length==0&&chooser.getSelectedFile()!=null)chosen=new java.io.File[]{chooser.getSelectedFile()};
         for (java.io.File file : chosen) {
             if (photos.size() >= 3) break;
-            try { java.awt.image.BufferedImage image = javax.imageio.ImageIO.read(file); if (image == null) throw new IllegalArgumentException("Not a readable image."); if (file.length() > 2L * 1024 * 1024) throw new IllegalArgumentException("Each image must be 2 MB or smaller."); photos.add(file.toPath()); }
+            try { SupabaseStorageService.validateImage(file.toPath()); photos.add(file.toPath()); }
             catch (Exception ex) { JOptionPane.showMessageDialog(this, file.getName() + ": " + ex.getMessage(), "Photo not added", JOptionPane.WARNING_MESSAGE); }
         }
         photoNames.removeAll(); for (Path photo : photos) { JButton chip = new JButton("× " + photo.getFileName()); chip.addActionListener(e -> { photos.remove(photo); updatePhotoNames(); }); photoNames.add(chip); }

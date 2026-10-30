@@ -35,6 +35,7 @@ public final class CrsmWindow extends JFrame implements CrsmHost {
     private CrsmPages.UserAccountsPage accountsPage;
     private CustomerServicesPage customerServices;
     private CustomerRequestPage customerRequest;
+    private CustomerTrackingPage customerTracking;
     private String currentPage = "Dashboard";
     private boolean signingOut;
 
@@ -111,7 +112,8 @@ public final class CrsmWindow extends JFrame implements CrsmHost {
     private void registerViews() {
         dashboard = CrsmPages.dashboard(this); content.add(dashboard, "Dashboard");
         if ("Customer".equals(role)) {
-            customerRequest = new CustomerRequestPage(session, () -> showPage("Services")); content.add(customerRequest, "New Repair Request"); content.add(new CustomerTrackingPage(session), "My Repairs");
+            customerRequest = new CustomerRequestPage(session, () -> showPage("Services")); content.add(customerRequest, "New Repair Request");
+            customerTracking = new CustomerTrackingPage(session); content.add(customerTracking, "My Repairs");
             customerServices = new CustomerServicesPage(session, customerRequest::selectedDeviceType,
                     service -> { customerRequest.selectService(service); showPage("New Repair Request"); });
             content.add(customerServices, "Services");
@@ -183,5 +185,6 @@ public final class CrsmWindow extends JFrame implements CrsmHost {
         CrsmListing listing = listings.get(page);
         if (listing != null) listing.reload();
         if ("Dashboard".equals(page)) dashboard.reload();
+        if ("My Repairs".equals(page) && customerTracking != null) customerTracking.reload();
     }
 }

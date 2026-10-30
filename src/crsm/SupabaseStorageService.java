@@ -7,7 +7,11 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 public class SupabaseStorageService {
     public String uploadAvatar(UserSession session, Path file) throws IOException, InterruptedException {
@@ -28,7 +32,7 @@ public class SupabaseStorageService {
     private String upload(UserSession session, String bucket, String path, Path file) throws IOException, InterruptedException {
         String encodedPath = encodePath(path);
         byte[] bytes = Files.readAllBytes(file);
-        String mime = Files.probeContentType(file); if (mime == null) mime = "application/octet-stream";
+        String mime = file.getFileName().toString().toLowerCase().endsWith(".png") ? "image/png" : "image/jpeg";
         HttpRequest request = HttpRequest.newBuilder(java.net.URI.create(AppConfig.get("SUPABASE_URL").replaceAll("/+$", "") + "/storage/v1/object/" + bucket + "/" + encodedPath))
                 .header("apikey", AppConfig.get("SUPABASE_ANON_KEY"))
                 .header("Authorization", "Bearer " + session.accessToken())
@@ -58,12 +62,34 @@ public class SupabaseStorageService {
         return response.body();
     }
 
-    private static void validateImage(Path file) throws IOException {
+    static void validateImage(Path file) throws IOException {
         if (!Files.isRegularFile(file)) throw new IllegalArgumentException("Choose an existing image file.");
         String name = file.getFileName().toString().toLowerCase();
         if (!(name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg"))) throw new IllegalArgumentException("Choose a PNG or JPEG image.");
         if (Files.size(file) > 2L * 1024 * 1024) throw new IllegalArgumentException("Images must be 2 MB or smaller.");
-        if (Files.probeContentType(file) != null && !Files.probeContentType(file).startsWith("image/")) throw new IllegalArgumentException("The selected file is not recognized as an image.");
+        String extension = name.substring(name.lastIndexOf('.') + 1);
+        try (ImageInputStream input = ImageIO.createImageInputStream(file.toFile())) {
+            if (input == null) throw unreadableImage();
+            Iterator<ImageReader> readers = ImageIO.getImageReaders(input);
+            if (!readers.hasNext()) throw unreadableImage();
+            ImageReader reader = readers.next();
+            try {
+                reader.setInput(input, true, true);
+                String format = reader.getFormatName();
+                boolean png = extension.equals("png") && format.equalsIgnoreCase("png");
+                boolean jpeg = (extension.equals("jpg") || extension.equals("jpeg")) && format.equalsIgnoreCase("jpeg");
+                if (!png && !jpeg) throw unreadableImage();
+                reader.getWidth(0);
+                reader.getHeight(0);
+            } finally {
+                reader.dispose();
+            }
+        } catch (IOException exception) {
+            throw new IllegalArgumentException("The file could not be read as a PNG or JPEG image. Open it and save or export it as PNG or JPG, then try again.", exception);
+        }
+    }
+    private static IllegalArgumentException unreadableImage() {
+        return new IllegalArgumentException("The file is not a readable PNG or JPEG image. It may be corrupted or another format renamed with a .png or .jpg extension. Save or export it as PNG or JPG and try again.");
     }
     private static String extension(Path file) { String name = file.getFileName().toString(); return name.substring(name.lastIndexOf('.')).toLowerCase(); }
     private static String encodePath(String path) {

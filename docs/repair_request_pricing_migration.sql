@@ -133,6 +133,7 @@ $$;
 
 revoke all on function public.quote_crsm_service(integer,text,text,text,text) from public, anon, authenticated;
 grant execute on function public.quote_crsm_service(integer,text,text,text,text) to authenticated;
+notify pgrst, 'reload schema';
 
 -- Replace the earlier request function so the same database-side quote shown in
 -- the form is stored in estimated_cost. final_cost remains null until staff set it.

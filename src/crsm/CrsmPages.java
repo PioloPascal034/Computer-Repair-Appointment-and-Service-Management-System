@@ -71,6 +71,31 @@ final class CrsmPages {
             this.host = host;
             setBackground(CrsmTheme.CANVAS);
             setBorder(BorderFactory.createEmptyBorder(4, 2, 4, 2));
+            if ("Customer".equals(host.roleName())) {
+                add(CrsmUi.pageHead("Your repair requests",
+                        "Check the latest status and estimate for your submitted requests.", null), BorderLayout.NORTH);
+                JPanel customerContent = new JPanel();
+                customerContent.setOpaque(false);
+                customerContent.setLayout(new BoxLayout(customerContent, BoxLayout.Y_AXIS));
+                customerContent.add(sectionWithTable("Recent requests", styledTable(repairRows)));
+                customerContent.add(Box.createVerticalStrut(12));
+                JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+                actions.setOpaque(false);
+                JButton repairs = CrsmUi.primary("View all repairs");
+                repairs.addActionListener(event -> host.showPage("My Repairs"));
+                JButton newRequest = CrsmUi.ghost("New repair request");
+                newRequest.addActionListener(event -> host.showPage("New Repair Request"));
+                actions.add(repairs);
+                actions.add(newRequest);
+                customerContent.add(actions);
+                JScrollPane customerScroll = new JScrollPane(customerContent);
+                customerScroll.setBorder(null);
+                customerScroll.getViewport().setOpaque(false);
+                customerScroll.getViewport().setBackground(CrsmTheme.CANVAS);
+                add(customerScroll, BorderLayout.CENTER);
+                add(status, BorderLayout.SOUTH);
+                return;
+            }
             add(CrsmUi.pageHead("Good to see you, " + host.session().fullName(),
                     "Current service activity, based on your configured business database.", null), BorderLayout.NORTH);
 
@@ -125,10 +150,36 @@ final class CrsmPages {
             scroll.getViewport().setOpaque(false);
             scroll.getViewport().setBackground(CrsmTheme.CANVAS);
             add(scroll, BorderLayout.CENTER);
-            reload();
         }
 
         void reload() {
+            if ("Customer".equals(host.roleName())) {
+                status.setText("Loading your latest repair requests…");
+                new SwingWorker<List<Map<String, Object>>, Void>() {
+                    @Override protected List<Map<String, Object>> doInBackground() throws Exception {
+                        return new CustomerWorkflowService().repairs(host.session());
+                    }
+                    @Override protected void done() {
+                        repairRows.setRowCount(0);
+                        try {
+                            List<Map<String, Object>> requests = get();
+                            for (Map<String, Object> request : requests.stream().limit(6).toList()) {
+                                repairRows.addRow(new Object[]{request.get("repair_request_id"), request.get("repair_status"),
+                                        request.get("reported_problem"), CrsmUi.money(request.get("estimated_cost"))});
+                            }
+                            if (requests.isEmpty()) {
+                                repairRows.addRow(new Object[]{"—", "No requests yet", "Submit a request to track its progress.", "—"});
+                            }
+                            status.setText("Showing your latest " + Math.min(requests.size(), 6) + " request(s).");
+                        } catch (Exception exception) {
+                            Throwable cause = exception.getCause() == null ? exception : exception.getCause();
+                            status.setText("Your repair statuses could not be loaded: "
+                                    + (cause.getMessage() == null ? cause.getClass().getSimpleName() : cause.getMessage()));
+                        }
+                    }
+                }.execute();
+                return;
+            }
             status.setText("Loading current business data…");
             new SwingWorker<DashboardData, Void>() {
                 @Override protected DashboardData doInBackground() throws Exception {

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingWorker;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /** Customer-owned repair tracking and estimate response controls. */
 final class CustomerTrackingPage extends JPanel {
@@ -33,10 +34,10 @@ final class CustomerTrackingPage extends JPanel {
         add(CrsmUi.pageHead("My repairs", "Track repair progress, review estimates, and manage your repair requests.", refresh),BorderLayout.NORTH);
         rows.setOpaque(false); rows.setLayout(new BoxLayout(rows,BoxLayout.Y_AXIS));
         JScrollPane scroll=new JScrollPane(rows); scroll.setBorder(null); scroll.getViewport().setOpaque(false); scroll.getViewport().setBackground(CrsmTheme.CANVAS);
-        add(scroll,BorderLayout.CENTER); reload();
+        add(scroll,BorderLayout.CENTER);
     }
 
-    private void reload() {
+    void reload() {
         rows.removeAll(); rows.add(CrsmUi.notice("Loading your repairs", "Your latest repair requests are being retrieved securely."));
         rows.add(Box.createVerticalStrut(12)); rows.revalidate(); rows.repaint();
         new SwingWorker<List<Repair>,Void>() {
@@ -118,6 +119,7 @@ final class CustomerTrackingPage extends JPanel {
 
     private void choosePhoto(int id,JButton button) {
         JFileChooser chooser=new JFileChooser();
+        chooser.setFileFilter(new FileNameExtensionFilter("PNG or JPEG images (up to 2 MB)", "png", "jpg", "jpeg"));
         if (chooser.showOpenDialog(this)!=JFileChooser.APPROVE_OPTION) return;
         Path path=chooser.getSelectedFile().toPath(); button.setEnabled(false);
         new SwingWorker<Void,Void>() {
