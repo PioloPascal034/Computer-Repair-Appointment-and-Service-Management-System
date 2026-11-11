@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 /** Loads the designer-provided device catalog without hardcoding brands or models. */
-final class DeviceCatalogLoader {
+public final class DeviceCatalogLoader {
     private DeviceCatalogLoader() {}
 
-    static List<Map<String, Object>> load() throws IOException {
+    public static List<Map<String, Object>> load() throws IOException {
         Path csv = locate();
         List<Map<String, Object>> rows = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(csv, StandardCharsets.UTF_8)) {

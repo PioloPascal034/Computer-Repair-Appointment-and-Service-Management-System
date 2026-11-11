@@ -1,7 +1,6 @@
 package crsm;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /** JWT-backed staff work, repair completion, payment, and pickup operations. */
 final class RepairOperationsPage extends JPanel {
@@ -83,10 +84,24 @@ final class RepairOperationsPage extends JPanel {
     }
 
     private void assign() {
-        String input=JOptionPane.showInputDialog(this,"Technician ID (see Technicians list):","Assign technician",JOptionPane.QUESTION_MESSAGE);
-        if(input==null)return;
-        try { int tech=Integer.parseInt(input.trim()); int id=selected(); run(()->service.assignTechnician(session,id,tech),"Technician assigned."); }
-        catch(NumberFormatException ex){JOptionPane.showMessageDialog(this,"Enter a numeric technician ID.");}
+        new SwingWorker<List<Map<String,Object>>,Void>() {
+            protected List<Map<String,Object>> doInBackground() throws Exception { return service.technicians(session); }
+            protected void done() {
+                try {
+                    List<Map<String,Object>> rows=get();
+                    if(rows.isEmpty()){JOptionPane.showMessageDialog(RepairOperationsPage.this,"No technicians are available.","Assign technician",JOptionPane.WARNING_MESSAGE);return;}
+                    JTextField filter=new JTextField(); CrsmUi.styleField(filter);
+                    JComboBox<TechnicianChoice> choices=new JComboBox<>(); CrsmUi.styleCombo(choices);
+                    Runnable refill=()->{ String q=filter.getText().trim().toLowerCase(); choices.removeAllItems(); rows.stream().filter(r->(str(r.get("technician_name"))+" "+str(r.get("specialization"))+" "+str(r.get("availability"))).toLowerCase().contains(q)).forEach(r->choices.addItem(new TechnicianChoice(Integer.parseInt(String.valueOf(r.get("technician_id"))),str(r.get("technician_name")),str(r.get("specialization")),str(r.get("availability"))))); };
+                    filter.getDocument().addDocumentListener(new DocumentListener(){public void insertUpdate(DocumentEvent e){refill.run();} public void removeUpdate(DocumentEvent e){refill.run();} public void changedUpdate(DocumentEvent e){refill.run();}});
+                    refill.run();
+                    JPanel panel=new JPanel(new GridLayout(0,1,8,8)); panel.add(new JLabel("Search by name, specialization, or availability")); panel.add(filter); panel.add(choices);
+                    if(JOptionPane.showConfirmDialog(RepairOperationsPage.this,panel,"Assign technician",JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE)!=JOptionPane.OK_OPTION)return;
+                    TechnicianChoice choice=(TechnicianChoice)choices.getSelectedItem(); if(choice==null){JOptionPane.showMessageDialog(RepairOperationsPage.this,"Choose an available technician.");return;}
+                    int id=selected(); RepairOperationsPage.this.run(()->service.assignTechnician(session,id,choice.id()),"Technician assigned.");
+                } catch(Exception ex){error(ex);}
+            }
+        }.execute();
     }
 
     private void estimate() {
@@ -114,10 +129,11 @@ final class RepairOperationsPage extends JPanel {
     }
 
     private void payment() {
-        JTextField amount=new JTextField(); JTextField method=new JTextField("Cash");
-        if(JOptionPane.showConfirmDialog(this,form("Amount",amount,"Method",method),"Record payment",JOptionPane.OK_CANCEL_OPTION)!=JOptionPane.OK_OPTION)return;
+        JTextField amount=new JTextField(); JComboBox<String> method=new JComboBox<>(new String[]{"Cash","GCash","Bank transfer","Card"}); CrsmUi.styleCombo(method);
+        JPanel paymentForm=new JPanel(new GridLayout(0,2,8,8)); paymentForm.add(new JLabel("Amount")); paymentForm.add(amount); paymentForm.add(new JLabel("Payment method")); paymentForm.add(method);
+        if(JOptionPane.showConfirmDialog(this,paymentForm,"Record payment",JOptionPane.OK_CANCEL_OPTION)!=JOptionPane.OK_OPTION)return;
         int id=selected();
-        new SwingWorker<String,Void>() { protected String doInBackground() throws Exception { return service.recordPayment(session,id,amount.getText(),method.getText()); }
+        new SwingWorker<String,Void>() { protected String doInBackground() throws Exception { return service.recordPayment(session,id,amount.getText(),String.valueOf(method.getSelectedItem())); }
             protected void done() { try { JOptionPane.showMessageDialog(RepairOperationsPage.this,"Payment saved. Receipt: "+get(),"Receipt",JOptionPane.INFORMATION_MESSAGE); reload(); } catch(Exception ex){error(ex);} }
         }.execute();
     }
@@ -189,5 +205,6 @@ final class RepairOperationsPage extends JPanel {
     private record RepairOption(int id,String label){@Override public String toString(){return "#"+id+" · "+label;}}
     private record PaymentChoice(int id,String label){@Override public String toString(){return label;}}
     private record ReviewChoice(long id,String label){@Override public String toString(){return label;}}
+    private record TechnicianChoice(int id,String name,String specialization,String availability){@Override public String toString(){return name+" · "+specialization+" · "+availability;}}
     @FunctionalInterface private interface Work { void run() throws Exception; }
 }

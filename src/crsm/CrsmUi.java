@@ -181,7 +181,7 @@ final class CrsmUi {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 boolean on = Boolean.TRUE.equals(getClientProperty("selected"));
-                g2.setColor(on ? CrsmTheme.INDIGO : getModel().isRollover() ? CrsmTheme.SIDEBAR_HOVER : CrsmTheme.SIDEBAR);
+                g2.setColor(on ? CrsmTheme.LAVENDER : getModel().isRollover() ? CrsmTheme.SIDEBAR_HOVER : CrsmTheme.SIDEBAR);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
                 g2.dispose();
                 super.paintComponent(g);
@@ -195,7 +195,7 @@ final class CrsmUi {
         button.setForeground(CrsmTheme.WHITE);
         button.setContentAreaFilled(false);
         button.setOpaque(false);
-        button.setBorder(new EmptyBorder(10, 14, 10, 14));
+        button.setBorder(new EmptyBorder(11, 14, 11, 14));
         button.setFocusPainted(false);
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, 42));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -426,9 +426,9 @@ final class CrsmUi {
         table.setGridColor(CrsmTheme.LAVENDER);
         table.setBackground(CrsmTheme.WHITE);
         table.setForeground(CrsmTheme.NAVY);
-        table.setSelectionBackground(CrsmTheme.LAVENDER);
-        table.setSelectionForeground(CrsmTheme.WHITE);
-        table.getTableHeader().setBackground(CrsmTheme.NAVY);
+        table.setSelectionBackground(new Color(220, 235, 255));
+        table.setSelectionForeground(CrsmTheme.NAVY);
+        table.getTableHeader().setBackground(CrsmTheme.INDIGO);
         table.getTableHeader().setForeground(CrsmTheme.WHITE);
         table.getTableHeader().setFont(CrsmTheme.font(Font.BOLD, 12));
         table.getTableHeader().setReorderingAllowed(false);

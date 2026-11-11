@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -217,7 +218,13 @@ final class CrsmListing extends JPanel {
         fields.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         for (String field : entity.fields) {
             JComponent input;
-            if (isLongText(field)) {
+            String[] choices = choicesFor(field);
+            if (choices != null) {
+                JComboBox<String> combo = new JComboBox<>(choices);
+                CrsmUi.styleCombo(combo);
+                if (existing != null) combo.setSelectedItem(existing.value(field));
+                input = combo;
+            } else if (isLongText(field)) {
                 JTextArea area = CrsmUi.multiline(3);
                 if (existing != null) area.setText(existing.value(field));
                 input = new JScrollPane(area);
@@ -240,6 +247,7 @@ final class CrsmListing extends JPanel {
             String value;
             if (entry.getValue() instanceof JScrollPane scroll && scroll.getViewport().getView() instanceof JTextArea area) value = area.getText().trim();
             else if (entry.getValue() instanceof JTextField text) value = text.getText().trim();
+            else if (entry.getValue() instanceof JComboBox<?> combo) value = combo.getSelectedItem() == null ? "" : String.valueOf(combo.getSelectedItem()).trim();
             else value = "";
             values.put(entry.getKey(), value);
         }
@@ -286,6 +294,16 @@ final class CrsmListing extends JPanel {
             }
         }
         return null;
+    }
+
+    private static String[] choicesFor(String field) {
+        return switch (field) {
+            case "repair_status" -> new String[]{"Pending", "Confirmed", "Under Diagnosis", "Under Repair", "Waiting for Parts", "Ready for Testing", "Awaiting Payment", "Ready for Pickup", "Completed", "Cancelled"};
+            case "appointment_status" -> new String[]{"Pending", "Confirmed", "Completed", "Cancelled"};
+            case "availability" -> new String[]{"Available", "Busy", "Unavailable", "Off Duty"};
+            case "payment_status" -> new String[]{"Unpaid", "Partial", "Paid", "Refunded"};
+            default -> null;
+        };
     }
 
     private void deleteSelected() {

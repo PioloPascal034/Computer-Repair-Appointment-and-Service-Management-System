@@ -1,0 +1,10 @@
+{
+  "description": "Manage computer repair operations in one place, from customer appointments and repair requests to technician assignments, payments, and reporting.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

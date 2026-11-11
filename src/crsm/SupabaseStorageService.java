@@ -7,6 +7,7 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.UUID;
 import javax.imageio.ImageIO;
@@ -34,6 +35,7 @@ public class SupabaseStorageService {
         byte[] bytes = Files.readAllBytes(file);
         String mime = file.getFileName().toString().toLowerCase().endsWith(".png") ? "image/png" : "image/jpeg";
         HttpRequest request = HttpRequest.newBuilder(java.net.URI.create(AppConfig.get("SUPABASE_URL").replaceAll("/+$", "") + "/storage/v1/object/" + bucket + "/" + encodedPath))
+                .timeout(Duration.ofSeconds(60))
                 .header("apikey", AppConfig.get("SUPABASE_ANON_KEY"))
                 .header("Authorization", "Bearer " + session.accessToken())
                 .header("Content-Type", mime).header("x-upsert", "true")
@@ -55,7 +57,7 @@ public class SupabaseStorageService {
 
     public byte[] download(UserSession session, String bucket, String path) throws IOException, InterruptedException {
         String url = AppConfig.get("SUPABASE_URL").replaceAll("/+$", "") + "/storage/v1/object/" + bucket + "/" + encodePath(path);
-        HttpRequest request = HttpRequest.newBuilder(java.net.URI.create(url)).header("apikey", AppConfig.get("SUPABASE_ANON_KEY"))
+        HttpRequest request = HttpRequest.newBuilder(java.net.URI.create(url)).timeout(Duration.ofSeconds(60)).header("apikey", AppConfig.get("SUPABASE_ANON_KEY"))
                 .header("Authorization", "Bearer " + session.accessToken()).GET().build();
         HttpResponse<byte[]> response = java.net.http.HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofByteArray());
         if (response.statusCode() < 200 || response.statusCode() >= 300) throw new IllegalStateException("Image download failed with HTTP " + response.statusCode() + ".");

@@ -2,24 +2,36 @@
 
 “Repairing devices, not relationships.”
 
-## Java Swing application
+## JavaFX desktop application
 
-The application has native Java Swing sign-in and shared sign-up forms, with supplied PNGs retained as visual references rather than used as screen backgrounds. It provides role-specific navigation for Customer, Staff, and Admin accounts. Sign-up does not expose role selection; the additive Supabase SQL setup creates every new profile as `CUSTOMER`. An administrator can promote profiles using a server-side RPC. Profile photo and business-logo uploads use private Supabase Storage buckets. Business-domain tables and forms use a JDBC repository separate from the UI. The existing `lib/postgresql-42.7.12.jar` is the PostgreSQL JDBC driver.
+`Main` now launches the JavaFX/FXML/CSS interface. The previous Swing classes remain in
+the source tree as a legacy reference, while the JavaFX controllers reuse the existing
+Supabase authentication/storage/workflow services, PostgreSQL repository, SQL schema,
+and saved records.
 
-### Build and run (PowerShell)
+### Build and run the JavaFX interface (PowerShell)
+
+```powershell
+.\run-javafx.ps1
+```
+
+The checked-in `lib/javafx` runtime is used on Windows. The script compiles the existing
+business logic plus `src/crsm/fx`, copies FXML/CSS resources, and starts `Main`.
+
+The downloaded Figma-generated reference is preserved under `docs/figma`. Its `src/App.tsx`
+and `src/index.css` define the role portals, design tokens, DM Sans typography, responsive
+layout, workflow states, and control behavior used as the JavaFX visual reference. The
+downloaded `repair-workbench.jpg` is reused by the JavaFX sign-in screen.
+
+The application has JavaFX sign-in, shared sign-up, role-aware navigation, FXML layouts, and CSS styling for Customer, Technician/Staff, and Admin accounts. Sign-up does not expose role selection; the additive Supabase SQL setup creates every new profile as `CUSTOMER`. An administrator can promote profiles using a server-side RPC. Profile photo, repair-photo, and business-logo uploads use private Supabase Storage buckets. Business-domain tables and forms use the existing JDBC repository and workflow RPCs. The existing `lib/postgresql-42.7.12.jar` is the PostgreSQL JDBC driver.
+
+### Configure Supabase (PowerShell)
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
 Edit `.env` with your Supabase Project URL and publishable key (from the project's Connect dialog or Settings > API Keys), plus the Session pooler host/username and database password (from Connect > Session pooler and Project Settings > Database). The JDBC URL uses port `5432` and `sslmode=require`. Keep the real `.env` local; it is ignored by Git. The app reads `.env` from the working directory, with process environment variables taking precedence.
-
-```powershell
-New-Item -ItemType Directory -Force out | Out-Null
-javac -encoding UTF-8 -cp "lib/postgresql-42.7.12.jar" -d out src\Main.java src\*.java src\crsm\*.java
-Copy-Item -Recurse -Force src\crsm\assets out\crsm\assets
-java -cp "out;lib/postgresql-42.7.12.jar" Main
-```
 
 For a new, empty Supabase project, run `docs/supabase_fresh_setup.sql` once in its SQL Editor. It creates the seven business tables, security-invoker report views, customer-first Auth profiles, restricted role-promotion functions, private image buckets, and Staff/Admin technician availability Realtime publication and policy. After creating the account designated as the first administrator, follow the commented bootstrap statement at the end of the script. For a project created with the earlier setup, first review and run `docs/harden_supabase_security.sql`; it applies hardening without dropping business data. Run `docs/enable_technician_realtime.sql` only if technician Realtime still needs enabling afterward. Do not run the older `docs/supabase_auth_profiles_and_storage.sql` as well; that file is the earlier auth-only setup. Keep all database credentials outside source code and version control.
 
@@ -38,6 +50,12 @@ Customer-owned request tracking and photo uploads also require the ordered custo
 - The UCD and screen designs include additional statuses and dashboard values that are not represented by the SQL constraints or reporting tables. Existing database status values are used until those conflicts are resolved.
 - No Supabase credentials were available for connection verification. Do not describe the live Auth, Storage, or JDBC workflows as tested until verified against the configured project.
 - Security Advisor findings for RLS-enabled business tables without policies are intentionally left deny-by-default for Supabase API roles until customer ownership and role-specific access rules are designed. Direct JDBC uses a separate database credential and is not protected by the end-user Auth user's RLS identity.
+
+## Database repair and demo content
+
+For the November 11, 2026 deployment fixes, applied migrations, repeatable demo seed, and exact verification scope, see [database repair notes](docs/database-repair-notes.md). The configured database now has dashboard/pricing functions and the expanded repair-status constraint. Demo records are visibly labeled; they do not create Auth login accounts. Signup requires an accepted email address and the configured confirmation flow.
+
+After building, `powershell -ExecutionPolicy Bypass -File database-maintenance.ps1 -Action inspect` checks the configured schema; `-Action verify` exercises role-scoped functions and a rollback-only payment test on a DEMO repair. These checks use the database credential and should be run only by the project maintainer.
 
 ## Existing prototype classes
 

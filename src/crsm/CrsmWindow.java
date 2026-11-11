@@ -137,7 +137,15 @@ public final class CrsmWindow extends JFrame implements CrsmHost {
     @Override public RepairRepository repository() { return repository; }
     @Override public int pageSize() { return 25; }
     @Override public boolean customerRecordsBlocked() { return "Customer".equals(role); }
-    @Override public boolean canMutate(RepairDataModel.Entity entity) { return "Admin".equals(role) || ("Staff".equals(role) && entity != RepairDataModel.Entity.REPAIR_SERVICES); }
+    @Override public boolean canMutate(RepairDataModel.Entity entity) {
+        if ("Admin".equals(role)) return true;
+        // Staff work on the service queue; customer/device master data and pricing stay Admin-only.
+        return "Staff".equals(role) && List.of(
+                RepairDataModel.Entity.APPOINTMENTS,
+                RepairDataModel.Entity.REPAIR_REQUESTS,
+                RepairDataModel.Entity.TECHNICIANS,
+                RepairDataModel.Entity.PAYMENTS).contains(entity);
+    }
     @Override public void applySearch(String query) {
         String value = query == null ? "" : query;
         headerSearch.setToolTipText(null);

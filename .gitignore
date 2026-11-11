@@ -1,2 +1,5 @@
 /.env
 /out/
+/out-fx/
+
+/.crsm-local/
