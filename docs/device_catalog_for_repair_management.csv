@@ -1,0 +1,1333 @@
+﻿Type,Brand,Model,Specification
+Laptop,Acer,Aspire 3,Intel Core i3 | 8GB RAM | 256GB SSD | 15.6-inch FHD | Integrated graphics
+Laptop,Acer,Aspire 3,AMD Ryzen 5 | 8GB RAM | 512GB SSD | 15.6-inch FHD | Radeon Graphics
+Laptop,Acer,Aspire 3,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Aspire 5,Intel Core i5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Acer,Aspire 5,Intel Core i7 | 16GB RAM | 1TB SSD | 15.6-inch FHD
+Laptop,Acer,Aspire 5,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Chromebook 314,Intel Celeron | 4GB RAM | 64GB eMMC | 14-inch HD/FHD | ChromeOS
+Laptop,Acer,Chromebook 314,Intel Celeron/Pentium variant | 8GB RAM | 64GB/128GB eMMC | ChromeOS
+Laptop,Acer,Chromebook 314,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Nitro V 15,Intel Core i5 H-series | 8GB RAM | 512GB SSD | GeForce RTX 3050 variant
+Laptop,Acer,Nitro V 15,Intel Core i7 H-series | 16GB RAM | 1TB SSD | GeForce RTX 4050 variant
+Laptop,Acer,Nitro V 15,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Predator Helios Neo 16,Intel Core i7 HX-series | 16GB RAM | 1TB SSD | GeForce RTX 4060 variant
+Laptop,Acer,Predator Helios Neo 16,Intel Core i9 HX-series | 32GB RAM | 1TB SSD | GeForce RTX 4070 variant
+Laptop,Acer,Predator Helios Neo 16,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Swift Go 14,Intel Core Ultra 7 | 16GB RAM | 1TB SSD | 14-inch OLED variant
+Laptop,Acer,Swift Go 14,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 14-inch OLED/FHD variant
+Laptop,Acer,Swift Go 14,Other / not sure — technician to verify exact specifications
+Laptop,Acer,Swift X 14,Intel Core i7 | 16GB RAM | 1TB SSD | NVIDIA RTX graphics variant
+Laptop,Acer,Swift X 14,Intel Core i5/i7 | 16GB RAM | 512GB SSD | Dedicated NVIDIA graphics variant
+Laptop,Acer,Swift X 14,Other / not sure — technician to verify exact specifications
+Laptop,Acer,TravelMate P2,Intel Core i5 | 8GB RAM | 256GB/512GB SSD | 14/15.6-inch display
+Laptop,Acer,TravelMate P2,Intel Core i7 | 16GB RAM | 512GB SSD | 14/15.6-inch display
+Laptop,Acer,TravelMate P2,Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Air 13 (M1),Apple M1 | 8GB unified memory | 256GB SSD | 13.3-inch Retina
+Laptop,Apple,MacBook Air 13 (M1),Apple M1 | 16GB unified memory | 512GB SSD | 13.3-inch Retina
+Laptop,Apple,MacBook Air 13 (M1),Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Air 13 (M2),Apple M2 | 8GB unified memory | 256GB SSD | 13.6-inch Liquid Retina
+Laptop,Apple,MacBook Air 13 (M2),Apple M2 | 16GB unified memory | 512GB SSD | 13.6-inch Liquid Retina
+Laptop,Apple,MacBook Air 13 (M2),Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Air 13 (M3),Apple M3 | 8GB/16GB unified memory | 256GB/512GB SSD | 13.6-inch Liquid Retina
+Laptop,Apple,MacBook Air 13 (M3),Apple M3 | 16GB/24GB unified memory | 512GB/1TB SSD | 13.6-inch Liquid Retina
+Laptop,Apple,MacBook Air 13 (M3),Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Air 15 (M3),Apple M3 | 8GB/16GB unified memory | 256GB/512GB SSD | 15.3-inch Liquid Retina
+Laptop,Apple,MacBook Air 15 (M3),Apple M3 | 16GB/24GB unified memory | 512GB/1TB SSD | 15.3-inch Liquid Retina
+Laptop,Apple,MacBook Air 15 (M3),Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Pro 14 (M3),Apple M3 | 8GB/16GB unified memory | 512GB SSD | 14.2-inch Liquid Retina XDR
+Laptop,Apple,MacBook Pro 14 (M3),Apple M3 Pro | 18GB unified memory | 512GB/1TB SSD | 14.2-inch Liquid Retina XDR
+Laptop,Apple,MacBook Pro 14 (M3),Other / not sure — technician to verify exact specifications
+Laptop,Apple,MacBook Pro 16 (M3),Apple M3 Pro | 18GB unified memory | 512GB/1TB SSD | 16.2-inch Liquid Retina XDR
+Laptop,Apple,MacBook Pro 16 (M3),Apple M3 Max | 36GB unified memory | 1TB SSD | 16.2-inch Liquid Retina XDR
+Laptop,Apple,MacBook Pro 16 (M3),Other / not sure — technician to verify exact specifications
+Laptop,ASUS,Chromebook CX1,Intel Celeron | 4GB RAM | 64GB eMMC | ChromeOS
+Laptop,ASUS,Chromebook CX1,Intel Celeron/Pentium variant | 8GB RAM | 128GB eMMC | ChromeOS
+Laptop,ASUS,Chromebook CX1,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,ExpertBook B1,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | 14/15.6-inch
+Laptop,ASUS,ExpertBook B1,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14/15.6-inch
+Laptop,ASUS,ExpertBook B1,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,ROG Strix G16,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060 variant
+Laptop,ASUS,ROG Strix G16,Intel Core i9 | 32GB RAM | 1TB SSD | GeForce RTX 4070 variant
+Laptop,ASUS,ROG Strix G16,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,ROG Zephyrus G14,AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4050/4060 variant
+Laptop,ASUS,ROG Zephyrus G14,AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070 variant
+Laptop,ASUS,ROG Zephyrus G14,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,TUF Gaming A15,AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | GeForce RTX 3050/4050 variant
+Laptop,ASUS,TUF Gaming A15,AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060 variant
+Laptop,ASUS,TUF Gaming A15,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,VivoBook 15,Intel Core i5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,ASUS,VivoBook 15,Intel Core i7 | 16GB RAM | 512GB/1TB SSD | 15.6-inch FHD
+Laptop,ASUS,VivoBook 15,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,VivoBook Go 15,AMD Ryzen 3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,ASUS,VivoBook Go 15,AMD Ryzen 5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,ASUS,VivoBook Go 15,Other / not sure — technician to verify exact specifications
+Laptop,ASUS,Zenbook 14,Intel Core Ultra 7 | 16GB RAM | 1TB SSD | 14-inch OLED variant
+Laptop,ASUS,Zenbook 14,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 14-inch OLED variant
+Laptop,ASUS,Zenbook 14,Other / not sure — technician to verify exact specifications
+Laptop,Avita,Liber V,Intel Core i3 | 8GB RAM | 256GB SSD | 14-inch FHD
+Laptop,Avita,Liber V,Intel Core i5 | 8GB/16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,Avita,Liber V,Other / not sure — technician to verify exact specifications
+Laptop,Chuwi,CoreBook X,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | 14-inch display
+Laptop,Chuwi,CoreBook X,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14-inch display
+Laptop,Chuwi,CoreBook X,Other / not sure — technician to verify exact specifications
+Laptop,Chuwi,HeroBook Pro,Intel Celeron | 8GB RAM | 256GB SSD | 14.1-inch FHD
+Laptop,Chuwi,HeroBook Pro,Intel Celeron | 8GB RAM | 512GB SSD | 14.1-inch FHD
+Laptop,Chuwi,HeroBook Pro,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Alienware m16,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Dell,Alienware m16,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,Dell,Alienware m16,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Chromebook 3110,Intel Celeron | 4GB RAM | 32GB/64GB eMMC | ChromeOS
+Laptop,Dell,Chromebook 3110,Intel Celeron | 8GB RAM | 64GB eMMC | ChromeOS
+Laptop,Dell,Chromebook 3110,Other / not sure — technician to verify exact specifications
+Laptop,Dell,G15,Intel Core i5/i7 H-series | 8GB/16GB RAM | 512GB SSD | GeForce RTX 3050/4050
+Laptop,Dell,G15,Intel Core i7 H-series | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Dell,G15,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Inspiron 15,Intel Core i3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,Dell,Inspiron 15,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Dell,Inspiron 15,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Latitude 5440,Intel Core i5 | 8GB RAM | 256GB SSD | 14-inch FHD
+Laptop,Dell,Latitude 5440,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,Dell,Latitude 5440,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Precision 3581,Intel Core i7 H-series | 16GB RAM | 512GB SSD | NVIDIA professional graphics variant
+Laptop,Dell,Precision 3581,Intel Core i9 H-series | 32GB RAM | 1TB SSD | NVIDIA professional graphics variant
+Laptop,Dell,Precision 3581,Other / not sure — technician to verify exact specifications
+Laptop,Dell,Vostro 3520,Intel Core i3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,Dell,Vostro 3520,Intel Core i5 | 8GB/16GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Dell,Vostro 3520,Other / not sure — technician to verify exact specifications
+Laptop,Dell,XPS 13,Intel Core i7/Core Ultra 7 | 16GB/32GB RAM | 1TB SSD | 13-inch display
+Laptop,Dell,XPS 13,Intel Core i5/Core Ultra 5 | 16GB RAM | 512GB SSD | 13-inch display
+Laptop,Dell,XPS 13,Other / not sure — technician to verify exact specifications
+Laptop,Fujitsu,LIFEBOOK U Series,Intel Core i5 | 8GB/16GB RAM | 256GB/512GB SSD | 13.3/14-inch
+Laptop,Fujitsu,LIFEBOOK U Series,Intel Core i7 | 16GB RAM | 512GB SSD | 13.3/14-inch
+Laptop,Fujitsu,LIFEBOOK U Series,Other / not sure — technician to verify exact specifications
+Laptop,Gigabyte,AORUS 15,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Gigabyte,AORUS 15,Intel Core i9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,Gigabyte,AORUS 15,Other / not sure — technician to verify exact specifications
+Laptop,Gigabyte,G5,Intel Core i5 H-series | 8GB/16GB RAM | 512GB SSD | GeForce RTX 3050/4050
+Laptop,Gigabyte,G5,Intel Core i7 H-series | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Gigabyte,G5,Other / not sure — technician to verify exact specifications
+Laptop,HP,15s,Intel Core i3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,HP,15s,Intel Core i5/AMD Ryzen 5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,HP,15s,Other / not sure — technician to verify exact specifications
+Laptop,HP,Chromebook 14,Intel Celeron | 4GB RAM | 64GB eMMC | ChromeOS
+Laptop,HP,Chromebook 14,Intel Core i3/Pentium variant | 8GB RAM | 128GB eMMC | ChromeOS
+Laptop,HP,Chromebook 14,Other / not sure — technician to verify exact specifications
+Laptop,HP,EliteBook 840 G10,Intel Core i7 | 16GB/32GB RAM | 1TB SSD | 14-inch display
+Laptop,HP,EliteBook 840 G10,Intel Core i5 | 16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,HP,EliteBook 840 G10,Other / not sure — technician to verify exact specifications
+Laptop,HP,Envy x360 15,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | 15.6-inch touch
+Laptop,HP,Envy x360 15,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 15.6-inch touch
+Laptop,HP,Envy x360 15,Other / not sure — technician to verify exact specifications
+Laptop,HP,OMEN 16,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,HP,OMEN 16,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,HP,OMEN 16,Other / not sure — technician to verify exact specifications
+Laptop,HP,Pavilion 15,Intel Core i5/AMD Ryzen 5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,HP,Pavilion 15,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 15.6-inch FHD
+Laptop,HP,Pavilion 15,Other / not sure — technician to verify exact specifications
+Laptop,HP,ProBook 440 G10,Intel Core i5 | 8GB RAM | 256GB/512GB SSD | 14-inch FHD
+Laptop,HP,ProBook 440 G10,Intel Core i7 | 16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,HP,ProBook 440 G10,Other / not sure — technician to verify exact specifications
+Laptop,HP,Victus 15,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | GeForce RTX 3050/4050
+Laptop,HP,Victus 15,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060 variant
+Laptop,HP,Victus 15,Other / not sure — technician to verify exact specifications
+Laptop,Huawei,MateBook 14,Intel Core Ultra 7 | 16GB/32GB RAM | 1TB SSD | 14-inch display
+Laptop,Huawei,MateBook 14,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 14-inch display
+Laptop,Huawei,MateBook 14,Other / not sure — technician to verify exact specifications
+Laptop,Huawei,MateBook D14,Intel Core i5 | 8GB RAM | 512GB SSD | 14-inch FHD
+Laptop,Huawei,MateBook D14,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14-inch
+Laptop,Huawei,MateBook D14,Other / not sure — technician to verify exact specifications
+Laptop,Huawei,MateBook D15,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | 15.6-inch FHD
+Laptop,Huawei,MateBook D15,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Huawei,MateBook D15,Other / not sure — technician to verify exact specifications
+Laptop,Huawei,MateBook X Pro,Intel Core Ultra 7 | 16GB RAM | 1TB SSD | high-resolution touchscreen
+Laptop,Huawei,MateBook X Pro,Intel Core Ultra 9 | 32GB RAM | 1TB/2TB SSD | high-resolution touchscreen
+Laptop,Huawei,MateBook X Pro,Other / not sure — technician to verify exact specifications
+Laptop,Infinix,INBook X2,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | 14-inch FHD
+Laptop,Infinix,INBook X2,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,Infinix,INBook X2,Other / not sure — technician to verify exact specifications
+Laptop,Infinix,INBook Y1 Plus,Intel Core i3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,Infinix,INBook Y1 Plus,Intel Core i5 | 8GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Infinix,INBook Y1 Plus,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,Chromebook Duet,MediaTek processor | 4GB/8GB RAM | 64GB/128GB storage | detachable ChromeOS tablet
+Laptop,Lenovo,Chromebook Duet,MediaTek processor | 8GB RAM | 128GB/256GB storage | detachable ChromeOS tablet
+Laptop,Lenovo,Chromebook Duet,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,IdeaPad 5,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | 14/15.6-inch
+Laptop,Lenovo,IdeaPad 5,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 14/15.6-inch
+Laptop,Lenovo,IdeaPad 5,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,IdeaPad Slim 3,Intel Core i3/AMD Ryzen 3 | 8GB RAM | 256GB SSD | 15.6-inch FHD
+Laptop,Lenovo,IdeaPad Slim 3,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | 15.6-inch FHD
+Laptop,Lenovo,IdeaPad Slim 3,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,Legion 5,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Lenovo,Legion 5,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,Lenovo,Legion 5,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,LOQ 15,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | GeForce RTX 3050/4050
+Laptop,Lenovo,LOQ 15,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Lenovo,LOQ 15,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,ThinkBook 14,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | 14-inch
+Laptop,Lenovo,ThinkBook 14,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 14-inch
+Laptop,Lenovo,ThinkBook 14,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,ThinkPad E14,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD | 14-inch FHD
+Laptop,Lenovo,ThinkPad E14,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 14-inch
+Laptop,Lenovo,ThinkPad E14,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,ThinkPad T14,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 512GB SSD | 14-inch business laptop
+Laptop,Lenovo,ThinkPad T14,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | 14-inch business laptop
+Laptop,Lenovo,ThinkPad T14,Other / not sure — technician to verify exact specifications
+Laptop,Lenovo,Yoga 7,Intel Core Ultra 7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | 14-inch touchscreen
+Laptop,Lenovo,Yoga 7,Intel Core Ultra 5/AMD Ryzen 5 | 16GB RAM | 512GB SSD | 14-inch touchscreen
+Laptop,Lenovo,Yoga 7,Other / not sure — technician to verify exact specifications
+Laptop,LG,gram 14,Intel Core Ultra 7 | 16GB/32GB RAM | 1TB SSD | 14-inch display
+Laptop,LG,gram 14,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 14-inch WUXGA
+Laptop,LG,gram 14,Other / not sure — technician to verify exact specifications
+Laptop,LG,gram 16,Intel Core Ultra 7 | 16GB/32GB RAM | 1TB SSD | 16-inch display
+Laptop,LG,gram 16,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 16-inch WQXGA
+Laptop,LG,gram 16,Other / not sure — technician to verify exact specifications
+Laptop,Microsoft,Surface Laptop 5,Intel Core i5 | 8GB/16GB RAM | 256GB/512GB SSD | 13.5/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 5,Intel Core i7 | 16GB/32GB RAM | 512GB/1TB SSD | 13.5/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 5,Other / not sure — technician to verify exact specifications
+Laptop,Microsoft,Surface Laptop 6,Intel Core Ultra 5 | 16GB RAM | 256GB/512GB SSD | 13.5/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 6,Intel Core Ultra 7 | 16GB/32GB RAM | 512GB/1TB SSD | 13.5/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 6,Other / not sure — technician to verify exact specifications
+Laptop,Microsoft,Surface Laptop 7,Snapdragon X Plus | 16GB RAM | 256GB/512GB SSD | 13.8/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 7,Snapdragon X Elite | 16GB/32GB RAM | 512GB/1TB SSD | 13.8/15-inch touchscreen
+Laptop,Microsoft,Surface Laptop 7,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Cyborg 15,Intel Core i5 H-series | 8GB/16GB RAM | 512GB SSD | GeForce RTX 4050
+Laptop,MSI,Cyborg 15,Intel Core i7 H-series | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,MSI,Cyborg 15,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Katana 15,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,MSI,Katana 15,Intel Core i9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,MSI,Katana 15,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Modern 14,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | 14-inch
+Laptop,MSI,Modern 14,Intel Core i5/i7 | 16GB RAM | 512GB SSD | 14-inch
+Laptop,MSI,Modern 14,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Prestige 14,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | 14-inch
+Laptop,MSI,Prestige 14,Intel Core Ultra 7 | 32GB RAM | 1TB SSD | 14-inch
+Laptop,MSI,Prestige 14,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Stealth 14,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,MSI,Stealth 14,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,MSI,Stealth 14,Other / not sure — technician to verify exact specifications
+Laptop,MSI,Thin 15,Intel Core i5 H-series | 8GB RAM | 512GB SSD | GeForce RTX 3050
+Laptop,MSI,Thin 15,Intel Core i7 H-series | 16GB RAM | 512GB/1TB SSD | GeForce RTX 4050
+Laptop,MSI,Thin 15,Other / not sure — technician to verify exact specifications
+Laptop,Razer,Blade 14,AMD Ryzen 9 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Razer,Blade 14,AMD Ryzen 9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,Razer,Blade 14,Other / not sure — technician to verify exact specifications
+Laptop,Razer,Blade 15,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Laptop,Razer,Blade 15,Intel Core i9 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Laptop,Razer,Blade 15,Other / not sure — technician to verify exact specifications
+Laptop,Samsung,Galaxy Book3,Intel Core i5 | 8GB RAM | 256GB/512GB SSD | 15.6-inch
+Laptop,Samsung,Galaxy Book3,Intel Core i7 | 16GB RAM | 512GB SSD | 15.6-inch
+Laptop,Samsung,Galaxy Book3,Other / not sure — technician to verify exact specifications
+Laptop,Samsung,Galaxy Book4,Intel Core 5 | 8GB/16GB RAM | 512GB SSD | 15.6-inch
+Laptop,Samsung,Galaxy Book4,Intel Core 7 | 16GB RAM | 512GB/1TB SSD | 15.6-inch
+Laptop,Samsung,Galaxy Book4,Other / not sure — technician to verify exact specifications
+Laptop,Samsung,Galaxy Book4 Pro,Intel Core Ultra 7 | 16GB/32GB RAM | 1TB SSD | AMOLED touchscreen
+Laptop,Samsung,Galaxy Book4 Pro,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | AMOLED touchscreen
+Laptop,Samsung,Galaxy Book4 Pro,Other / not sure — technician to verify exact specifications
+Desktop PC,Acer,Aspire TC,Intel Core i3 | 8GB RAM | 512GB SSD | Integrated graphics
+Desktop PC,Acer,Aspire TC,Intel Core i5 | 16GB RAM | 512GB SSD + 1TB HDD | Integrated graphics
+Desktop PC,Acer,Aspire TC,Other / not sure — technician to verify exact specifications
+Desktop PC,Acer,Predator Orion,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060/4070
+Desktop PC,Acer,Predator Orion,Intel Core i9 | 32GB RAM | 1TB/2TB SSD | GeForce RTX 4080-class variant
+Desktop PC,Acer,Predator Orion,Other / not sure — technician to verify exact specifications
+Desktop PC,Acer,Veriton X,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | Small-form-factor
+Desktop PC,Acer,Veriton X,Intel Core i5/i7 | 16GB RAM | 512GB SSD | Small-form-factor
+Desktop PC,Acer,Veriton X,Other / not sure — technician to verify exact specifications
+Desktop PC,Apple,Mac mini (M2),Apple M2 | 8GB unified memory | 256GB SSD
+Desktop PC,Apple,Mac mini (M2),Apple M2 | 16GB unified memory | 512GB/1TB SSD
+Desktop PC,Apple,Mac mini (M2),Other / not sure — technician to verify exact specifications
+Desktop PC,Apple,Mac mini (M4),Apple M4 | 16GB unified memory | 256GB/512GB SSD
+Desktop PC,Apple,Mac mini (M4),Apple M4 Pro | 24GB unified memory | 512GB/1TB SSD
+Desktop PC,Apple,Mac mini (M4),Other / not sure — technician to verify exact specifications
+Desktop PC,Apple,Mac Studio,Apple M2 Max/M3 Max | 32GB/36GB unified memory | 512GB/1TB SSD
+Desktop PC,Apple,Mac Studio,Apple M2 Ultra/M3 Ultra class | 64GB+ unified memory | 1TB+ SSD
+Desktop PC,Apple,Mac Studio,Other / not sure — technician to verify exact specifications
+Desktop PC,ASUS,ExpertCenter D5,Intel Core i3 | 8GB RAM | 256GB/512GB SSD | Business desktop
+Desktop PC,ASUS,ExpertCenter D5,Intel Core i5/i7 | 16GB RAM | 512GB SSD | Business desktop
+Desktop PC,ASUS,ExpertCenter D5,Other / not sure — technician to verify exact specifications
+Desktop PC,ASUS,ProArt Station,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | Creator workstation
+Desktop PC,ASUS,ProArt Station,Intel Core i9/AMD Ryzen 9 | 64GB RAM | 2TB SSD | Professional GPU variant
+Desktop PC,ASUS,ProArt Station,Other / not sure — technician to verify exact specifications
+Desktop PC,ASUS,ROG G Series Desktop,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Desktop PC,ASUS,ROG G Series Desktop,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Desktop PC,ASUS,ROG G Series Desktop,Other / not sure — technician to verify exact specifications
+Desktop PC,Custom Build,High-end Gaming PC,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 2TB SSD | GeForce RTX 4080-class GPU
+Desktop PC,Custom Build,High-end Gaming PC,Intel Core i9/AMD Ryzen 9 | 64GB RAM | 2TB SSD | GeForce RTX 4090-class GPU
+Desktop PC,Custom Build,High-end Gaming PC,Other / not sure — technician to verify exact specifications
+Desktop PC,Custom Build,Midrange Gaming PC,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 1TB SSD | GeForce RTX 4060-class GPU
+Desktop PC,Custom Build,Midrange Gaming PC,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | GeForce RTX 4070-class GPU
+Desktop PC,Custom Build,Midrange Gaming PC,Other / not sure — technician to verify exact specifications
+Desktop PC,Custom Build,Office / Basic PC,Intel Core i3/AMD Ryzen 3 | 8GB RAM | 256GB SSD | Integrated graphics
+Desktop PC,Custom Build,Office / Basic PC,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 512GB SSD | Integrated graphics
+Desktop PC,Custom Build,Office / Basic PC,Other / not sure — technician to verify exact specifications
+Desktop PC,Custom Build,Workstation PC,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | Professional GPU option
+Desktop PC,Custom Build,Workstation PC,Intel Xeon/Core i9/AMD Ryzen 9 | 64GB RAM | 2TB SSD | Professional GPU option
+Desktop PC,Custom Build,Workstation PC,Other / not sure — technician to verify exact specifications
+Desktop PC,Dell,Alienware Aurora,Intel Core i7 | 16GB RAM | 1TB SSD | GeForce RTX 4060/4070
+Desktop PC,Dell,Alienware Aurora,Intel Core i9 | 32GB RAM | 2TB SSD | GeForce RTX 4080-class option
+Desktop PC,Dell,Alienware Aurora,Other / not sure — technician to verify exact specifications
+Desktop PC,Dell,Inspiron Desktop 3020,Intel Core i3 | 8GB RAM | 512GB SSD | Integrated graphics
+Desktop PC,Dell,Inspiron Desktop 3020,Intel Core i5/i7 | 16GB RAM | 1TB SSD/HDD combination
+Desktop PC,Dell,Inspiron Desktop 3020,Other / not sure — technician to verify exact specifications
+Desktop PC,Dell,OptiPlex 7010,Intel Core i3 | 8GB RAM | 256GB SSD | Tower/SFF/Micro variant
+Desktop PC,Dell,OptiPlex 7010,Intel Core i5 | 16GB RAM | 512GB SSD | Tower/SFF/Micro variant
+Desktop PC,Dell,OptiPlex 7010,Other / not sure — technician to verify exact specifications
+Desktop PC,Dell,Precision 3660,Intel Core i7 | 16GB RAM | 512GB SSD | Professional graphics option
+Desktop PC,Dell,Precision 3660,Intel Core i9 | 32GB RAM | 1TB SSD | NVIDIA professional graphics option
+Desktop PC,Dell,Precision 3660,Other / not sure — technician to verify exact specifications
+Desktop PC,Dell,XPS Desktop,Intel Core i7 | 16GB RAM | 1TB SSD | Dedicated GPU option
+Desktop PC,Dell,XPS Desktop,Intel Core i9 | 32GB RAM | 1TB/2TB SSD | GeForce RTX option
+Desktop PC,Dell,XPS Desktop,Other / not sure — technician to verify exact specifications
+Desktop PC,Gigabyte,AORUS Gaming Desktop,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Desktop PC,Gigabyte,AORUS Gaming Desktop,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 2TB SSD | GeForce RTX 4070
+Desktop PC,Gigabyte,AORUS Gaming Desktop,Other / not sure — technician to verify exact specifications
+Desktop PC,HP,EliteDesk 800,Intel Core i7 | 16GB/32GB RAM | 1TB SSD | Business desktop
+Desktop PC,HP,EliteDesk 800,Intel Core i5 | 16GB RAM | 512GB SSD | Business desktop
+Desktop PC,HP,EliteDesk 800,Other / not sure — technician to verify exact specifications
+Desktop PC,HP,OMEN 40L/45L,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060/4070
+Desktop PC,HP,OMEN 40L/45L,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 2TB SSD | GeForce RTX 4080-class option
+Desktop PC,HP,OMEN 40L/45L,Other / not sure — technician to verify exact specifications
+Desktop PC,HP,Pavilion TP Desktop,Intel Core i5/AMD Ryzen 5 | 8GB/16GB RAM | 512GB SSD
+Desktop PC,HP,Pavilion TP Desktop,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | Optional dedicated GPU
+Desktop PC,HP,Pavilion TP Desktop,Other / not sure — technician to verify exact specifications
+Desktop PC,HP,ProDesk 400,Intel Core i3 | 8GB RAM | 256GB/512GB SSD | Business desktop
+Desktop PC,HP,ProDesk 400,Intel Core i5 | 16GB RAM | 512GB SSD | Business desktop
+Desktop PC,HP,ProDesk 400,Other / not sure — technician to verify exact specifications
+Desktop PC,Lenovo,IdeaCentre 5,Intel Core i3/AMD Ryzen 3 | 8GB RAM | 512GB SSD
+Desktop PC,Lenovo,IdeaCentre 5,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 1TB SSD
+Desktop PC,Lenovo,IdeaCentre 5,Other / not sure — technician to verify exact specifications
+Desktop PC,Lenovo,Legion Tower,Intel Core i7/AMD Ryzen 7 | 16GB RAM | 1TB SSD | GeForce RTX 4060/4070
+Desktop PC,Lenovo,Legion Tower,Intel Core i9/AMD Ryzen 9 | 32GB RAM | 2TB SSD | GeForce RTX 4080-class option
+Desktop PC,Lenovo,Legion Tower,Other / not sure — technician to verify exact specifications
+Desktop PC,Lenovo,ThinkCentre M70,Intel Core i3/i5 | 8GB RAM | 256GB/512GB SSD | Tower/SFF/Tiny
+Desktop PC,Lenovo,ThinkCentre M70,Intel Core i5/i7 | 16GB RAM | 512GB SSD | Tower/SFF/Tiny
+Desktop PC,Lenovo,ThinkCentre M70,Other / not sure — technician to verify exact specifications
+Desktop PC,Lenovo,ThinkCentre M90,Intel Core i7 | 16GB/32GB RAM | 1TB SSD | Business desktop
+Desktop PC,Lenovo,ThinkCentre M90,Intel Core i5 | 16GB RAM | 512GB SSD | Business desktop
+Desktop PC,Lenovo,ThinkCentre M90,Other / not sure — technician to verify exact specifications
+Desktop PC,MSI,MAG Infinite,Intel Core i5 | 16GB RAM | 1TB SSD | GeForce RTX 4060
+Desktop PC,MSI,MAG Infinite,Intel Core i7 | 32GB RAM | 1TB SSD | GeForce RTX 4070
+Desktop PC,MSI,MAG Infinite,Other / not sure — technician to verify exact specifications
+Desktop PC,MSI,Trident Series,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 512GB SSD | Compact gaming desktop
+Desktop PC,MSI,Trident Series,Intel Core i7/AMD Ryzen 7 | 32GB RAM | 1TB SSD | Compact gaming desktop
+Desktop PC,MSI,Trident Series,Other / not sure — technician to verify exact specifications
+All-in-One PC,Apple,iMac 24-inch (M1),Apple M1 | 8GB unified memory | 256GB SSD | 24-inch 4.5K Retina
+All-in-One PC,Apple,iMac 24-inch (M1),Apple M1 | 16GB unified memory | 512GB SSD | 24-inch 4.5K Retina
+All-in-One PC,Apple,iMac 24-inch (M1),Other / not sure — technician to verify exact specifications
+All-in-One PC,Apple,iMac 24-inch (M3),Apple M3 | 8GB unified memory | 256GB/512GB SSD | 24-inch 4.5K Retina
+All-in-One PC,Apple,iMac 24-inch (M3),Apple M3 | 16GB/24GB unified memory | 512GB/1TB SSD | 24-inch 4.5K Retina
+All-in-One PC,Apple,iMac 24-inch (M3),Other / not sure — technician to verify exact specifications
+All-in-One PC,Dell,Inspiron All-in-One,Intel Core i3/i5 | 8GB RAM | 512GB SSD | 23.8-inch FHD
+All-in-One PC,Dell,Inspiron All-in-One,Intel Core i5/i7 | 16GB RAM | 1TB SSD | 23.8/27-inch FHD
+All-in-One PC,Dell,Inspiron All-in-One,Other / not sure — technician to verify exact specifications
+All-in-One PC,Dell,OptiPlex All-in-One,Intel Core i5 | 8GB/16GB RAM | 256GB/512GB SSD | Business AIO
+All-in-One PC,Dell,OptiPlex All-in-One,Intel Core i7 | 16GB RAM | 512GB/1TB SSD | Business AIO
+All-in-One PC,Dell,OptiPlex All-in-One,Other / not sure — technician to verify exact specifications
+All-in-One PC,HP,EliteOne,Intel Core i7 | 16GB/32GB RAM | 1TB SSD | Business AIO display
+All-in-One PC,HP,EliteOne,Intel Core i5 | 16GB RAM | 512GB SSD | Business AIO display
+All-in-One PC,HP,EliteOne,Other / not sure — technician to verify exact specifications
+All-in-One PC,HP,Pavilion All-in-One,Intel Core i5 | 8GB RAM | 512GB SSD | 23.8/27-inch FHD display
+All-in-One PC,HP,Pavilion All-in-One,Intel Core i7 | 16GB RAM | 1TB SSD | 23.8/27-inch FHD/QHD display
+All-in-One PC,HP,Pavilion All-in-One,Other / not sure — technician to verify exact specifications
+All-in-One PC,Lenovo,IdeaCentre AIO 3,Intel Core i3/AMD Ryzen 3 | 8GB RAM | 256GB/512GB SSD | 23.8-inch FHD
+All-in-One PC,Lenovo,IdeaCentre AIO 3,Intel Core i5/AMD Ryzen 5 | 16GB RAM | 512GB SSD | 23.8/27-inch FHD
+All-in-One PC,Lenovo,IdeaCentre AIO 3,Other / not sure — technician to verify exact specifications
+All-in-One PC,Lenovo,ThinkCentre Neo AIO,Intel Core i5 | 8GB/16GB RAM | 512GB SSD | Business AIO
+All-in-One PC,Lenovo,ThinkCentre Neo AIO,Intel Core i7 | 16GB RAM | 1TB SSD | Business AIO
+All-in-One PC,Lenovo,ThinkCentre Neo AIO,Other / not sure — technician to verify exact specifications
+Mini PC,Apple,Mac mini (M2),Apple M2 | 8GB/16GB unified memory | 256GB/512GB SSD
+Mini PC,Apple,Mac mini (M2),Other / not sure — technician to verify exact specifications
+Mini PC,Apple,Mac mini (M4),Apple M4 | 16GB unified memory | 256GB/512GB SSD
+Mini PC,Apple,Mac mini (M4),Other / not sure — technician to verify exact specifications
+Mini PC,ASUS,NUC 14 Pro,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | Mini PC
+Mini PC,ASUS,NUC 14 Pro,Intel Core Ultra 7 | 32GB RAM | 1TB SSD | Mini PC
+Mini PC,ASUS,NUC 14 Pro,Other / not sure — technician to verify exact specifications
+Mini PC,Beelink,SER Series,AMD Ryzen 5/7 | 16GB RAM | 500GB/512GB SSD | Mini PC
+Mini PC,Beelink,SER Series,AMD Ryzen 7/9 | 32GB RAM | 1TB SSD | Mini PC
+Mini PC,Beelink,SER Series,Other / not sure — technician to verify exact specifications
+Mini PC,HP,Elite Mini,Intel Core i5 | 8GB/16GB RAM | 256GB/512GB SSD
+Mini PC,HP,Elite Mini,Intel Core i7 | 16GB RAM | 512GB SSD
+Mini PC,HP,Elite Mini,Other / not sure — technician to verify exact specifications
+Mini PC,Intel,NUC 13 Pro,Intel Core i5 | 16GB RAM | 512GB SSD | Mini PC barebone/configured unit
+Mini PC,Intel,NUC 13 Pro,Intel Core i7 | 32GB RAM | 1TB SSD | Mini PC barebone/configured unit
+Mini PC,Intel,NUC 13 Pro,Other / not sure — technician to verify exact specifications
+Mini PC,Intel,NUC 14 Pro,Intel Core Ultra 5 | 16GB RAM | 512GB SSD | Mini PC
+Mini PC,Intel,NUC 14 Pro,Intel Core Ultra 7 | 32GB RAM | 1TB SSD | Mini PC
+Mini PC,Intel,NUC 14 Pro,Other / not sure — technician to verify exact specifications
+Mini PC,Lenovo,ThinkCentre Tiny,Intel Core i5 | 8GB/16GB RAM | 256GB/512GB SSD
+Mini PC,Lenovo,ThinkCentre Tiny,Intel Core i7 | 16GB RAM | 512GB SSD
+Mini PC,Lenovo,ThinkCentre Tiny,Other / not sure — technician to verify exact specifications
+Mini PC,Minisforum,UM Series,AMD Ryzen 5/7 | 16GB RAM | 512GB SSD | Integrated Radeon graphics
+Mini PC,Minisforum,UM Series,AMD Ryzen 7/9 | 32GB RAM | 1TB SSD | Integrated Radeon graphics
+Mini PC,Minisforum,UM Series,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 11,64GB storage | 6.1-inch Liquid Retina LCD | A13 Bionic | 4G
+Smartphone,Apple,iPhone 11,128GB/256GB storage | 6.1-inch Liquid Retina LCD | A13 Bionic | 4G
+Smartphone,Apple,iPhone 11,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 12,64GB/128GB storage | 6.1-inch Super Retina XDR OLED | A14 Bionic | 5G
+Smartphone,Apple,iPhone 12,256GB storage | 6.1-inch Super Retina XDR OLED | A14 Bionic | 5G
+Smartphone,Apple,iPhone 12,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 13,128GB storage | 6.1-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 13,256GB/512GB storage | 6.1-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 13,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 14,128GB storage | 6.1-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 14,256GB/512GB storage | 6.1-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 14,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 14 Plus,128GB storage | 6.7-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 14 Plus,256GB/512GB storage | 6.7-inch Super Retina XDR OLED | A15 Bionic | 5G
+Smartphone,Apple,iPhone 14 Plus,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 14 Pro,128GB/256GB storage | 6.1-inch ProMotion OLED 120Hz | A16 Bionic | 5G
+Smartphone,Apple,iPhone 14 Pro,512GB/1TB storage | 6.1-inch ProMotion OLED 120Hz | A16 Bionic | 5G
+Smartphone,Apple,iPhone 14 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 15,128GB storage | 6.1-inch Super Retina XDR OLED | A16 Bionic | USB-C | 5G
+Smartphone,Apple,iPhone 15,256GB/512GB storage | 6.1-inch Super Retina XDR OLED | A16 Bionic | USB-C | 5G
+Smartphone,Apple,iPhone 15,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 15 Plus,128GB storage | 6.7-inch Super Retina XDR OLED | A16 Bionic | USB-C | 5G
+Smartphone,Apple,iPhone 15 Plus,256GB/512GB storage | 6.7-inch Super Retina XDR OLED | A16 Bionic | USB-C | 5G
+Smartphone,Apple,iPhone 15 Plus,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 15 Pro,128GB/256GB storage | 6.1-inch ProMotion OLED 120Hz | A17 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 15 Pro,512GB/1TB storage | 6.1-inch ProMotion OLED 120Hz | A17 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 15 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 15 Pro Max,256GB storage | 6.7-inch ProMotion OLED 120Hz | A17 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 15 Pro Max,512GB/1TB storage | 6.7-inch ProMotion OLED 120Hz | A17 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 15 Pro Max,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 16,128GB storage | 6.1-inch Super Retina XDR OLED | A18 | USB-C | 5G
+Smartphone,Apple,iPhone 16,256GB/512GB storage | 6.1-inch Super Retina XDR OLED | A18 | USB-C | 5G
+Smartphone,Apple,iPhone 16,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 16 Plus,128GB storage | 6.7-inch Super Retina XDR OLED | A18 | USB-C | 5G
+Smartphone,Apple,iPhone 16 Plus,256GB/512GB storage | 6.7-inch Super Retina XDR OLED | A18 | USB-C | 5G
+Smartphone,Apple,iPhone 16 Plus,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 16 Pro,128GB/256GB storage | 6.3-inch ProMotion OLED 120Hz | A18 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 16 Pro,512GB/1TB storage | 6.3-inch ProMotion OLED 120Hz | A18 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 16 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone 16 Pro Max,256GB storage | 6.9-inch ProMotion OLED 120Hz | A18 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 16 Pro Max,512GB/1TB storage | 6.9-inch ProMotion OLED 120Hz | A18 Pro | USB-C | 5G
+Smartphone,Apple,iPhone 16 Pro Max,Other / not sure — technician to verify exact specifications
+Smartphone,Apple,iPhone SE (2022),64GB storage | 4.7-inch Retina IPS LCD | A15 Bionic | 4G/5G
+Smartphone,Apple,iPhone SE (2022),128GB/256GB storage | 4.7-inch Retina IPS LCD | A15 Bionic | 4G/5G
+Smartphone,Apple,iPhone SE (2022),Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 7,8GB RAM | 128GB storage | 6.3-inch OLED 90Hz | Google Tensor G2 | 5G
+Smartphone,Google,Pixel 7,8GB RAM | 256GB storage | 6.3-inch OLED 90Hz | Google Tensor G2 | 5G
+Smartphone,Google,Pixel 7,Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 7a,8GB RAM | 128GB storage | 6.1-inch OLED 90Hz | Google Tensor G2 | 5G
+Smartphone,Google,Pixel 7a,Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 8,8GB RAM | 128GB storage | 6.2-inch OLED 120Hz | Google Tensor G3 | 5G
+Smartphone,Google,Pixel 8,8GB RAM | 256GB storage | 6.2-inch OLED 120Hz | Google Tensor G3 | 5G
+Smartphone,Google,Pixel 8,Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 8a,8GB RAM | 128GB storage | 6.1-inch OLED 120Hz | Google Tensor G3 | 5G
+Smartphone,Google,Pixel 8a,8GB RAM | 256GB storage | 6.1-inch OLED 120Hz | Google Tensor G3 | 5G
+Smartphone,Google,Pixel 8a,Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 9,12GB RAM | 128GB storage | 6.3-inch OLED 120Hz | Google Tensor G4 | 5G
+Smartphone,Google,Pixel 9,12GB RAM | 256GB storage | 6.3-inch OLED 120Hz | Google Tensor G4 | 5G
+Smartphone,Google,Pixel 9,Other / not sure — technician to verify exact specifications
+Smartphone,Google,Pixel 9 Pro,16GB RAM | 128GB/256GB storage | 6.3-inch LTPO OLED 120Hz | Google Tensor G4 | 5G
+Smartphone,Google,Pixel 9 Pro,16GB RAM | 512GB/1TB storage | 6.3-inch LTPO OLED 120Hz | Google Tensor G4 | 5G
+Smartphone,Google,Pixel 9 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,HONOR,200,12GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,HONOR,200,12GB RAM | 512GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,HONOR,200,Other / not sure — technician to verify exact specifications
+Smartphone,HONOR,Magic6 Pro,12GB RAM | 1TB storage | 6.8-inch LTPO OLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,HONOR,Magic6 Pro,12GB RAM | 512GB storage | 6.8-inch LTPO OLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,HONOR,Magic6 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,HONOR,X7b,8GB RAM | 128GB storage | 6.8-inch FHD+ LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,HONOR,X7b,8GB RAM | 256GB storage | 6.8-inch FHD+ LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,HONOR,X7b,Other / not sure — technician to verify exact specifications
+Smartphone,HONOR,X9b,8GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 6 Gen 1 | 5G
+Smartphone,HONOR,X9b,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 6 Gen 1 | 5G
+Smartphone,HONOR,X9b,Other / not sure — technician to verify exact specifications
+Smartphone,Huawei,nova 11,8GB RAM | 128GB storage | 6.7-inch OLED 120Hz | Snapdragon 778G 4G variant
+Smartphone,Huawei,nova 11,8GB RAM | 256GB storage | 6.7-inch OLED 120Hz | Snapdragon 778G 4G variant
+Smartphone,Huawei,nova 11,Other / not sure — technician to verify exact specifications
+Smartphone,Huawei,nova 12i,8GB RAM | 128GB storage | 6.7-inch LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,Huawei,nova 12i,8GB RAM | 256GB storage | 6.7-inch LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,Huawei,nova 12i,Other / not sure — technician to verify exact specifications
+Smartphone,Huawei,P60 Pro,8GB RAM | 256GB storage | 6.67-inch LTPO OLED 120Hz | Snapdragon 8+ Gen 1 4G variant
+Smartphone,Huawei,P60 Pro,12GB RAM | 512GB storage | 6.67-inch LTPO OLED 120Hz | Snapdragon 8+ Gen 1 4G variant
+Smartphone,Huawei,P60 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Huawei,Pura 70,12GB RAM | 256GB storage | 6.6-inch LTPO OLED 120Hz | Kirin chipset | regional network variant
+Smartphone,Huawei,Pura 70,12GB RAM | 512GB storage | 6.6-inch LTPO OLED 120Hz | Kirin chipset | regional network variant
+Smartphone,Huawei,Pura 70,Other / not sure — technician to verify exact specifications
+Smartphone,Infinix,GT 20 Pro,8GB RAM | 256GB storage | 6.78-inch AMOLED 144Hz | Dimensity 8200 Ultimate | 5G
+Smartphone,Infinix,GT 20 Pro,12GB RAM | 256GB storage | 6.78-inch AMOLED 144Hz | Dimensity 8200 Ultimate | 5G
+Smartphone,Infinix,GT 20 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Infinix,Hot 40i,4GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Unisoc T606 | 4G
+Smartphone,Infinix,Hot 40i,8GB RAM | 256GB storage | 6.56-inch LCD 90Hz | Unisoc T606 | 4G
+Smartphone,Infinix,Hot 40i,Other / not sure — technician to verify exact specifications
+Smartphone,Infinix,Hot 50,6GB RAM | 128GB storage | 6.78-inch LCD 120Hz | Helio G100 class | 4G
+Smartphone,Infinix,Hot 50,8GB RAM | 256GB storage | 6.78-inch LCD 120Hz | Helio G100 class | 4G
+Smartphone,Infinix,Hot 50,Other / not sure — technician to verify exact specifications
+Smartphone,Infinix,Note 40,8GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,Infinix,Note 40,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,Infinix,Note 40,Other / not sure — technician to verify exact specifications
+Smartphone,Infinix,Zero 30 5G,8GB RAM | 256GB storage | 6.78-inch AMOLED 144Hz | Dimensity 8020 | 5G
+Smartphone,Infinix,Zero 30 5G,12GB RAM | 256GB storage | 6.78-inch AMOLED 144Hz | Dimensity 8020 | 5G
+Smartphone,Infinix,Zero 30 5G,Other / not sure — technician to verify exact specifications
+Smartphone,itel,A70,3GB/4GB RAM | 128GB storage | 6.6-inch LCD | Unisoc T603 | 4G
+Smartphone,itel,A70,4GB RAM | 256GB storage | 6.6-inch LCD | Unisoc T603 | 4G
+Smartphone,itel,A70,Other / not sure — technician to verify exact specifications
+Smartphone,itel,P55 5G,4GB RAM | 64GB storage | 6.6-inch LCD 90Hz | Dimensity 6080 | 5G
+Smartphone,itel,P55 5G,6GB RAM | 128GB storage | 6.6-inch LCD 90Hz | Dimensity 6080 | 5G
+Smartphone,itel,P55 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Motorola,Edge 50 Pro,12GB RAM | 256GB storage | 6.7-inch pOLED 144Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,Motorola,Edge 50 Pro,12GB RAM | 512GB storage | 6.7-inch pOLED 144Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,Motorola,Edge 50 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,Motorola,Moto G54 5G,8GB RAM | 128GB storage | 6.5-inch FHD+ LCD 120Hz | Dimensity 7020 | 5G
+Smartphone,Motorola,Moto G54 5G,12GB RAM | 256GB storage | 6.5-inch FHD+ LCD 120Hz | Dimensity 7020 | 5G
+Smartphone,Motorola,Moto G54 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Motorola,Moto G84 5G,8GB RAM | 256GB storage | 6.5-inch pOLED 120Hz | Snapdragon 695 | 5G
+Smartphone,Motorola,Moto G84 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Motorola,Razr 50,8GB/12GB RAM | 256GB storage | foldable pOLED 120Hz | Dimensity 7300X | 5G
+Smartphone,Motorola,Razr 50,12GB RAM | 512GB storage | foldable pOLED 120Hz | Dimensity 7300X | 5G
+Smartphone,Motorola,Razr 50,Other / not sure — technician to verify exact specifications
+Smartphone,OnePlus,12,12GB RAM | 256GB storage | 6.82-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,OnePlus,12,16GB RAM | 512GB storage | 6.82-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,OnePlus,12,Other / not sure — technician to verify exact specifications
+Smartphone,OnePlus,12R,8GB RAM | 128GB storage | 6.78-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,OnePlus,12R,16GB RAM | 256GB/512GB storage | 6.78-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,OnePlus,12R,Other / not sure — technician to verify exact specifications
+Smartphone,OnePlus,Nord 3,8GB RAM | 128GB storage | 6.74-inch AMOLED 120Hz | Dimensity 9000 | 5G
+Smartphone,OnePlus,Nord 3,16GB RAM | 256GB storage | 6.74-inch AMOLED 120Hz | Dimensity 9000 | 5G
+Smartphone,OnePlus,Nord 3,Other / not sure — technician to verify exact specifications
+Smartphone,OnePlus,Nord CE4,8GB RAM | 128GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,OnePlus,Nord CE4,8GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,OnePlus,Nord CE4,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,A18,4GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,OPPO,A18,4GB/6GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,OPPO,A18,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,A38,4GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,OPPO,A38,6GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,OPPO,A38,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,A58,6GB RAM | 128GB storage | 6.72-inch FHD+ LCD | Helio G85 | 4G
+Smartphone,OPPO,A58,8GB RAM | 128GB/256GB storage | 6.72-inch FHD+ LCD | Helio G85 | 4G
+Smartphone,OPPO,A58,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,A78 5G,8GB RAM | 128GB storage | 6.56-inch LCD 90Hz | Dimensity 700 | 5G
+Smartphone,OPPO,A78 5G,8GB RAM | 256GB storage | 6.56-inch LCD 90Hz | Dimensity 700 | 5G
+Smartphone,OPPO,A78 5G,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,Find N3 Flip,12GB RAM | 256GB storage | 6.8-inch foldable AMOLED 120Hz | Dimensity 9200 | 5G
+Smartphone,OPPO,Find N3 Flip,12GB RAM | 512GB storage | 6.8-inch foldable AMOLED 120Hz | Dimensity 9200 | 5G
+Smartphone,OPPO,Find N3 Flip,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,Reno10 5G,8GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Dimensity 7050 | 5G
+Smartphone,OPPO,Reno10 5G,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,Reno11 F 5G,8GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Dimensity 7050 | 5G
+Smartphone,OPPO,Reno11 F 5G,12GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Dimensity 7050 | 5G
+Smartphone,OPPO,Reno11 F 5G,Other / not sure — technician to verify exact specifications
+Smartphone,OPPO,Reno12 5G,12GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Dimensity 7300-Energy | 5G
+Smartphone,OPPO,Reno12 5G,12GB RAM | 512GB storage | 6.7-inch AMOLED 120Hz | Dimensity 7300-Energy | 5G
+Smartphone,OPPO,Reno12 5G,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,C65,6GB RAM | 128GB storage | 6.74-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,POCO,C65,8GB RAM | 256GB storage | 6.74-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,POCO,C65,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,F5,8GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 7+ Gen 2 | 5G
+Smartphone,POCO,F5,12GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 7+ Gen 2 | 5G
+Smartphone,POCO,F5,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,F6,8GB RAM | 256GB storage | 6.67-inch 1.5K AMOLED 120Hz | Snapdragon 8s Gen 3 | 5G
+Smartphone,POCO,F6,12GB RAM | 512GB storage | 6.67-inch 1.5K AMOLED 120Hz | Snapdragon 8s Gen 3 | 5G
+Smartphone,POCO,F6,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,F6 Pro,12GB RAM | 256GB storage | 6.67-inch WQHD+ AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,POCO,F6 Pro,16GB RAM | 1TB storage | 6.67-inch WQHD+ AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,POCO,F6 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,M6 Pro 4G,8GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Helio G99-Ultra | 4G
+Smartphone,POCO,M6 Pro 4G,12GB RAM | 512GB storage | 6.67-inch AMOLED 120Hz | Helio G99-Ultra | 4G
+Smartphone,POCO,M6 Pro 4G,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,X5 Pro 5G,6GB RAM | 128GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 778G | 5G
+Smartphone,POCO,X5 Pro 5G,8GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 778G | 5G
+Smartphone,POCO,X5 Pro 5G,Other / not sure — technician to verify exact specifications
+Smartphone,POCO,X6 Pro,8GB RAM | 256GB storage | 6.67-inch 1.5K AMOLED 120Hz | Dimensity 8300-Ultra | 5G
+Smartphone,POCO,X6 Pro,12GB RAM | 512GB storage | 6.67-inch 1.5K AMOLED 120Hz | Dimensity 8300-Ultra | 5G
+Smartphone,POCO,X6 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,realme,12 Pro+,8GB RAM | 256GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7s Gen 2 | 5G
+Smartphone,realme,12 Pro+,12GB RAM | 512GB storage | 6.7-inch AMOLED 120Hz | Snapdragon 7s Gen 2 | 5G
+Smartphone,realme,12 Pro+,Other / not sure — technician to verify exact specifications
+Smartphone,realme,C53,6GB RAM | 128GB storage | 6.74-inch LCD 90Hz | Unisoc T612 | 4G
+Smartphone,realme,C53,8GB RAM | 256GB storage | 6.74-inch LCD 90Hz | Unisoc T612 | 4G
+Smartphone,realme,C53,Other / not sure — technician to verify exact specifications
+Smartphone,realme,C55,6GB RAM | 128GB storage | 6.72-inch FHD+ LCD 90Hz | Helio G88 | 4G
+Smartphone,realme,C55,8GB RAM | 256GB storage | 6.72-inch FHD+ LCD 90Hz | Helio G88 | 4G
+Smartphone,realme,C55,Other / not sure — technician to verify exact specifications
+Smartphone,realme,C67 4G,8GB RAM | 128GB storage | 6.72-inch FHD+ LCD 90Hz | Snapdragon 685 | 4G
+Smartphone,realme,C67 4G,8GB RAM | 256GB storage | 6.72-inch FHD+ LCD 90Hz | Snapdragon 685 | 4G
+Smartphone,realme,C67 4G,Other / not sure — technician to verify exact specifications
+Smartphone,realme,GT 6,12GB RAM | 256GB storage | 6.78-inch LTPO AMOLED 120Hz | Snapdragon 8s Gen 3 | 5G
+Smartphone,realme,GT 6,16GB RAM | 512GB storage | 6.78-inch LTPO AMOLED 120Hz | Snapdragon 8s Gen 3 | 5G
+Smartphone,realme,GT 6,Other / not sure — technician to verify exact specifications
+Smartphone,realme,Note 50,3GB/4GB RAM | 64GB/128GB storage | 6.74-inch LCD 90Hz | Unisoc T612 | 4G
+Smartphone,realme,Note 50,4GB RAM | 128GB storage | 6.74-inch LCD 90Hz | Unisoc T612 | 4G
+Smartphone,realme,Note 50,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A05s,4GB RAM | 64GB storage | 6.7-inch FHD+ LCD | Snapdragon 680 | 4G
+Smartphone,Samsung,Galaxy A05s,6GB RAM | 128GB storage | 6.7-inch FHD+ LCD | Snapdragon 680 | 4G
+Smartphone,Samsung,Galaxy A05s,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A15 4G,4GB RAM | 128GB storage | 6.5-inch FHD+ Super AMOLED | Helio G99 | 4G
+Smartphone,Samsung,Galaxy A15 4G,8GB RAM | 256GB storage | 6.5-inch FHD+ Super AMOLED | Helio G99 | 4G
+Smartphone,Samsung,Galaxy A15 4G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A15 5G,4GB/6GB RAM | 128GB storage | 6.5-inch FHD+ Super AMOLED | Dimensity 6100+ | 5G
+Smartphone,Samsung,Galaxy A15 5G,8GB RAM | 256GB storage | 6.5-inch FHD+ Super AMOLED | Dimensity 6100+ | 5G
+Smartphone,Samsung,Galaxy A15 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A25 5G,6GB RAM | 128GB storage | 6.5-inch FHD+ Super AMOLED 120Hz | Exynos 1280 | 5G
+Smartphone,Samsung,Galaxy A25 5G,8GB RAM | 256GB storage | 6.5-inch FHD+ Super AMOLED 120Hz | Exynos 1280 | 5G
+Smartphone,Samsung,Galaxy A25 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A35 5G,6GB RAM | 128GB storage | 6.6-inch FHD+ Super AMOLED 120Hz | Exynos 1380 | 5G
+Smartphone,Samsung,Galaxy A35 5G,8GB RAM | 256GB storage | 6.6-inch FHD+ Super AMOLED 120Hz | Exynos 1380 | 5G
+Smartphone,Samsung,Galaxy A35 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A55 5G,8GB RAM | 128GB storage | 6.6-inch FHD+ Super AMOLED 120Hz | Exynos 1480 | 5G
+Smartphone,Samsung,Galaxy A55 5G,8GB RAM | 256GB storage | 6.6-inch FHD+ Super AMOLED 120Hz | Exynos 1480 | 5G
+Smartphone,Samsung,Galaxy A55 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy A56 5G,8GB RAM | 128GB storage | 6.7-inch FHD+ Super AMOLED 120Hz | Exynos 1580 | 5G
+Smartphone,Samsung,Galaxy A56 5G,8GB/12GB RAM | 256GB storage | 6.7-inch FHD+ Super AMOLED 120Hz | Exynos 1580 | 5G
+Smartphone,Samsung,Galaxy A56 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy M14 5G,4GB RAM | 128GB storage | 6.6-inch FHD+ LCD 90Hz | Exynos 1330 | 5G
+Smartphone,Samsung,Galaxy M14 5G,6GB RAM | 128GB/256GB storage | 6.6-inch FHD+ LCD 90Hz | Exynos 1330 | 5G
+Smartphone,Samsung,Galaxy M14 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S23,8GB RAM | 128GB storage | 6.1-inch Dynamic AMOLED 2X 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy S23,8GB RAM | 256GB storage | 6.1-inch Dynamic AMOLED 2X 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy S23,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S23 FE,8GB RAM | 128GB storage | 6.4-inch Dynamic AMOLED 2X 120Hz | Exynos 2200/Snapdragon variant | 5G
+Smartphone,Samsung,Galaxy S23 FE,8GB RAM | 256GB storage | 6.4-inch Dynamic AMOLED 2X 120Hz | regional chipset variant | 5G
+Smartphone,Samsung,Galaxy S23 FE,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S24,8GB RAM | 128GB storage | 6.2-inch Dynamic AMOLED 2X 120Hz | Exynos 2400/Snapdragon variant | 5G
+Smartphone,Samsung,Galaxy S24,8GB RAM | 256GB storage | 6.2-inch Dynamic AMOLED 2X 120Hz | regional chipset variant | 5G
+Smartphone,Samsung,Galaxy S24,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S24 Ultra,12GB RAM | 256GB storage | 6.8-inch QHD+ Dynamic AMOLED 2X 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy S24 Ultra,12GB RAM | 512GB/1TB storage | 6.8-inch QHD+ Dynamic AMOLED 2X 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy S24 Ultra,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S24+,12GB RAM | 256GB storage | 6.7-inch Dynamic AMOLED 2X 120Hz | regional chipset variant | 5G
+Smartphone,Samsung,Galaxy S24+,12GB RAM | 512GB storage | 6.7-inch Dynamic AMOLED 2X 120Hz | regional chipset variant | 5G
+Smartphone,Samsung,Galaxy S24+,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S25,12GB RAM | 128GB/256GB storage | 6.2-inch Dynamic AMOLED 2X 120Hz | Snapdragon 8 Elite | 5G
+Smartphone,Samsung,Galaxy S25,12GB RAM | 256GB/512GB storage | 6.2-inch Dynamic AMOLED 2X 120Hz | Snapdragon 8 Elite | 5G
+Smartphone,Samsung,Galaxy S25,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy S25 Ultra,12GB RAM | 256GB storage | 6.9-inch QHD+ Dynamic AMOLED 2X 120Hz | Snapdragon 8 Elite | 5G
+Smartphone,Samsung,Galaxy S25 Ultra,12GB RAM | 512GB/1TB storage | 6.9-inch QHD+ Dynamic AMOLED 2X 120Hz | Snapdragon 8 Elite | 5G
+Smartphone,Samsung,Galaxy S25 Ultra,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy Z Flip5,8GB RAM | 256GB storage | 6.7-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy Z Flip5,8GB RAM | 512GB storage | 6.7-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy Z Flip5,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy Z Flip6,12GB RAM | 256GB storage | 6.7-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy Z Flip6,12GB RAM | 512GB storage | 6.7-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy Z Flip6,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy Z Fold5,12GB RAM | 256GB storage | 7.6-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy Z Fold5,12GB RAM | 512GB/1TB storage | 7.6-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 2 | 5G
+Smartphone,Samsung,Galaxy Z Fold5,Other / not sure — technician to verify exact specifications
+Smartphone,Samsung,Galaxy Z Fold6,12GB RAM | 256GB storage | 7.6-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy Z Fold6,12GB RAM | 512GB/1TB storage | 7.6-inch foldable AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Samsung,Galaxy Z Fold6,Other / not sure — technician to verify exact specifications
+Smartphone,TECNO,Camon 30,8GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,TECNO,Camon 30,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,TECNO,Camon 30,Other / not sure — technician to verify exact specifications
+Smartphone,TECNO,Phantom V Flip,8GB RAM | 256GB storage | 6.9-inch foldable AMOLED | Dimensity 8050 | 5G
+Smartphone,TECNO,Phantom V Flip,Other / not sure — technician to verify exact specifications
+Smartphone,TECNO,Pova 6,8GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,TECNO,Pova 6,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Helio G99 Ultimate | 4G
+Smartphone,TECNO,Pova 6,Other / not sure — technician to verify exact specifications
+Smartphone,TECNO,Spark 20,8GB RAM | 128GB storage | 6.6-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,TECNO,Spark 20,8GB RAM | 256GB storage | 6.6-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,TECNO,Spark 20,Other / not sure — technician to verify exact specifications
+Smartphone,TECNO,Spark 20 Pro,8GB RAM | 256GB storage | 6.78-inch FHD+ LCD 120Hz | Helio G99 | 4G
+Smartphone,TECNO,Spark 20 Pro,12GB RAM | 256GB storage | 6.78-inch FHD+ LCD 120Hz | Helio G99 | 4G
+Smartphone,TECNO,Spark 20 Pro,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,V29 5G,8GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 778G | 5G
+Smartphone,vivo,V29 5G,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 778G | 5G
+Smartphone,vivo,V29 5G,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,V30 5G,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,vivo,V30 5G,12GB RAM | 512GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,vivo,V30 5G,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,V40 5G,12GB RAM | 256GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,vivo,V40 5G,12GB RAM | 512GB storage | 6.78-inch AMOLED 120Hz | Snapdragon 7 Gen 3 | 5G
+Smartphone,vivo,V40 5G,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,X100,12GB RAM | 256GB storage | 6.78-inch LTPO AMOLED 120Hz | Dimensity 9300 | 5G
+Smartphone,vivo,X100,16GB RAM | 512GB storage | 6.78-inch LTPO AMOLED 120Hz | Dimensity 9300 | 5G
+Smartphone,vivo,X100,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,Y17s,4GB RAM | 128GB storage | 6.56-inch LCD | Helio G85 | 4G
+Smartphone,vivo,Y17s,6GB RAM | 128GB storage | 6.56-inch LCD | Helio G85 | 4G
+Smartphone,vivo,Y17s,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,Y27,6GB RAM | 128GB storage | 6.64-inch FHD+ LCD | Helio G85 | 4G
+Smartphone,vivo,Y27,8GB RAM | 128GB storage | 6.64-inch FHD+ LCD | Helio G85 | 4G
+Smartphone,vivo,Y27,Other / not sure — technician to verify exact specifications
+Smartphone,vivo,Y36,8GB RAM | 128GB storage | 6.64-inch FHD+ LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,vivo,Y36,8GB RAM | 256GB storage | 6.64-inch FHD+ LCD 90Hz | Snapdragon 680 | 4G
+Smartphone,vivo,Y36,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi 13C,4GB RAM | 128GB storage | 6.74-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,Xiaomi,Redmi 13C,8GB RAM | 256GB storage | 6.74-inch LCD 90Hz | Helio G85 | 4G
+Smartphone,Xiaomi,Redmi 13C,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi 14C,4GB/6GB RAM | 128GB storage | 6.88-inch LCD 120Hz | Helio G81-Ultra | 4G
+Smartphone,Xiaomi,Redmi 14C,8GB RAM | 256GB storage | 6.88-inch LCD 120Hz | Helio G81-Ultra | 4G
+Smartphone,Xiaomi,Redmi 14C,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 13 4G,6GB RAM | 128GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 685 | 4G
+Smartphone,Xiaomi,Redmi Note 13 4G,8GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Snapdragon 685 | 4G
+Smartphone,Xiaomi,Redmi Note 13 4G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 13 5G,6GB/8GB RAM | 128GB storage | 6.67-inch AMOLED 120Hz | Dimensity 6080 | 5G
+Smartphone,Xiaomi,Redmi Note 13 5G,8GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | Dimensity 6080 | 5G
+Smartphone,Xiaomi,Redmi Note 13 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 13 Pro 5G,8GB RAM | 256GB storage | 6.67-inch 1.5K AMOLED 120Hz | Snapdragon 7s Gen 2 | 5G
+Smartphone,Xiaomi,Redmi Note 13 Pro 5G,12GB RAM | 512GB storage | 6.67-inch 1.5K AMOLED 120Hz | Snapdragon 7s Gen 2 | 5G
+Smartphone,Xiaomi,Redmi Note 13 Pro 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 13 Pro+ 5G,8GB RAM | 256GB storage | 6.67-inch 1.5K AMOLED 120Hz | Dimensity 7200-Ultra | 5G
+Smartphone,Xiaomi,Redmi Note 13 Pro+ 5G,12GB RAM | 512GB storage | 6.67-inch 1.5K AMOLED 120Hz | Dimensity 7200-Ultra | 5G
+Smartphone,Xiaomi,Redmi Note 13 Pro+ 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 14 5G,6GB/8GB RAM | 128GB storage | 6.67-inch AMOLED 120Hz | 5G
+Smartphone,Xiaomi,Redmi Note 14 5G,8GB/12GB RAM | 256GB storage | 6.67-inch AMOLED 120Hz | 5G
+Smartphone,Xiaomi,Redmi Note 14 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Redmi Note 14 Pro 5G,8GB RAM | 256GB storage | 6.67-inch 1.5K AMOLED 120Hz | 5G
+Smartphone,Xiaomi,Redmi Note 14 Pro 5G,12GB RAM | 512GB storage | 6.67-inch 1.5K AMOLED 120Hz | 5G
+Smartphone,Xiaomi,Redmi Note 14 Pro 5G,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Xiaomi 13T,8GB RAM | 256GB storage | 6.67-inch AMOLED 144Hz | Dimensity 8200-Ultra | 5G
+Smartphone,Xiaomi,Xiaomi 13T,12GB RAM | 256GB storage | 6.67-inch AMOLED 144Hz | Dimensity 8200-Ultra | 5G
+Smartphone,Xiaomi,Xiaomi 13T,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Xiaomi 14,12GB RAM | 256GB storage | 6.36-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Xiaomi,Xiaomi 14,12GB RAM | 512GB storage | 6.36-inch LTPO AMOLED 120Hz | Snapdragon 8 Gen 3 | 5G
+Smartphone,Xiaomi,Xiaomi 14,Other / not sure — technician to verify exact specifications
+Smartphone,Xiaomi,Xiaomi 14T,12GB RAM | 256GB storage | 6.67-inch AMOLED 144Hz | Dimensity 8300-Ultra | 5G
+Smartphone,Xiaomi,Xiaomi 14T,12GB RAM | 512GB storage | 6.67-inch AMOLED 144Hz | Dimensity 8300-Ultra | 5G
+Smartphone,Xiaomi,Xiaomi 14T,Other / not sure — technician to verify exact specifications
+Smartphone,ZTE,Blade A73,4GB RAM | 128GB storage | 6.6-inch LCD 90Hz | Unisoc chipset | 4G
+Smartphone,ZTE,Blade A73,6GB RAM | 128GB storage | 6.6-inch LCD 90Hz | Unisoc chipset | 4G
+Smartphone,ZTE,Blade A73,Other / not sure — technician to verify exact specifications
+Smartphone,ZTE,nubia Neo 2 5G,8GB RAM | 256GB storage | 6.72-inch FHD+ LCD 120Hz | Unisoc T820 | 5G
+Smartphone,ZTE,nubia Neo 2 5G,12GB RAM | 256GB storage | 6.72-inch FHD+ LCD 120Hz | Unisoc T820 | 5G
+Smartphone,ZTE,nubia Neo 2 5G,Other / not sure — technician to verify exact specifications
+Tablet,Amazon,Fire HD 10,3GB/4GB RAM | 32GB storage | 10.1-inch FHD display | Wi-Fi
+Tablet,Amazon,Fire HD 10,4GB RAM | 64GB storage | 10.1-inch FHD display | Wi-Fi
+Tablet,Amazon,Fire HD 10,Other / not sure — technician to verify exact specifications
+Tablet,Amazon,Fire HD 8,3GB RAM | 32GB storage | 8-inch HD display | Wi-Fi
+Tablet,Amazon,Fire HD 8,4GB RAM | 64GB storage | 8-inch HD display | Wi-Fi
+Tablet,Amazon,Fire HD 8,Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad (10th generation),64GB storage | 10.9-inch Liquid Retina | A14 Bionic | Wi-Fi
+Tablet,Apple,iPad (10th generation),256GB storage | 10.9-inch Liquid Retina | A14 Bionic | Wi-Fi/5G
+Tablet,Apple,iPad (10th generation),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad (9th generation),64GB storage | 10.2-inch Retina IPS LCD | A13 Bionic | Wi-Fi
+Tablet,Apple,iPad (9th generation),256GB storage | 10.2-inch Retina IPS LCD | A13 Bionic | Wi-Fi/LTE
+Tablet,Apple,iPad (9th generation),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad Air 11-inch (M2),128GB storage | 11-inch Liquid Retina | Apple M2 | Wi-Fi
+Tablet,Apple,iPad Air 11-inch (M2),256GB/512GB/1TB storage | 11-inch Liquid Retina | Apple M2 | Wi-Fi/5G
+Tablet,Apple,iPad Air 11-inch (M2),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad Air 13-inch (M2),128GB storage | 13-inch Liquid Retina | Apple M2 | Wi-Fi
+Tablet,Apple,iPad Air 13-inch (M2),256GB/512GB/1TB storage | 13-inch Liquid Retina | Apple M2 | Wi-Fi/5G
+Tablet,Apple,iPad Air 13-inch (M2),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad mini (6th generation),64GB storage | 8.3-inch Liquid Retina | A15 Bionic | Wi-Fi
+Tablet,Apple,iPad mini (6th generation),256GB storage | 8.3-inch Liquid Retina | A15 Bionic | Wi-Fi/5G
+Tablet,Apple,iPad mini (6th generation),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad mini (A17 Pro),128GB storage | 8.3-inch Liquid Retina | A17 Pro | Wi-Fi
+Tablet,Apple,iPad mini (A17 Pro),256GB/512GB storage | 8.3-inch Liquid Retina | A17 Pro | Wi-Fi/5G
+Tablet,Apple,iPad mini (A17 Pro),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad Pro 11-inch (M4),1TB/2TB storage | 11-inch Ultra Retina XDR OLED | Apple M4 | Wi-Fi/5G
+Tablet,Apple,iPad Pro 11-inch (M4),256GB/512GB storage | 11-inch Ultra Retina XDR OLED | Apple M4 | Wi-Fi
+Tablet,Apple,iPad Pro 11-inch (M4),Other / not sure — technician to verify exact specifications
+Tablet,Apple,iPad Pro 13-inch (M4),1TB/2TB storage | 13-inch Ultra Retina XDR OLED | Apple M4 | Wi-Fi/5G
+Tablet,Apple,iPad Pro 13-inch (M4),256GB/512GB storage | 13-inch Ultra Retina XDR OLED | Apple M4 | Wi-Fi
+Tablet,Apple,iPad Pro 13-inch (M4),Other / not sure — technician to verify exact specifications
+Tablet,HONOR,Pad 9,8GB RAM | 256GB storage | 12.1-inch 2.5K LCD 120Hz | Wi-Fi
+Tablet,HONOR,Pad 9,Other / not sure — technician to verify exact specifications
+Tablet,HONOR,Pad X9,4GB RAM | 128GB storage | 11.5-inch 2K LCD 120Hz | Wi-Fi
+Tablet,HONOR,Pad X9,6GB/8GB RAM | 128GB storage | 11.5-inch 2K LCD 120Hz | Wi-Fi
+Tablet,HONOR,Pad X9,Other / not sure — technician to verify exact specifications
+Tablet,Huawei,MatePad 11.5,6GB RAM | 128GB storage | 11.5-inch LCD 120Hz | Wi-Fi
+Tablet,Huawei,MatePad 11.5,8GB RAM | 256GB storage | 11.5-inch LCD 120Hz | Wi-Fi
+Tablet,Huawei,MatePad 11.5,Other / not sure — technician to verify exact specifications
+Tablet,Huawei,MatePad Pro 11,8GB RAM | 128GB storage | 11-inch OLED | Wi-Fi
+Tablet,Huawei,MatePad Pro 11,12GB RAM | 256GB/512GB storage | 11-inch OLED | Wi-Fi
+Tablet,Huawei,MatePad Pro 11,Other / not sure — technician to verify exact specifications
+Tablet,Huawei,MatePad SE 10.4,4GB RAM | 64GB/128GB storage | 10.4-inch LCD | Wi-Fi
+Tablet,Huawei,MatePad SE 10.4,4GB/6GB RAM | 128GB storage | 10.4-inch LCD | Wi-Fi/LTE
+Tablet,Huawei,MatePad SE 10.4,Other / not sure — technician to verify exact specifications
+Tablet,Lenovo,Legion Tab,8GB RAM | 128GB/256GB storage | 8.8-inch gaming display | Wi-Fi
+Tablet,Lenovo,Legion Tab,12GB RAM | 256GB storage | 8.8-inch gaming display | Wi-Fi
+Tablet,Lenovo,Legion Tab,Other / not sure — technician to verify exact specifications
+Tablet,Lenovo,Tab M10,4GB RAM | 64GB/128GB storage | 10.1-inch LCD | Wi-Fi
+Tablet,Lenovo,Tab M10,4GB/6GB RAM | 128GB storage | 10.6/10.1-inch LCD | Wi-Fi
+Tablet,Lenovo,Tab M10,Other / not sure — technician to verify exact specifications
+Tablet,Lenovo,Tab M9,3GB/4GB RAM | 32GB/64GB/128GB storage | 9-inch LCD | Wi-Fi/LTE
+Tablet,Lenovo,Tab M9,4GB RAM | 128GB storage | 9-inch LCD | Wi-Fi/LTE
+Tablet,Lenovo,Tab M9,Other / not sure — technician to verify exact specifications
+Tablet,Lenovo,Tab P12,8GB RAM | 128GB storage | 12.7-inch 3K LCD | Wi-Fi
+Tablet,Lenovo,Tab P12,8GB RAM | 256GB storage | 12.7-inch 3K LCD | Wi-Fi
+Tablet,Lenovo,Tab P12,Other / not sure — technician to verify exact specifications
+Tablet,Microsoft,Surface Pro 10,Intel Core Ultra 5 | 16GB RAM | 256GB SSD | 13-inch touchscreen
+Tablet,Microsoft,Surface Pro 10,Intel Core Ultra 7 | 16GB/32GB RAM | 512GB/1TB SSD | 13-inch touchscreen
+Tablet,Microsoft,Surface Pro 10,Other / not sure — technician to verify exact specifications
+Tablet,Microsoft,Surface Pro 11,Snapdragon X Plus | 16GB RAM | 256GB/512GB SSD | 13-inch OLED/LCD variant
+Tablet,Microsoft,Surface Pro 11,Snapdragon X Elite | 16GB/32GB RAM | 512GB/1TB SSD | 13-inch OLED variant
+Tablet,Microsoft,Surface Pro 11,Other / not sure — technician to verify exact specifications
+Tablet,Microsoft,Surface Pro 9,Intel Core i5 | 8GB RAM | 128GB/256GB SSD | 13-inch touchscreen
+Tablet,Microsoft,Surface Pro 9,Intel Core i7 | 16GB RAM | 256GB/512GB SSD | 13-inch touchscreen
+Tablet,Microsoft,Surface Pro 9,Other / not sure — technician to verify exact specifications
+Tablet,realme,Pad 2,6GB RAM | 128GB storage | 11.5-inch LCD 120Hz | Wi-Fi/LTE
+Tablet,realme,Pad 2,8GB RAM | 256GB storage | 11.5-inch LCD 120Hz | Wi-Fi/LTE
+Tablet,realme,Pad 2,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab A9,4GB RAM | 64GB storage | 8.7-inch LCD | Wi-Fi/LTE
+Tablet,Samsung,Galaxy Tab A9,8GB RAM | 128GB storage | 8.7-inch LCD | Wi-Fi/LTE
+Tablet,Samsung,Galaxy Tab A9,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab A9+,4GB RAM | 64GB storage | 11-inch LCD 90Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab A9+,8GB RAM | 128GB storage | 11-inch LCD 90Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab A9+,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab S10+,12GB RAM | 256GB storage | 12.4-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S10+,12GB RAM | 512GB storage | 12.4-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S10+,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab S9,8GB RAM | 128GB storage | 11-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9,12GB RAM | 256GB storage | 11-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab S9 FE,6GB RAM | 128GB storage | 10.9-inch LCD 90Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9 FE,8GB RAM | 256GB storage | 10.9-inch LCD 90Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9 FE,Other / not sure — technician to verify exact specifications
+Tablet,Samsung,Galaxy Tab S9 Ultra,12GB RAM | 256GB storage | 14.6-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9 Ultra,16GB RAM | 512GB/1TB storage | 14.6-inch Dynamic AMOLED 2X 120Hz | Wi-Fi/5G
+Tablet,Samsung,Galaxy Tab S9 Ultra,Other / not sure — technician to verify exact specifications
+Tablet,TCL,NXTPAPER 11,4GB RAM | 128GB storage | 11-inch NXTPAPER display | Wi-Fi
+Tablet,TCL,NXTPAPER 11,8GB RAM | 128GB storage | 11-inch NXTPAPER display | Wi-Fi
+Tablet,TCL,NXTPAPER 11,Other / not sure — technician to verify exact specifications
+Tablet,TCL,Tab 10,3GB/4GB RAM | 32GB/64GB storage | 10.1-inch LCD | Wi-Fi/LTE
+Tablet,TCL,Tab 10,4GB RAM | 128GB storage | 10.1-inch LCD | Wi-Fi/LTE
+Tablet,TCL,Tab 10,Other / not sure — technician to verify exact specifications
+Tablet,Xiaomi,Redmi Pad Pro,6GB RAM | 128GB storage | 12.1-inch 2.5K LCD 120Hz | Wi-Fi
+Tablet,Xiaomi,Redmi Pad Pro,8GB RAM | 256GB storage | 12.1-inch 2.5K LCD 120Hz | Wi-Fi/5G
+Tablet,Xiaomi,Redmi Pad Pro,Other / not sure — technician to verify exact specifications
+Tablet,Xiaomi,Redmi Pad SE,4GB RAM | 128GB storage | 11-inch FHD+ LCD 90Hz | Wi-Fi
+Tablet,Xiaomi,Redmi Pad SE,8GB RAM | 256GB storage | 11-inch FHD+ LCD 90Hz | Wi-Fi
+Tablet,Xiaomi,Redmi Pad SE,Other / not sure — technician to verify exact specifications
+Tablet,Xiaomi,Xiaomi Pad 6,6GB RAM | 128GB storage | 11-inch 2.8K LCD 144Hz | Snapdragon 870 | Wi-Fi
+Tablet,Xiaomi,Xiaomi Pad 6,8GB RAM | 256GB storage | 11-inch 2.8K LCD 144Hz | Snapdragon 870 | Wi-Fi
+Tablet,Xiaomi,Xiaomi Pad 6,Other / not sure — technician to verify exact specifications
+Tablet,Xiaomi,Xiaomi Pad 6S Pro 12.4,8GB RAM | 256GB storage | 12.4-inch 3K LCD 144Hz | Snapdragon 8 Gen 2 | Wi-Fi
+Tablet,Xiaomi,Xiaomi Pad 6S Pro 12.4,12GB RAM | 512GB storage | 12.4-inch 3K LCD 144Hz | Snapdragon 8 Gen 2 | Wi-Fi
+Tablet,Xiaomi,Xiaomi Pad 6S Pro 12.4,Other / not sure — technician to verify exact specifications
+Monitor,Acer,Basic KA Series,21.5/23.8-inch | 1920x1080 FHD | 60/75Hz | HDMI/VGA
+Monitor,Acer,Basic KA Series,Other / not sure — technician to verify exact specifications
+Monitor,Acer,Nitro VG Series,23.8-inch | 1920x1080 FHD | IPS | 144/165Hz | HDMI/DisplayPort
+Monitor,Acer,Nitro VG Series,27-inch | 2560x1440 QHD | IPS | 144/180Hz | HDMI/DisplayPort
+Monitor,Acer,Nitro VG Series,Other / not sure — technician to verify exact specifications
+Monitor,Acer,Predator XB Series,27-inch | 2560x1440 QHD | IPS | high refresh rate | gaming monitor
+Monitor,Acer,Predator XB Series,32-inch | 3840x2160 4K | high refresh rate | HDMI/DisplayPort
+Monitor,Acer,Predator XB Series,Other / not sure — technician to verify exact specifications
+Monitor,AOC,24G Series,23.8/24.5-inch | FHD | IPS/VA | 144-180Hz | HDMI/DisplayPort
+Monitor,AOC,24G Series,27-inch | FHD/QHD | high refresh rate | gaming monitor
+Monitor,AOC,24G Series,Other / not sure — technician to verify exact specifications
+Monitor,AOC,Q27 Series,27-inch | QHD | IPS | 75-180Hz | HDMI/DisplayPort
+Monitor,AOC,Q27 Series,32-inch | QHD/4K | VA/IPS | HDMI/DisplayPort
+Monitor,AOC,Q27 Series,Other / not sure — technician to verify exact specifications
+Monitor,ASUS,ProArt PA Series,24/27-inch | FHD/QHD | IPS | color-accurate display
+Monitor,ASUS,ProArt PA Series,27/32-inch | 4K UHD | IPS | wide-gamut color display
+Monitor,ASUS,ProArt PA Series,Other / not sure — technician to verify exact specifications
+Monitor,ASUS,ROG Swift,27-inch | QHD | OLED/IPS variant | high refresh rate | DisplayPort/HDMI
+Monitor,ASUS,ROG Swift,32-inch | 4K | OLED variant | 240Hz-class model option
+Monitor,ASUS,ROG Swift,Other / not sure — technician to verify exact specifications
+Monitor,ASUS,TUF Gaming VG Series,24/27-inch | FHD/QHD | IPS | 144-180Hz | HDMI/DisplayPort
+Monitor,ASUS,TUF Gaming VG Series,27-inch | QHD | IPS | 165-180Hz | Adaptive Sync
+Monitor,ASUS,TUF Gaming VG Series,Other / not sure — technician to verify exact specifications
+Monitor,BenQ,MOBIUZ EX Series,24/27-inch | FHD/QHD | IPS | gaming refresh rate
+Monitor,BenQ,MOBIUZ EX Series,32-inch | 4K UHD | gaming monitor
+Monitor,BenQ,MOBIUZ EX Series,Other / not sure — technician to verify exact specifications
+Monitor,BenQ,PD Series,27-inch | QHD/4K | IPS | color-accurate creator monitor
+Monitor,BenQ,PD Series,32-inch | 4K UHD | IPS | USB-C variant
+Monitor,BenQ,PD Series,Other / not sure — technician to verify exact specifications
+Monitor,BenQ,ZOWIE XL Series,24/24.5-inch | FHD | TN/fast IPS | 144-360Hz class | esports monitor
+Monitor,BenQ,ZOWIE XL Series,Other / not sure — technician to verify exact specifications
+Monitor,Dell,Alienware AW Series,27-inch | QHD | IPS/OLED | 165Hz+ | gaming monitor
+Monitor,Dell,Alienware AW Series,34-inch | ultrawide QHD | OLED | high refresh rate
+Monitor,Dell,Alienware AW Series,Other / not sure — technician to verify exact specifications
+Monitor,Dell,E Series,22/24-inch | FHD | IPS/VA | 60-100Hz | HDMI/DisplayPort/VGA variant
+Monitor,Dell,E Series,24-inch | FHD | IPS | business monitor
+Monitor,Dell,E Series,Other / not sure — technician to verify exact specifications
+Monitor,Dell,P Series,24/27-inch | FHD/QHD | IPS | ergonomic stand | HDMI/DisplayPort/USB hub variant
+Monitor,Dell,P Series,27/32-inch | QHD/4K | IPS | USB-C docking variant
+Monitor,Dell,P Series,Other / not sure — technician to verify exact specifications
+Monitor,Dell,UltraSharp U Series,27-inch | QHD/4K | IPS | wide-gamut | USB-C hub variant
+Monitor,Dell,UltraSharp U Series,32-inch | 4K UHD | IPS | USB-C/Thunderbolt hub variant
+Monitor,Dell,UltraSharp U Series,Other / not sure — technician to verify exact specifications
+Monitor,HP,E Series,24-inch | FHD | IPS | ergonomic stand | HDMI/DisplayPort
+Monitor,HP,E Series,27-inch | QHD | IPS | USB-C hub variant
+Monitor,HP,E Series,Other / not sure — technician to verify exact specifications
+Monitor,HP,OMEN Gaming,24.5/27-inch | FHD/QHD | high refresh rate | IPS | HDMI/DisplayPort
+Monitor,HP,OMEN Gaming,Other / not sure — technician to verify exact specifications
+Monitor,HP,Series 3/5,21.5/23.8-inch | FHD | IPS | 60-100Hz | HDMI
+Monitor,HP,Series 3/5,27-inch | FHD/QHD | IPS | HDMI/DisplayPort
+Monitor,HP,Series 3/5,Other / not sure — technician to verify exact specifications
+Monitor,LG,UltraFine,24/27-inch | QHD/4K | IPS | color-accurate work monitor
+Monitor,LG,UltraFine,27/32-inch | 4K/5K class | IPS | USB-C/Thunderbolt variant
+Monitor,LG,UltraFine,Other / not sure — technician to verify exact specifications
+Monitor,LG,UltraGear,24/27-inch | FHD/QHD | IPS | 144-180Hz | HDMI/DisplayPort
+Monitor,LG,UltraGear,27/32-inch | QHD/4K | IPS/OLED variant | high refresh rate
+Monitor,LG,UltraGear,Other / not sure — technician to verify exact specifications
+Monitor,LG,UltraWide,29-inch | 2560x1080 ultrawide | IPS | 75-100Hz
+Monitor,LG,UltraWide,34-inch | 3440x1440 ultrawide | IPS/OLED variant | high refresh rate
+Monitor,LG,UltraWide,Other / not sure — technician to verify exact specifications
+Monitor,Samsung,Essential S Series,22/24-inch | FHD | 75-100Hz | HDMI
+Monitor,Samsung,Essential S Series,Other / not sure — technician to verify exact specifications
+Monitor,Samsung,Odyssey G Series,24/27-inch | FHD/QHD | VA/IPS | 144-240Hz | HDMI/DisplayPort
+Monitor,Samsung,Odyssey G Series,32-inch | 4K UHD | high refresh rate | gaming monitor
+Monitor,Samsung,Odyssey G Series,Other / not sure — technician to verify exact specifications
+Monitor,Samsung,Odyssey OLED G Series,27-inch | QHD OLED | 240Hz-class | HDMI/DisplayPort
+Monitor,Samsung,Odyssey OLED G Series,32-inch | 4K OLED | high refresh rate | HDMI/DisplayPort
+Monitor,Samsung,Odyssey OLED G Series,Other / not sure — technician to verify exact specifications
+Monitor,Samsung,ViewFinity S Series,27-inch | QHD/4K | IPS/VA | work monitor
+Monitor,Samsung,ViewFinity S Series,32-inch | 4K UHD | IPS/VA | USB-C variant
+Monitor,Samsung,ViewFinity S Series,Other / not sure — technician to verify exact specifications
+Monitor,ViewSonic,VA Series,22/24-inch | FHD | IPS/VA | 60-100Hz | HDMI/VGA variant
+Monitor,ViewSonic,VA Series,Other / not sure — technician to verify exact specifications
+Monitor,ViewSonic,VP Series,27-inch | QHD/4K | IPS | color-accurate professional monitor
+Monitor,ViewSonic,VP Series,Other / not sure — technician to verify exact specifications
+Monitor,ViewSonic,VX Series,24/27-inch | FHD/QHD | IPS | gaming refresh rate
+Monitor,ViewSonic,VX Series,32-inch | QHD/4K | gaming/entertainment monitor
+Monitor,ViewSonic,VX Series,Other / not sure — technician to verify exact specifications
+Printer,Brother,DCP-T420W,Ink tank | Color print/scan/copy | Wi-Fi/USB | A4
+Printer,Brother,DCP-T420W,Other / not sure — technician to verify exact specifications
+Printer,Brother,DCP-T720DW,Ink tank | Color print/scan/copy | Wi-Fi/USB | Duplex | A4
+Printer,Brother,DCP-T720DW,Other / not sure — technician to verify exact specifications
+Printer,Brother,HL-L2320D,Monochrome laser | Print only | USB | automatic duplex | A4
+Printer,Brother,HL-L2320D,Other / not sure — technician to verify exact specifications
+Printer,Brother,MFC-L2700DW,Monochrome laser | Print/scan/copy/fax | Wi-Fi/Ethernet/USB | Duplex
+Printer,Brother,MFC-L2700DW,Other / not sure — technician to verify exact specifications
+Printer,Brother,MFC-T920DW,Ink tank | Color print/scan/copy/fax | Wi-Fi/Ethernet/USB | Duplex
+Printer,Brother,MFC-T920DW,Other / not sure — technician to verify exact specifications
+Printer,Canon,imageCLASS MF3010,Monochrome laser | Print/scan/copy | USB | A4
+Printer,Canon,imageCLASS MF3010,Other / not sure — technician to verify exact specifications
+Printer,Canon,imageCLASS MF645Cx,Color laser | Print/scan/copy/fax | Wi-Fi/Ethernet/USB | A4
+Printer,Canon,imageCLASS MF645Cx,Other / not sure — technician to verify exact specifications
+Printer,Canon,PIXMA G2010,Refillable ink tank | Color print/scan/copy | USB | A4
+Printer,Canon,PIXMA G2010,Refillable ink tank | Color print/scan/copy | USB | borderless photo support
+Printer,Canon,PIXMA G2010,Other / not sure — technician to verify exact specifications
+Printer,Canon,PIXMA G3010,Refillable ink tank | Color print/scan/copy | Wi-Fi/USB | A4
+Printer,Canon,PIXMA G3010,Other / not sure — technician to verify exact specifications
+Printer,Canon,PIXMA G4010,Refillable ink tank | Color print/scan/copy/fax | Wi-Fi/USB | A4
+Printer,Canon,PIXMA G4010,Other / not sure — technician to verify exact specifications
+Printer,Canon,PIXMA TS series,Inkjet | Color print/scan/copy | Wi-Fi/USB | A4/photo printing
+Printer,Canon,PIXMA TS series,Other / not sure — technician to verify exact specifications
+Printer,Epson,EcoTank L3210,Ink tank | Color print/scan/copy | USB | A4 | 4-color ink
+Printer,Epson,EcoTank L3210,Ink tank | Color print/scan/copy | USB | A4 | refillable ink bottles
+Printer,Epson,EcoTank L3210,Other / not sure — technician to verify exact specifications
+Printer,Epson,EcoTank L3250,Ink tank | Color print/scan/copy | Wi-Fi/Wi-Fi Direct/USB | A4
+Printer,Epson,EcoTank L3250,Ink tank | Color print/scan/copy | Wireless + USB | A4
+Printer,Epson,EcoTank L3250,Other / not sure — technician to verify exact specifications
+Printer,Epson,EcoTank L5290,Ink tank | Color print/scan/copy/fax | Wi-Fi/Ethernet/USB | A4
+Printer,Epson,EcoTank L5290,Other / not sure — technician to verify exact specifications
+Printer,Epson,EcoTank L8050,Ink tank | 6-color photo printer | Wi-Fi/USB | photo/A4 printing
+Printer,Epson,EcoTank L8050,Other / not sure — technician to verify exact specifications
+Printer,Epson,WorkForce WF-2930,Inkjet | Print/scan/copy/fax | Wi-Fi/USB | A4
+Printer,Epson,WorkForce WF-2930,Other / not sure — technician to verify exact specifications
+Printer,Fujifilm,Apeos C325z,Color laser/LED multifunction | Print/scan/copy | Network/USB | A4
+Printer,Fujifilm,Apeos C325z,Other / not sure — technician to verify exact specifications
+Printer,Fujifilm,ApeosPort series,Multifunction laser | Print/scan/copy/fax (model dependent) | Network | A3/A4
+Printer,Fujifilm,ApeosPort series,Other / not sure — technician to verify exact specifications
+Printer,HP,DeskJet 2776,Inkjet | Color print/scan/copy | USB/Wi-Fi | A4
+Printer,HP,DeskJet 2776,Other / not sure — technician to verify exact specifications
+Printer,HP,LaserJet MFP M428,Monochrome laser | Print/scan/copy | Ethernet/USB | A4
+Printer,HP,LaserJet MFP M428,Other / not sure — technician to verify exact specifications
+Printer,HP,LaserJet Pro M404,Monochrome laser | Print only | Ethernet/USB | A4
+Printer,HP,LaserJet Pro M404,Other / not sure — technician to verify exact specifications
+Printer,HP,OfficeJet Pro 9010,Inkjet | Color print/scan/copy/fax | Wi-Fi/Ethernet/USB | A4
+Printer,HP,OfficeJet Pro 9010,Other / not sure — technician to verify exact specifications
+Printer,HP,Smart Tank 515,Ink tank | Color print/scan/copy | Wi-Fi/USB | A4
+Printer,HP,Smart Tank 515,Other / not sure — technician to verify exact specifications
+Printer,HP,Smart Tank 580,Ink tank | Color print/scan/copy | Wi-Fi/USB | A4
+Printer,HP,Smart Tank 580,Other / not sure — technician to verify exact specifications
+Printer,Pantum,M6500NW,Monochrome laser | Print/scan/copy | Ethernet/Wi-Fi/USB | A4
+Printer,Pantum,M6500NW,Other / not sure — technician to verify exact specifications
+Printer,Pantum,P2500W,Monochrome laser | Print only | Wi-Fi/USB | A4
+Printer,Pantum,P2500W,Other / not sure — technician to verify exact specifications
+Scanner,Brother,ADS-1700W,Sheet-fed scanner | Wi-Fi/USB | Duplex | Touchscreen
+Scanner,Brother,ADS-1700W,Other / not sure — technician to verify exact specifications
+Scanner,Canon,CanoScan LiDE 300,Flatbed scanner | USB powered | 2400 dpi class | Document/photo scanning
+Scanner,Canon,CanoScan LiDE 300,Other / not sure — technician to verify exact specifications
+Scanner,Canon,imageFORMULA DR-C225,Sheet-fed document scanner | USB | Duplex | Office use
+Scanner,Canon,imageFORMULA DR-C225,Other / not sure — technician to verify exact specifications
+Scanner,Epson,Perfection V39,Flatbed scanner | USB powered | 4800 dpi class | Photo/document scanning
+Scanner,Epson,Perfection V39,Other / not sure — technician to verify exact specifications
+Scanner,Epson,WorkForce DS-410,Sheet-fed document scanner | USB | Duplex scanning | Office use
+Scanner,Epson,WorkForce DS-410,Other / not sure — technician to verify exact specifications
+Scanner,HP,ScanJet Pro 2600 f1,Flatbed/document scanner | USB | A4 | Office scanning
+Scanner,HP,ScanJet Pro 2600 f1,Other / not sure — technician to verify exact specifications
+Projector,Acer,X1328Wi,DLP projector | WXGA class | HDMI | Business/education
+Projector,Acer,X1328Wi,Other / not sure — technician to verify exact specifications
+Projector,BenQ,MS550,DLP projector | SVGA 800x600 | HDMI/VGA | Business/education
+Projector,BenQ,MS550,Other / not sure — technician to verify exact specifications
+Projector,BenQ,TH585,DLP projector | Full HD 1080p | HDMI | Gaming/home use
+Projector,BenQ,TH585,Other / not sure — technician to verify exact specifications
+Projector,Epson,CO-FH02,LCD projector | Full HD 1080p | HDMI/USB | Lamp/LED source variant
+Projector,Epson,CO-FH02,Other / not sure — technician to verify exact specifications
+Projector,Epson,EB-E01,LCD projector | XGA 1024x768 | HDMI/VGA | Business/education
+Projector,Epson,EB-E01,Other / not sure — technician to verify exact specifications
+Projector,ViewSonic,PA503W,DLP projector | WXGA 1280x800 | HDMI/VGA
+Projector,ViewSonic,PA503W,Other / not sure — technician to verify exact specifications
+Projector,ViewSonic,PX701HD,DLP projector | Full HD 1080p | HDMI | Home/office
+Projector,ViewSonic,PX701HD,Other / not sure — technician to verify exact specifications
+Router / Modem,ASUS,RT-AC68U,Wi-Fi 5 | Dual-band AC1900 class | Gigabit Ethernet
+Router / Modem,ASUS,RT-AC68U,Other / not sure — technician to verify exact specifications
+Router / Modem,ASUS,RT-AX55,Wi-Fi 6 | Dual-band AX1800 class | Gigabit Ethernet
+Router / Modem,ASUS,RT-AX55,Other / not sure — technician to verify exact specifications
+Router / Modem,ASUS,RT-AX58U,Wi-Fi 6 | Dual-band AX3000 class | Gigabit Ethernet
+Router / Modem,ASUS,RT-AX58U,Other / not sure — technician to verify exact specifications
+Router / Modem,ASUS,ZenWiFi XT8,Tri-band Wi-Fi 6 mesh | AX6600 class | Ethernet backhaul
+Router / Modem,ASUS,ZenWiFi XT8,Other / not sure — technician to verify exact specifications
+Router / Modem,D-Link,COVR-X1862,Wi-Fi 6 mesh | AX1800 class | Ethernet
+Router / Modem,D-Link,COVR-X1862,Other / not sure — technician to verify exact specifications
+Router / Modem,D-Link,DIR-825,Dual-band Wi-Fi 5 | AC1200 class | Ethernet LAN/WAN
+Router / Modem,D-Link,DIR-825,Other / not sure — technician to verify exact specifications
+Router / Modem,D-Link,DIR-X1560,Wi-Fi 6 | AX1500 class | Ethernet LAN/WAN
+Router / Modem,D-Link,DIR-X1560,Other / not sure — technician to verify exact specifications
+Router / Modem,Globe,At Home Prepaid WiFi,LTE/5G CPE variant | SIM/network service | Wi-Fi | ports vary by unit
+Router / Modem,Globe,At Home Prepaid WiFi,Other / not sure — technician to verify exact specifications
+Router / Modem,Huawei,5G CPE Pro,5G cellular router | SIM slot | Wi-Fi | Ethernet | model-dependent
+Router / Modem,Huawei,5G CPE Pro,Other / not sure — technician to verify exact specifications
+Router / Modem,Huawei,B315,4G LTE CPE router | SIM slot | Wi-Fi | Ethernet ports
+Router / Modem,Huawei,B315,Other / not sure — technician to verify exact specifications
+Router / Modem,Huawei,B535,4G LTE router | SIM slot | dual-band Wi-Fi | Ethernet
+Router / Modem,Huawei,B535,Other / not sure — technician to verify exact specifications
+Router / Modem,Mercusys,AC12G,Dual-band Wi-Fi 5 | AC1200 class | Gigabit Ethernet
+Router / Modem,Mercusys,AC12G,Other / not sure — technician to verify exact specifications
+Router / Modem,Mercusys,MR70X,Wi-Fi 6 | AX1800 class | Gigabit Ethernet
+Router / Modem,Mercusys,MR70X,Other / not sure — technician to verify exact specifications
+Router / Modem,PLDT,Home WiFi LTE,LTE CPE | SIM/network locked variant | Wi-Fi | Ethernet depending on model
+Router / Modem,PLDT,Home WiFi LTE,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,Archer AX10,Wi-Fi 6 | Dual-band AX1500 class | Gigabit WAN/LAN
+Router / Modem,TP-Link,Archer AX10,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,Archer AX23,Wi-Fi 6 | Dual-band AX1800 class | Gigabit WAN/LAN
+Router / Modem,TP-Link,Archer AX23,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,Archer C6,Dual-band Wi-Fi 5 | 2.4/5GHz | Gigabit Ethernet | Router/access point modes
+Router / Modem,TP-Link,Archer C6,Dual-band Wi-Fi 5 | 4 external antennas | Gigabit WAN/LAN
+Router / Modem,TP-Link,Archer C6,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,Deco M4,Mesh Wi-Fi 5 | Dual-band AC1200 class | Gigabit Ethernet | 1/2/3-pack
+Router / Modem,TP-Link,Deco M4,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,Deco X20,Mesh Wi-Fi 6 | Dual-band AX1800 class | Gigabit Ethernet
+Router / Modem,TP-Link,Deco X20,Other / not sure — technician to verify exact specifications
+Router / Modem,TP-Link,TL-MR6400,4G LTE router | SIM slot | Wi-Fi 4 | Ethernet LAN/WAN
+Router / Modem,TP-Link,TL-MR6400,Other / not sure — technician to verify exact specifications
+Router / Modem,ZTE,MC801A,5G indoor router | SIM slot | Wi-Fi 6 class | Ethernet
+Router / Modem,ZTE,MC801A,Other / not sure — technician to verify exact specifications
+Router / Modem,ZTE,MF286,4G LTE home router | SIM slot | Wi-Fi | Ethernet
+Router / Modem,ZTE,MF286,Other / not sure — technician to verify exact specifications
+NAS / Network Storage,QNAP,TS-233,2-bay NAS | SATA HDD/SSD support | Gigabit Ethernet | ARM CPU
+NAS / Network Storage,QNAP,TS-233,Other / not sure — technician to verify exact specifications
+NAS / Network Storage,QNAP,TS-464,4-bay NAS | SATA HDD/SSD support | 2.5GbE | RAM depends on config
+NAS / Network Storage,QNAP,TS-464,Other / not sure — technician to verify exact specifications
+NAS / Network Storage,Synology,DiskStation DS220+,2-bay NAS | SATA HDD/SSD support | Gigabit Ethernet | RAM depends on config
+NAS / Network Storage,Synology,DiskStation DS220+,Other / not sure — technician to verify exact specifications
+NAS / Network Storage,Synology,DiskStation DS224+,2-bay NAS | SATA HDD/SSD support | Gigabit Ethernet | RAM depends on config
+NAS / Network Storage,Synology,DiskStation DS224+,Other / not sure — technician to verify exact specifications
+NAS / Network Storage,Western Digital,My Cloud Home,Personal NAS | internal HDD capacity varies | Ethernet/Wi-Fi setup variant
+NAS / Network Storage,Western Digital,My Cloud Home,Other / not sure — technician to verify exact specifications
+Storage Device,ADATA,LEGEND 800 NVMe SSD,M.2 NVMe PCIe 4.0 SSD | 500GB/1TB/2TB capacity options
+Storage Device,ADATA,LEGEND 800 NVMe SSD,Other / not sure — technician to verify exact specifications
+Storage Device,ADATA,SU650 SATA SSD,2.5-inch SATA SSD | 120GB/240GB/480GB/960GB capacity options
+Storage Device,ADATA,SU650 SATA SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Crucial,BX500 SATA SSD,2.5-inch SATA SSD | 240GB/480GB/1TB/2TB/4TB capacity options
+Storage Device,Crucial,BX500 SATA SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Crucial,MX500 SATA SSD,2.5-inch SATA SSD | 500GB/1TB/2TB capacity options
+Storage Device,Crucial,MX500 SATA SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Crucial,P3 Plus NVMe SSD,M.2 NVMe PCIe 4.0 SSD | 500GB/1TB/2TB/4TB capacity options
+Storage Device,Crucial,P3 Plus NVMe SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Kingston,A400 SATA SSD,2.5-inch SATA SSD | 240GB/480GB/960GB capacity options
+Storage Device,Kingston,A400 SATA SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Kingston,DataTraveler USB Drive,USB flash drive | 32GB/64GB/128GB/256GB capacity options
+Storage Device,Kingston,DataTraveler USB Drive,Other / not sure — technician to verify exact specifications
+Storage Device,Kingston,NV2 NVMe SSD,M.2 2280 NVMe PCIe 4.0 SSD | 500GB/1TB/2TB capacity options
+Storage Device,Kingston,NV2 NVMe SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Samsung,870 EVO SATA SSD,2.5-inch SATA SSD | 250GB/500GB/1TB/2TB/4TB capacity options
+Storage Device,Samsung,870 EVO SATA SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Samsung,990 PRO NVMe SSD,M.2 2280 NVMe PCIe 4.0 SSD | 1TB/2TB/4TB capacity options
+Storage Device,Samsung,990 PRO NVMe SSD,Other / not sure — technician to verify exact specifications
+Storage Device,Samsung,T7 Portable SSD,USB-C portable SSD | 500GB/1TB/2TB/4TB capacity options
+Storage Device,Samsung,T7 Portable SSD,Other / not sure — technician to verify exact specifications
+Storage Device,SanDisk,Extreme Portable SSD,USB-C portable SSD | 500GB/1TB/2TB/4TB capacity options
+Storage Device,SanDisk,Extreme Portable SSD,Other / not sure — technician to verify exact specifications
+Storage Device,SanDisk,Ultra USB Drive,USB flash drive | 32GB/64GB/128GB/256GB capacity options
+Storage Device,SanDisk,Ultra USB Drive,Other / not sure — technician to verify exact specifications
+Storage Device,Seagate,BarraCuda HDD,3.5-inch SATA HDD | 1TB/2TB/4TB/8TB capacity options
+Storage Device,Seagate,BarraCuda HDD,Other / not sure — technician to verify exact specifications
+Storage Device,Seagate,Expansion Desktop,External USB HDD | 4TB/6TB/8TB/10TB capacity options
+Storage Device,Seagate,Expansion Desktop,Other / not sure — technician to verify exact specifications
+Storage Device,Seagate,One Touch Portable HDD,USB portable HDD | 1TB/2TB/4TB/5TB capacity options
+Storage Device,Seagate,One Touch Portable HDD,Other / not sure — technician to verify exact specifications
+Storage Device,Western Digital,My Passport,Portable USB HDD | 1TB/2TB/4TB/5TB capacity options
+Storage Device,Western Digital,My Passport,Other / not sure — technician to verify exact specifications
+Storage Device,Western Digital,WD Black SN850X,M.2 NVMe PCIe 4.0 SSD | 1TB/2TB/4TB capacity options
+Storage Device,Western Digital,WD Black SN850X,Other / not sure — technician to verify exact specifications
+Storage Device,Western Digital,WD Blue HDD,3.5-inch SATA HDD | 1TB/2TB/4TB/6TB capacity options | 5400/7200 RPM by model
+Storage Device,Western Digital,WD Blue HDD,Other / not sure — technician to verify exact specifications
+Storage Device,Western Digital,WD Blue SN580,M.2 NVMe PCIe 4.0 SSD | 500GB/1TB/2TB capacity options
+Storage Device,Western Digital,WD Blue SN580,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,ASUS,ROG Ally,Handheld gaming PC | 7-inch FHD 120Hz touchscreen | Ryzen Z1/Z1 Extreme | SSD varies
+Gaming Console / Handheld,ASUS,ROG Ally,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,ASUS,ROG Ally X,Handheld gaming PC | 7-inch FHD 120Hz touchscreen | Ryzen Z1 Extreme | 1TB SSD class
+Gaming Console / Handheld,ASUS,ROG Ally X,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Lenovo,Legion Go,Handheld gaming PC | 8.8-inch QHD+ 144Hz touchscreen | Ryzen Z1 Extreme | SSD varies
+Gaming Console / Handheld,Lenovo,Legion Go,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Logitech,G Cloud,Cloud gaming handheld | 7-inch FHD touchscreen | Wi-Fi | Android-based
+Gaming Console / Handheld,Logitech,G Cloud,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Microsoft,Xbox One S,Console | 500GB/1TB HDD | HDMI | 4K video playback support
+Gaming Console / Handheld,Microsoft,Xbox One S,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Microsoft,Xbox One X,Console | 1TB HDD | 4K gaming-capable hardware | HDMI
+Gaming Console / Handheld,Microsoft,Xbox One X,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Microsoft,Xbox Series S,Console | Digital-only | 512GB/1TB SSD variant | HDMI 2.1
+Gaming Console / Handheld,Microsoft,Xbox Series S,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Microsoft,Xbox Series X,Console | Disc/digital variant | 1TB/2TB-class SSD by edition | HDMI 2.1
+Gaming Console / Handheld,Microsoft,Xbox Series X,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Nintendo,Nintendo Switch,Handheld/docked console | 6.2-inch LCD | 32GB internal storage | microSD expansion
+Gaming Console / Handheld,Nintendo,Nintendo Switch,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Nintendo,Nintendo Switch 2,Handheld/docked console | LCD touchscreen | internal storage and display specs depend on official unit | microSD Express support
+Gaming Console / Handheld,Nintendo,Nintendo Switch 2,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Nintendo,Nintendo Switch Lite,Handheld-only console | 5.5-inch LCD | 32GB internal storage | microSD expansion
+Gaming Console / Handheld,Nintendo,Nintendo Switch Lite,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Nintendo,Nintendo Switch OLED,Handheld/docked console | 7-inch OLED | 64GB internal storage | microSD expansion
+Gaming Console / Handheld,Nintendo,Nintendo Switch OLED,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation 4 Pro,Console | 1TB HDD | 4K output support | HDMI | Wi-Fi
+Gaming Console / Handheld,Sony,PlayStation 4 Pro,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation 4 Slim,Console | 500GB/1TB HDD | HDMI | Blu-ray | Wi-Fi
+Gaming Console / Handheld,Sony,PlayStation 4 Slim,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation 5,Console | Disc edition | 825GB/1TB-class SSD depending revision | HDMI 2.1
+Gaming Console / Handheld,Sony,PlayStation 5,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation 5 Digital Edition,Console | No disc drive on original digital model | SSD storage | HDMI 2.1
+Gaming Console / Handheld,Sony,PlayStation 5 Digital Edition,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation 5 Slim,Console | Disc/digital version | 1TB-class SSD | detachable disc drive on digital variant
+Gaming Console / Handheld,Sony,PlayStation 5 Slim,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Sony,PlayStation Portal,Remote play handheld | 8-inch LCD | Wi-Fi | requires compatible PS5 for Remote Play
+Gaming Console / Handheld,Sony,PlayStation Portal,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Valve,Steam Deck LCD,Handheld PC | 7-inch LCD 60Hz | 64GB/256GB/512GB storage by version
+Gaming Console / Handheld,Valve,Steam Deck LCD,Other / not sure — technician to verify exact specifications
+Gaming Console / Handheld,Valve,Steam Deck OLED,Handheld PC | 7.4-inch OLED 90Hz | 512GB/1TB storage by version
+Gaming Console / Handheld,Valve,Steam Deck OLED,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Apple,Apple Watch SE (2nd gen),40mm/44mm case | GPS + Cellular variant | OLED Retina | watchOS
+Smartwatch / Wearable,Apple,Apple Watch SE (2nd gen),40mm/44mm case | GPS | OLED Retina | watchOS
+Smartwatch / Wearable,Apple,Apple Watch SE (2nd gen),Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Apple,Apple Watch Series 9,41mm/45mm case | GPS + Cellular variant | OLED Retina | health sensors
+Smartwatch / Wearable,Apple,Apple Watch Series 9,41mm/45mm case | GPS | OLED Retina | health sensors
+Smartwatch / Wearable,Apple,Apple Watch Series 9,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Apple,Apple Watch Ultra 2,49mm titanium case | GPS + Cellular | OLED Retina | watchOS
+Smartwatch / Wearable,Apple,Apple Watch Ultra 2,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Fitbit,Charge 6,Fitness tracker | AMOLED | Bluetooth | health sensors
+Smartwatch / Wearable,Fitbit,Charge 6,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Fitbit,Versa 4,Smartwatch | AMOLED | GPS | Bluetooth | health sensors
+Smartwatch / Wearable,Fitbit,Versa 4,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Garmin,Forerunner 255,GPS sports watch | transflective display | Bluetooth | health sensors
+Smartwatch / Wearable,Garmin,Forerunner 255,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Garmin,Forerunner 265,AMOLED sports watch | GPS | Bluetooth | health sensors
+Smartwatch / Wearable,Garmin,Forerunner 265,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Garmin,Venu 3,AMOLED smartwatch | GPS | Bluetooth | health sensors
+Smartwatch / Wearable,Garmin,Venu 3,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Huawei,Watch Fit 3,AMOLED display | Bluetooth | health sensors | GPS
+Smartwatch / Wearable,Huawei,Watch Fit 3,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Huawei,Watch GT 4,46mm/41mm variant | AMOLED | Bluetooth | health sensors
+Smartwatch / Wearable,Huawei,Watch GT 4,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Samsung,Galaxy Watch Ultra,47mm titanium case | LTE | Super AMOLED | Wear OS
+Smartwatch / Wearable,Samsung,Galaxy Watch Ultra,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Samsung,Galaxy Watch6,40mm/44mm | LTE variant | Super AMOLED | Wear OS
+Smartwatch / Wearable,Samsung,Galaxy Watch6,40mm/44mm | Super AMOLED | Bluetooth/Wi-Fi | Wear OS
+Smartwatch / Wearable,Samsung,Galaxy Watch6,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Samsung,Galaxy Watch7,40mm/44mm | LTE variant | Super AMOLED | Wear OS
+Smartwatch / Wearable,Samsung,Galaxy Watch7,40mm/44mm | Super AMOLED | Bluetooth/Wi-Fi | Wear OS
+Smartwatch / Wearable,Samsung,Galaxy Watch7,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Xiaomi,Redmi Watch 4,1.97-inch AMOLED | Bluetooth calling | GPS features vary by version
+Smartwatch / Wearable,Xiaomi,Redmi Watch 4,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Xiaomi,Smart Band 8,AMOLED fitness band | Bluetooth | heart-rate/SpO2 sensors
+Smartwatch / Wearable,Xiaomi,Smart Band 8,Other / not sure — technician to verify exact specifications
+Smartwatch / Wearable,Xiaomi,Smart Band 9,AMOLED fitness band | Bluetooth | heart-rate/SpO2 sensors
+Smartwatch / Wearable,Xiaomi,Smart Band 9,Other / not sure — technician to verify exact specifications
+Keyboard,A4Tech,Bloody B120,Wired USB | Full-size gaming keyboard | membrane
+Keyboard,A4Tech,Bloody B120,Other / not sure — technician to verify exact specifications
+Keyboard,Corsair,K55 RGB,Wired USB | Full-size membrane | RGB
+Keyboard,Corsair,K55 RGB,Other / not sure — technician to verify exact specifications
+Keyboard,Corsair,K65 Mini,Wired USB-C | 60% mechanical keyboard | RGB
+Keyboard,Corsair,K65 Mini,Other / not sure — technician to verify exact specifications
+Keyboard,Corsair,K70 RGB,Wired USB | Full-size mechanical | RGB | switch variant
+Keyboard,Corsair,K70 RGB,Other / not sure — technician to verify exact specifications
+Keyboard,Logitech,G213 Prodigy,Wired USB | Full-size gaming keyboard | RGB lighting
+Keyboard,Logitech,G213 Prodigy,Other / not sure — technician to verify exact specifications
+Keyboard,Logitech,G413,Wired USB | Mechanical gaming keyboard | backlit
+Keyboard,Logitech,G413,Other / not sure — technician to verify exact specifications
+Keyboard,Logitech,K120,Wired USB | Full-size 104-key layout | Membrane
+Keyboard,Logitech,K120,Other / not sure — technician to verify exact specifications
+Keyboard,Logitech,K380,Bluetooth wireless | Compact 75% layout | Multi-device
+Keyboard,Logitech,K380,Other / not sure — technician to verify exact specifications
+Keyboard,Logitech,K400 Plus,Wireless 2.4GHz | Keyboard with integrated touchpad
+Keyboard,Logitech,K400 Plus,Other / not sure — technician to verify exact specifications
+Keyboard,Razer,BlackWidow V3,Wired USB | Mechanical switches | RGB lighting | full-size/TKL variant
+Keyboard,Razer,BlackWidow V3,Other / not sure — technician to verify exact specifications
+Keyboard,Razer,Cynosa V2,Wired USB | Membrane gaming keyboard | RGB
+Keyboard,Razer,Cynosa V2,Other / not sure — technician to verify exact specifications
+Keyboard,Razer,Huntsman Mini,Wired USB-C | 60% layout | optical switches | RGB
+Keyboard,Razer,Huntsman Mini,Other / not sure — technician to verify exact specifications
+Keyboard,Redragon,K552 Kumara,Wired USB | 87-key TKL | mechanical switches | RGB/backlight variant
+Keyboard,Redragon,K552 Kumara,Other / not sure — technician to verify exact specifications
+Keyboard,Redragon,K580 Vata,Wired USB | Full-size mechanical | RGB
+Keyboard,Redragon,K580 Vata,Other / not sure — technician to verify exact specifications
+Keyboard,Redragon,K617 Fizz,Wired USB-C | 60% layout | mechanical switches | RGB
+Keyboard,Redragon,K617 Fizz,Other / not sure — technician to verify exact specifications
+Mouse,A4Tech,Bloody A60,Wired USB | Gaming optical mouse | programmable buttons
+Mouse,A4Tech,Bloody A60,Other / not sure — technician to verify exact specifications
+Mouse,A4Tech,OP-720,Wired USB | Optical office mouse | 3 buttons
+Mouse,A4Tech,OP-720,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,B100,Wired USB | Optical sensor | 800 dpi class | 3 buttons
+Mouse,Logitech,B100,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,G102 Lightsync,Wired USB | Gaming optical sensor | adjustable DPI | RGB
+Mouse,Logitech,G102 Lightsync,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,G304/G305,Wireless Lightspeed USB receiver | Gaming sensor | AA battery
+Mouse,Logitech,G304/G305,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,G502 Hero,Wired USB | High-DPI gaming sensor | programmable buttons
+Mouse,Logitech,G502 Hero,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,M185,Wireless 2.4GHz USB receiver | Optical sensor | 3 buttons
+Mouse,Logitech,M185,Other / not sure — technician to verify exact specifications
+Mouse,Logitech,M331 Silent,Wireless 2.4GHz USB receiver | Silent clicks | Optical sensor
+Mouse,Logitech,M331 Silent,Other / not sure — technician to verify exact specifications
+Mouse,Razer,Basilisk V3,Wired USB | Gaming sensor | programmable buttons | RGB
+Mouse,Razer,Basilisk V3,Other / not sure — technician to verify exact specifications
+Mouse,Razer,DeathAdder Essential,Wired USB | Optical gaming sensor | 5 buttons
+Mouse,Razer,DeathAdder Essential,Other / not sure — technician to verify exact specifications
+Mouse,Razer,DeathAdder V2,Wired USB | Optical sensor | programmable buttons
+Mouse,Razer,DeathAdder V2,Other / not sure — technician to verify exact specifications
+Mouse,Razer,Viper Mini,Wired USB | Lightweight gaming mouse | optical sensor
+Mouse,Razer,Viper Mini,Other / not sure — technician to verify exact specifications
+Mouse,Razer,Viper V2 Pro,Wireless 2.4GHz/Bluetooth model-dependent | esports sensor | rechargeable
+Mouse,Razer,Viper V2 Pro,Other / not sure — technician to verify exact specifications
+Mouse,Redragon,M601,Wired USB | Gaming optical sensor | programmable buttons
+Mouse,Redragon,M601,Other / not sure — technician to verify exact specifications
+Mouse,Redragon,M711 Cobra,Wired USB | Optical sensor | RGB | programmable buttons
+Mouse,Redragon,M711 Cobra,Other / not sure — technician to verify exact specifications
+Mouse,Redragon,M808 Storm,Wired USB | Lightweight gaming mouse | RGB
+Mouse,Redragon,M808 Storm,Other / not sure — technician to verify exact specifications
+Mouse,SteelSeries,Aerox 3,Wired/wireless variant | Lightweight gaming mouse | RGB
+Mouse,SteelSeries,Aerox 3,Other / not sure — technician to verify exact specifications
+Mouse,SteelSeries,Rival 3,Wired USB | Gaming optical sensor | RGB
+Mouse,SteelSeries,Rival 3,Other / not sure — technician to verify exact specifications
+Headset,HyperX,Cloud Alpha,Wired 3.5mm | Over-ear | detachable microphone
+Headset,HyperX,Cloud Alpha,Other / not sure — technician to verify exact specifications
+Headset,HyperX,Cloud II,Wired USB/3.5mm | Over-ear | virtual surround support on USB adapter
+Headset,HyperX,Cloud II,Other / not sure — technician to verify exact specifications
+Headset,HyperX,Cloud Stinger 2,Wired 3.5mm/USB variant | Over-ear | boom microphone | stereo
+Headset,HyperX,Cloud Stinger 2,Other / not sure — technician to verify exact specifications
+Headset,JBL,Quantum 100,Wired 3.5mm | Over-ear gaming headset | detachable mic
+Headset,JBL,Quantum 100,Other / not sure — technician to verify exact specifications
+Headset,JBL,Tune 510BT,Bluetooth wireless | On-ear | built-in microphone
+Headset,JBL,Tune 510BT,Other / not sure — technician to verify exact specifications
+Headset,Logitech,G335,Wired 3.5mm | Over-ear gaming headset | boom mic
+Headset,Logitech,G335,Other / not sure — technician to verify exact specifications
+Headset,Logitech,G733,Wireless Lightspeed USB receiver | RGB | boom mic
+Headset,Logitech,G733,Other / not sure — technician to verify exact specifications
+Headset,Logitech,H111,Wired 3.5mm | Stereo | inline microphone
+Headset,Logitech,H111,Other / not sure — technician to verify exact specifications
+Headset,Logitech,H390,Wired USB-A | Stereo | noise-cancelling mic
+Headset,Logitech,H390,Other / not sure — technician to verify exact specifications
+Headset,Razer,Barracuda X,Wireless USB-C/3.5mm depending version | over-ear | detachable mic
+Headset,Razer,Barracuda X,Other / not sure — technician to verify exact specifications
+Headset,Razer,BlackShark V2 X,Wired 3.5mm | Over-ear gaming headset | boom microphone
+Headset,Razer,BlackShark V2 X,Other / not sure — technician to verify exact specifications
+Headset,Razer,Kraken X,Wired 3.5mm | Over-ear gaming headset | microphone
+Headset,Razer,Kraken X,Other / not sure — technician to verify exact specifications
+Headset,Sony,INZONE H3,Wired USB/3.5mm variant | Gaming headset | boom microphone
+Headset,Sony,INZONE H3,Other / not sure — technician to verify exact specifications
+Headset,Sony,WH-1000XM4,Bluetooth/3.5mm | Over-ear | active noise cancellation
+Headset,Sony,WH-1000XM4,Other / not sure — technician to verify exact specifications
+Headset,Sony,WH-CH520,Bluetooth wireless | On-ear | microphone | no 3.5mm jack
+Headset,Sony,WH-CH520,Other / not sure — technician to verify exact specifications
+Headset,SteelSeries,Arctis 7,Wireless 2.4GHz USB transmitter | over-ear | microphone
+Headset,SteelSeries,Arctis 7,Other / not sure — technician to verify exact specifications
+Headset,SteelSeries,Arctis Nova 1,Wired 3.5mm | Over-ear | detachable microphone
+Headset,SteelSeries,Arctis Nova 1,Other / not sure — technician to verify exact specifications
+Webcam,A4Tech,PK-910H,USB | 1080p Full HD class | built-in microphone
+Webcam,A4Tech,PK-910H,Other / not sure — technician to verify exact specifications
+Webcam,Logitech,Brio 4K,USB | 4K UHD capture | autofocus | HDR features
+Webcam,Logitech,Brio 4K,Other / not sure — technician to verify exact specifications
+Webcam,Logitech,C270,USB-A | 720p HD | built-in microphone
+Webcam,Logitech,C270,Other / not sure — technician to verify exact specifications
+Webcam,Logitech,C920,USB-A | 1080p Full HD | stereo microphones
+Webcam,Logitech,C920,Other / not sure — technician to verify exact specifications
+Webcam,Logitech,C922 Pro,USB-A | 1080p Full HD/720p high-frame-rate modes | stereo microphones
+Webcam,Logitech,C922 Pro,Other / not sure — technician to verify exact specifications
+Webcam,Microsoft,LifeCam HD-3000,USB-A | 720p HD | built-in microphone
+Webcam,Microsoft,LifeCam HD-3000,Other / not sure — technician to verify exact specifications
+Webcam,Razer,Kiyo,USB | 1080p capture | built-in ring light
+Webcam,Razer,Kiyo,Other / not sure — technician to verify exact specifications
+Webcam,Razer,Kiyo Pro,USB | 1080p high-frame-rate capture | adaptive light sensor
+Webcam,Razer,Kiyo Pro,Other / not sure — technician to verify exact specifications
+Speaker,Creative,Pebble,USB-powered | 3.5mm input | 2.0-channel desktop speakers
+Speaker,Creative,Pebble,Other / not sure — technician to verify exact specifications
+Speaker,Creative,Pebble Plus,USB-powered | 2.1-channel with subwoofer
+Speaker,Creative,Pebble Plus,Other / not sure — technician to verify exact specifications
+Speaker,Edifier,R1280T,Powered bookshelf speakers | RCA input | 2.0-channel
+Speaker,Edifier,R1280T,Other / not sure — technician to verify exact specifications
+Speaker,Edifier,R1700BT,Powered bookshelf speakers | Bluetooth/RCA | 2.0-channel
+Speaker,Edifier,R1700BT,Other / not sure — technician to verify exact specifications
+Speaker,JBL,Flip 6,Portable Bluetooth speaker | rechargeable battery | water/dust resistance
+Speaker,JBL,Flip 6,Other / not sure — technician to verify exact specifications
+Speaker,JBL,Go 3,Portable Bluetooth speaker | rechargeable battery | IP67-class protection
+Speaker,JBL,Go 3,Other / not sure — technician to verify exact specifications
+Speaker,Logitech,Z120,USB-powered | 3.5mm audio input | stereo desktop speakers
+Speaker,Logitech,Z120,Other / not sure — technician to verify exact specifications
+Speaker,Logitech,Z407,Bluetooth/USB/3.5mm | 2.1-channel desktop speaker system
+Speaker,Logitech,Z407,Other / not sure — technician to verify exact specifications
+Docking Station,Anker,PowerExpand USB-C Hub,USB-C hub | HDMI/USB-A/USB-C/SD ports vary by model
+Docking Station,Anker,PowerExpand USB-C Hub,Other / not sure — technician to verify exact specifications
+Docking Station,Dell,WD19,USB-C docking station | DisplayPort/HDMI | Ethernet | USB | power delivery varies
+Docking Station,Dell,WD19,Other / not sure — technician to verify exact specifications
+Docking Station,Dell,WD22TB4,Thunderbolt 4 dock | multiple display outputs | Ethernet | USB-C/USB-A
+Docking Station,Dell,WD22TB4,Other / not sure — technician to verify exact specifications
+Docking Station,HP,Thunderbolt Dock G4,Thunderbolt dock | multi-display outputs | Ethernet | USB
+Docking Station,HP,Thunderbolt Dock G4,Other / not sure — technician to verify exact specifications
+Docking Station,HP,USB-C Dock G5,USB-C dock | HDMI/DisplayPort | Ethernet | USB | power delivery
+Docking Station,HP,USB-C Dock G5,Other / not sure — technician to verify exact specifications
+Docking Station,Lenovo,ThinkPad Thunderbolt 4 Dock,Thunderbolt 4 dock | multi-display | Ethernet | USB
+Docking Station,Lenovo,ThinkPad Thunderbolt 4 Dock,Other / not sure — technician to verify exact specifications
+Docking Station,Lenovo,ThinkPad USB-C Dock Gen 2,USB-C dock | HDMI/DisplayPort | Ethernet | USB
+Docking Station,Lenovo,ThinkPad USB-C Dock Gen 2,Other / not sure — technician to verify exact specifications
+UPS,APC,Back-UPS 1100VA,1100VA class | battery backup | AVR | outlet count varies
+UPS,APC,Back-UPS 1100VA,Other / not sure — technician to verify exact specifications
+UPS,APC,Back-UPS 650VA,650VA class | battery backup | AVR/model dependent | outlet count varies
+UPS,APC,Back-UPS 650VA,Other / not sure — technician to verify exact specifications
+UPS,APC,Smart-UPS 1500VA,1500VA class | line-interactive/online variant | replaceable battery
+UPS,APC,Smart-UPS 1500VA,Other / not sure — technician to verify exact specifications
+UPS,CyberPower,UT650EG,650VA class | standby UPS | AVR variant | battery backup outlets
+UPS,CyberPower,UT650EG,Other / not sure — technician to verify exact specifications
+UPS,CyberPower,VP1000ELCD,1000VA class | line-interactive UPS | LCD/status display
+UPS,CyberPower,VP1000ELCD,Other / not sure — technician to verify exact specifications
+UPS,Prolink,PRO1201SFCU,1200VA class | line-interactive UPS | AVR
+UPS,Prolink,PRO1201SFCU,Other / not sure — technician to verify exact specifications
+UPS,Prolink,PRO700SFCU,700VA class | line-interactive UPS | battery backup
+UPS,Prolink,PRO700SFCU,Other / not sure — technician to verify exact specifications
+Digital Camera,Canon,EOS 200D,DSLR | APS-C sensor | EF/EF-S mount | SD card
+Digital Camera,Canon,EOS 200D,Other / not sure — technician to verify exact specifications
+Digital Camera,Canon,EOS 90D,DSLR | APS-C sensor | EF/EF-S mount | SD card
+Digital Camera,Canon,EOS 90D,Other / not sure — technician to verify exact specifications
+Digital Camera,Canon,EOS R50,Mirrorless | APS-C sensor | RF mount | SD/USB connectivity
+Digital Camera,Canon,EOS R50,Other / not sure — technician to verify exact specifications
+Digital Camera,Fujifilm,X-S20,Mirrorless | APS-C sensor | X mount | SD card
+Digital Camera,Fujifilm,X-S20,Other / not sure — technician to verify exact specifications
+Digital Camera,Fujifilm,X-T30 II,Mirrorless | APS-C sensor | X mount | SD card
+Digital Camera,Fujifilm,X-T30 II,Other / not sure — technician to verify exact specifications
+Digital Camera,Nikon,D3500,DSLR | APS-C/DX sensor | F mount | SD card
+Digital Camera,Nikon,D3500,Other / not sure — technician to verify exact specifications
+Digital Camera,Nikon,Z50,Mirrorless | APS-C/DX sensor | Z mount | SD card
+Digital Camera,Nikon,Z50,Other / not sure — technician to verify exact specifications
+Digital Camera,Sony,Alpha a6400,Mirrorless | APS-C sensor | E mount | SD card
+Digital Camera,Sony,Alpha a6400,Other / not sure — technician to verify exact specifications
+Digital Camera,Sony,Alpha a7 III,Mirrorless | full-frame sensor | E mount | SD card
+Digital Camera,Sony,Alpha a7 III,Other / not sure — technician to verify exact specifications
+Smart TV,Hisense,A6 Series,4K UHD LED/LCD | VIDAA/Google TV variant | HDMI/Wi-Fi
+Smart TV,Hisense,A6 Series,Other / not sure — technician to verify exact specifications
+Smart TV,Hisense,U7 Series,4K Mini LED/QLED | smart TV OS varies | HDMI/Wi-Fi
+Smart TV,Hisense,U7 Series,Other / not sure — technician to verify exact specifications
+Smart TV,LG,OLED C Series,4K OLED | webOS | HDMI/Wi-Fi | high refresh rate model option
+Smart TV,LG,OLED C Series,Other / not sure — technician to verify exact specifications
+Smart TV,LG,UHD TV,4K UHD LED/LCD | webOS | HDMI/Wi-Fi | screen size varies
+Smart TV,LG,UHD TV,Other / not sure — technician to verify exact specifications
+Smart TV,Samsung,Crystal UHD,4K UHD LED/LCD | Tizen OS | HDMI/Wi-Fi | screen size/model varies
+Smart TV,Samsung,Crystal UHD,Other / not sure — technician to verify exact specifications
+Smart TV,Samsung,QLED Q Series,4K QLED | Tizen OS | HDMI/Wi-Fi | screen size/model varies
+Smart TV,Samsung,QLED Q Series,Other / not sure — technician to verify exact specifications
+Smart TV,Sony,BRAVIA OLED A Series,4K OLED | Google TV | HDMI/Wi-Fi | screen size varies
+Smart TV,Sony,BRAVIA OLED A Series,Other / not sure — technician to verify exact specifications
+Smart TV,Sony,BRAVIA X Series,4K LED/LCD | Google TV | HDMI/Wi-Fi | screen size varies
+Smart TV,Sony,BRAVIA X Series,Other / not sure — technician to verify exact specifications
+Smart TV,TCL,C Series,4K QLED/Mini LED | Google TV | HDMI/Wi-Fi
+Smart TV,TCL,C Series,Other / not sure — technician to verify exact specifications
+Smart TV,TCL,P Series,4K UHD LED/QLED | Google TV/Roku variant | HDMI/Wi-Fi
+Smart TV,TCL,P Series,Other / not sure — technician to verify exact specifications
+DVD / Blu-ray Player,LG,BP250,Blu-ray/DVD player | HDMI | USB | Full HD
+DVD / Blu-ray Player,LG,BP250,Other / not sure — technician to verify exact specifications
+DVD / Blu-ray Player,LG,UBK90,4K UHD Blu-ray player | HDMI | network features
+DVD / Blu-ray Player,LG,UBK90,Other / not sure — technician to verify exact specifications
+DVD / Blu-ray Player,Sony,BDP-S1700,Blu-ray/DVD player | HDMI | USB | Full HD upscaling
+DVD / Blu-ray Player,Sony,BDP-S1700,Other / not sure — technician to verify exact specifications
+DVD / Blu-ray Player,Sony,UBP-X700,4K UHD Blu-ray player | HDMI | USB | network features
+DVD / Blu-ray Player,Sony,UBP-X700,Other / not sure — technician to verify exact specifications
+POS Terminal,Bixolon,SRP-350,Thermal receipt printer | USB/Ethernet/serial variant | 80mm paper
+POS Terminal,Bixolon,SRP-350,Other / not sure — technician to verify exact specifications
+POS Terminal,Epson,TM-T82III,Thermal receipt printer | USB/Ethernet variant | 80mm paper
+POS Terminal,Epson,TM-T82III,Other / not sure — technician to verify exact specifications
+POS Terminal,Epson,TM-T88VII,Thermal receipt printer | USB/Ethernet/serial options | 80mm paper
+POS Terminal,Epson,TM-T88VII,Other / not sure — technician to verify exact specifications
+POS Terminal,Sunmi,V2s,Android mobile POS terminal | thermal printer | touchscreen | Wi-Fi/4G variant
+POS Terminal,Sunmi,V2s,Other / not sure — technician to verify exact specifications

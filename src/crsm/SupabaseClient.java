@@ -23,7 +23,8 @@ final class SupabaseClient {
 
     HttpResponse<String> send(String method, String path, String token, Object body, Map<String,String> headers) throws IOException, InterruptedException {
         HttpRequest.Builder builder = HttpRequest.newBuilder(URI.create(baseUrl + path)).timeout(Duration.ofSeconds(30))
-                .header("apikey", anonKey).header("Accept", "application/json");
+                .header("apikey", anonKey).header("Accept", "application/json")
+                .header("X-Client-Info", "crsm-java-desktop/1.0");
         if (token != null && !token.isBlank()) builder.header("Authorization", "Bearer " + token);
         if (body != null) builder.header("Content-Type", "application/json");
         if (headers != null) headers.forEach(builder::header);

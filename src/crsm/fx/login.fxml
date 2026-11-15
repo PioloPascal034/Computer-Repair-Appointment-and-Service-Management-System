@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="crsm.fx.LoginController" styleClass="auth-root">
+    <left>
+        <StackPane prefWidth="430" styleClass="auth-brand" BorderPane.alignment="CENTER">
+            <ImageView fitWidth="430" fitHeight="760" preserveRatio="false" opacity="0.52">
+                <Image url="@../assets/repair-workbench.jpg"/>
+            </ImageView>
+            <Region styleClass="auth-overlay"/>
+            <VBox spacing="18" styleClass="auth-brand-copy">
+                <Label text="CRSM" styleClass="brand-wordmark"/>
+                <Label text="COMPUTER REPAIR SERVICE MANAGEMENT" styleClass="brand-subtitle" wrapText="true" maxWidth="Infinity"/>
+                <Region prefHeight="4" maxWidth="78" styleClass="gold-rule"/>
+                <Label text="Reliable repairs. Organized service." styleClass="brand-tagline" wrapText="true" maxWidth="Infinity"/>
+                <Label text="Manage customers, appointments, technicians, repairs, and payments from one secure workspace." styleClass="brand-copy" wrapText="true" maxWidth="Infinity"/>
+                <Region VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </StackPane>
+    </left>
+    <center>
+        <StackPane styleClass="auth-canvas">
+            <VBox maxWidth="510" spacing="16" styleClass="auth-card">
+                <Label text="CRSM  |  COMPUTER REPAIR SERVICE MANAGEMENT" styleClass="eyebrow"/>
+                <Region prefHeight="4" maxWidth="54" styleClass="gold-rule"/>
+                <Label text="Welcome Back" styleClass="auth-title"/>
+                <Label text="Sign in to your account to continue." styleClass="auth-subtitle"/>
+                <Label text="Email Address" styleClass="field-label"/>
+                <TextField fx:id="email" promptText="Enter your email address"/>
+                <Label text="Password" styleClass="field-label"/>
+                <PasswordField fx:id="password" promptText="Enter your password" onAction="#signIn"/>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <CheckBox fx:id="remember" text="Remember me"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Hyperlink text="Forgot password?" onAction="#forgotPassword"/>
+                </HBox>
+                <Button text="Sign In" onAction="#signIn" defaultButton="true" styleClass="auth-primary" maxWidth="Infinity"/>
+                <Separator/>
+                <Button text="Create a Customer account" onAction="#signUp" styleClass="outline-button" maxWidth="Infinity"/>
+                <Label fx:id="status" styleClass="status-label" wrapText="true"/>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

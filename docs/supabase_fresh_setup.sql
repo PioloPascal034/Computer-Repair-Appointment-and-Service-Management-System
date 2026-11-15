@@ -26,6 +26,8 @@ create table if not exists public.computers (
     device_type varchar(50) not null,
     brand varchar(50) not null,
     model varchar(100),
+    specification text,
+    verified_specification text,
     serial_number varchar(100),
     reported_problem text
 );
@@ -43,6 +45,8 @@ create table if not exists public.repair_services (
     service_name varchar(100) not null,
     description text,
     service_price numeric(10,2) not null,
+    category text,
+    common_problems text,
     constraint chk_service_price_nonnegative check (service_price >= 0)
 );
 
